@@ -60,7 +60,7 @@ public class HiloDeCliente_1 implements Runnable, ListDataListener
         }
     }
     public void actualizarLista() throws IOException{
-        ArrayList lista = ManejadorDeListas.ListaDeRojos;
+        ArrayList lista = ManejadorDeListas.getLists();
         //lista.add("PERE");
         //salienteServidor=new ObjectOutputStream(socket.getOutputStream());
         salienteServidor.writeObject(lista);

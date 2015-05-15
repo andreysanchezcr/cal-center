@@ -383,6 +383,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         btnSetComoRojo.setEnabled(false);
         
         ManejadorDeListas.finderThenInsert(pTiket, ListaDeVerdes);
+        actualizarCliente();
         
     }//GEN-LAST:event_btnSetComoVERDEActionPerformed
 
@@ -397,6 +398,8 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         btnSetComoRojo.setEnabled(false);
         
         ManejadorDeListas.finderThenInsert(pTiket, ListaDeAmarillos);
+        actualizarCliente();
+        
     }//GEN-LAST:event_btnSetComoAmarilloActionPerformed
 
     private void btnSetComoRojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoRojoActionPerformed
@@ -410,13 +413,17 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         btnSetComoRojo.setEnabled(false);
         
         ManejadorDeListas.finderThenInsert(pTiket, ListaDeRojos);
+        actualizarCliente();
+        
+    }//GEN-LAST:event_btnSetComoRojoActionPerformed
+
+    public void actualizarCliente(){
         try {
             this.servidor.gett().actualizarLista();
         } catch (IOException ex) {
             Logger.getLogger(ServidorVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnSetComoRojoActionPerformed
-
+    }
     private void ListaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListaItemStateChanged
         btnSetComoVERDE.setEnabled(true);
         btnSetComoAmarillo.setEnabled(true);

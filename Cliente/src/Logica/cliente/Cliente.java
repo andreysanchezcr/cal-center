@@ -59,7 +59,7 @@ public class Cliente
                 String tipo=flujoEntrante.readUTF();
                 ClienteVentana ventana = new ClienteVentana(nombre,socket,tipo);
                 System.out.println("EXito");
-                ControlCliente control = new ControlCliente(socket, panel);
+                ControlCliente control = new ControlCliente(socket, panel,parent.getColor());
                 
                 
             }else{
