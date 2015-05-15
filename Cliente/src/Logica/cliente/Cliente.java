@@ -61,6 +61,7 @@ public class Cliente
                 System.out.println("EXito");
                 ControlCliente control = new ControlCliente(socket, panel);
                 
+                
             }else{
                 System.out.println("Fallo");
             }

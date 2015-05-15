@@ -5,8 +5,12 @@ import Logica.*;//<-------------------------------------------------------------
 import static Logica.ManejadorDeListas.ListaDeAmarillos;
 import static Logica.ManejadorDeListas.ListaDeRojos;
 import static Logica.ManejadorDeListas.ListaDeVerdes;
+import Logica.servidor.HiloDeCliente_1;
 import Logica.servidor.Servidor;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,7 +33,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     boolean fernando;
     boolean junior;
     public ServidorVentana() {
-       this.servidor=servidor;
+       //this.servidor=servidor;
         initComponents();
         setLocationRelativeTo(null);
         this.setVisible(true);
@@ -344,7 +348,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         ventanaSeleccionArchivo.showOpenDialog(null);
         File archivoActual= ventanaSeleccionArchivo.getSelectedFile();
         String pathArchivo = archivoActual.getAbsolutePath();
-        
         //====================================================//
         
        
@@ -356,6 +359,18 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         
     }//GEN-LAST:event_btnCargarTicketsActionPerformed
 
+    public void setServidor(Servidor servidor){
+        this.servidor=servidor;
+    }
+    public void actualizarListaTiquetes() throws IOException{
+        ArrayList lista=servidor.getListaConexiones();
+        for(int i=0;i<lista.size();i++){
+            HiloDeCliente_1 temp=((HiloDeCliente_1)lista.get(i));
+            temp.actualizarLista();
+            
+        }
+    }
+    
     private void btnSetComoVERDEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoVERDEActionPerformed
         // TODO add your handling code here:
         String pTiket = Lista.getSelectedItem();
@@ -391,6 +406,11 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         btnSetComoRojo.setEnabled(false);
         
         ManejadorDeListas.finderThenInsert(pTiket, ListaDeRojos);
+        try {
+            this.servidor.gett().actualizarLista();
+        } catch (IOException ex) {
+            Logger.getLogger(ServidorVentana.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSetComoRojoActionPerformed
 
     private void ListaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListaItemStateChanged

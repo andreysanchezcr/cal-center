@@ -2,10 +2,12 @@
 
 package Logica;
 
+import java.io.Serializable;
 
 
 
-public class Tickets {
+
+public class Tickets implements Serializable{
     /**
      * Atributos
      */

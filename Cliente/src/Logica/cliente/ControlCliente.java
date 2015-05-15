@@ -1,6 +1,7 @@
 package Logica.cliente;
 
 
+import Logica.Tickets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataInputStream;
@@ -27,6 +28,7 @@ public class ControlCliente implements ActionListener, Runnable
     /** Panel con los controles para el usuario */
     private PanelCliente panel;
     ArrayList lista;
+    ObjectInputStream objetoEntrante;
     /**
      * Contruye una instancia de esta clase, lanzando un hilo para atender al
      * socket.
@@ -38,9 +40,10 @@ public class ControlCliente implements ActionListener, Runnable
         this.panel = panel;
         try
         {
-            ObjectInputStream objetoEntrante=new ObjectInputStream(socket.getInputStream());
+            objetoEntrante=new ObjectInputStream(socket.getInputStream());
             lista=(ArrayList)objetoEntrante.readObject();
-            System.out.println(lista.get(0));
+            Tickets temp=(Tickets)lista.get(0);
+            System.out.println(temp.getIDTicket()+"hola");
             dataInput = new DataInputStream(socket.getInputStream());
             dataOutput = new DataOutputStream(socket.getOutputStream());
             
@@ -78,9 +81,11 @@ public class ControlCliente implements ActionListener, Runnable
         {
             while (true)
             {
-                String texto = dataInput.readUTF();
-                //panel.addTexto(texto);
-                //panel.addTexto("\n");
+                lista=(ArrayList)objetoEntrante.readObject();
+                for(int i =0;i<lista.size();i++){
+            Tickets temp=(Tickets)lista.get(i);
+            System.out.println(temp.getAsunto());
+            }
             }
         } catch (Exception e)
         {

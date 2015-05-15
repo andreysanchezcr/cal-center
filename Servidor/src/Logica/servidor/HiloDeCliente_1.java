@@ -1,6 +1,7 @@
 package Logica.servidor;
 
 
+import Logica.ManejadorDeListas;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import javax.swing.event.ListDataListener;
 
 /**
  * Hilo encargado de atender a un cliente.
- * @author Chuidiang
+ * @author Chuidiang                     
  */
 public class HiloDeCliente_1 implements Runnable, ListDataListener
 {
@@ -30,6 +31,8 @@ public class HiloDeCliente_1 implements Runnable, ListDataListener
 
     /** Para escritura de datos en el socket */
     private DataOutputStream dataOutput;
+    private Servidor servidor;
+    ObjectOutputStream salienteServidor;
 
     /**
      * Crea una instancia de esta clase y se suscribe a cambios en la charla.
@@ -41,9 +44,9 @@ public class HiloDeCliente_1 implements Runnable, ListDataListener
         
         this.charla = charla;
         this.socket = socket;
-        ArrayList lista = new ArrayList();
-        lista.add("PERE");
-        ObjectOutputStream salienteServidor=new ObjectOutputStream(socket.getOutputStream());
+        ArrayList lista = ManejadorDeListas.ListaDeRojos;
+        //lista.add("PERE");
+        salienteServidor=new ObjectOutputStream(socket.getOutputStream());
         salienteServidor.writeObject(lista);
         
         try
@@ -55,6 +58,12 @@ public class HiloDeCliente_1 implements Runnable, ListDataListener
         {
             e.printStackTrace();
         }
+    }
+    public void actualizarLista() throws IOException{
+        ArrayList lista = ManejadorDeListas.ListaDeRojos;
+        //lista.add("PERE");
+        //salienteServidor=new ObjectOutputStream(socket.getOutputStream());
+        salienteServidor.writeObject(lista);
     }
 
     /**
@@ -77,6 +86,12 @@ public class HiloDeCliente_1 implements Runnable, ListDataListener
         {
             e.printStackTrace();
         }
+    }
+    public void actualizaLista() throws IOException{
+        
+        ArrayList lista = ManejadorDeListas.ListaDeRojos;
+        //lista.add("PERE");
+        salienteServidor.writeObject(lista);
     }
 
     /**

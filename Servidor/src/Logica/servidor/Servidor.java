@@ -1,7 +1,7 @@
 package Logica.servidor;
 
 import Interfaz.ServidorVentana;
-import Logica.Exell;
+
 import Logica.Persona;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -27,6 +27,8 @@ public class Servidor implements Runnable{
     DataInputStream dataInput;
         DataOutputStream saliente;
         boolean sucess = false;
+        ArrayList listaConexiones=new ArrayList();
+        HiloDeCliente_1 cli;
 
     private void registrarPersonas() {
         Persona admn = new Persona("Admin", "admin@tec.ac.cr", "12345", null, true);
@@ -58,6 +60,7 @@ public class Servidor implements Runnable{
     public Servidor(ServidorVentana ventana) {
         registrarPersonas();
         this.ventana=ventana;
+        ventana.setServidor(this);
         ventana.setListaEmpleados(listaEmpleados);
         ventana.setConectados();
         
@@ -65,10 +68,16 @@ public class Servidor implements Runnable{
         
             
         }
+    public ArrayList getListaConexiones(){
+        return listaConexiones;
+    }
     
     
     public ArrayList getListaEmpleados(){
         return listaEmpleados;
+    }
+    public HiloDeCliente_1  gett(){
+        return cli;
     }
         
         
@@ -121,8 +130,10 @@ public class Servidor implements Runnable{
                     ventana.setConectados();
                     saliente.writeUTF(nombre);
                     saliente.writeUTF(tipo);
-                    Runnable nuevoCliente = new HiloDeCliente_1(charla, cliente);
+                    HiloDeCliente_1 nuevoCliente = new HiloDeCliente_1(charla, cliente);
                     Thread hilo = new Thread(nuevoCliente);
+                    listaConexiones.add(hilo);
+                    cli=nuevoCliente;
                     hilo.start();
                     
                   
