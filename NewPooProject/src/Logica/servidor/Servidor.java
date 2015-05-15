@@ -13,7 +13,13 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-
+/**
+ * Servidor de chat. Acepta conexiones de clientes, crea un hilo para
+ * atenderlos, y espera la siguiente conexion.
+ *
+ * @author Chuidiang
+ *
+ */
 public class Servidor implements Runnable{
 
     ArrayList listaEmpleados = new ArrayList();
@@ -35,13 +41,22 @@ public class Servidor implements Runnable{
         listaEmpleados.add((Persona) amarillo);
 
     }
-  
+    /**
+     * Lista en la que se guaradara toda la conversacion
+     */
     private DefaultListModel charla = new DefaultListModel();
 
-   
+    /**
+     * Instancia esta clase.
+     *
+     * @param args
+     */
     private ServidorVentana ventana;
 
-  
+    /**
+     * Se mete en un bucle infinito para ateder clientes, lanzando un hilo para
+     * cada uno de ellos.
+     */
     public Servidor(ServidorVentana ventana) {
         registrarPersonas();
         this.ventana=ventana;

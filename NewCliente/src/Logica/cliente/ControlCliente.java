@@ -29,21 +29,22 @@ public class ControlCliente implements ActionListener, Runnable
     private PanelCliente panel;
     ArrayList lista;
     ObjectInputStream objetoEntrante;
+    String color;
     /**
      * Contruye una instancia de esta clase, lanzando un hilo para atender al
      * socket.
      * @param socket El socket
      * @param panel El panel del usuario
      */
-    public ControlCliente(Socket socket, PanelCliente panel)
+    public ControlCliente(Socket socket, PanelCliente panel,String color)
     {
         this.panel = panel;
         try
         {
+            this.color=color;
             objetoEntrante=new ObjectInputStream(socket.getInputStream());
             lista=(ArrayList)objetoEntrante.readObject();
-            Tickets temp=(Tickets)lista.get(0);
-            System.out.println(temp.getIDTicket()+"hola");
+            
             dataInput = new DataInputStream(socket.getInputStream());
             dataOutput = new DataOutputStream(socket.getOutputStream());
             
@@ -77,15 +78,31 @@ public class ControlCliente implements ActionListener, Runnable
      */
     public void run()
     {
+        ArrayList temp;
         try
         {
             while (true)
             {
-                lista=(ArrayList)objetoEntrante.readObject();
-                for(int i =0;i<lista.size();i++){
-            Tickets temp=(Tickets)lista.get(i);
-            System.out.println(temp.getAsunto());
-            }
+                System.out.println("Estos son los elementos de la lista");
+                //this.lista=(ArrayList)objetoEntrante.readObject();
+                temp=(ArrayList)objetoEntrante.readObject();
+                System.out.println("color: "+this.color);
+                if(this.color.equals("Rojo")){
+                    this.lista=(ArrayList)temp.get(2);
+                }
+                else if(this.color.equals("Amarillo")){
+                    this.lista=(ArrayList)temp.get(1);
+                }
+                else if(this.color.equals("Verde")){
+                    this.lista=(ArrayList)temp.get(0);
+                }
+                
+                
+                System.out.println(this.lista.size());
+                for(int i =0;i<this.lista.size();i++){
+                    Tickets tempt=(Tickets)this.lista.get(i);
+                    System.out.println(tempt.getAsunto()+"\n");
+                }
             }
         } catch (Exception e)
         {
