@@ -110,7 +110,7 @@ public abstract class MyExell {
             
             Tickets ticket = new Tickets(strFechaHora, strIDcliente, strAsunto ,ID_Secuencia);
             listaTikets.add(ticket);
-            Lista.add(strDisplayToLista); // Adding to JList Lista in Interfaz
+            Lista.add(strDisplayToLista); // Adding to JList Lista in Interfazadmin            
             }
         }
         

@@ -320,9 +320,8 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "¡Complete todos los espacios solicitados\npara poder continuar!");
         }
         else{
-            System.out.println("ACA llama a la funcion para poderhacer el login");
-        }
-        Persona administrador =verificarAdministrador(pUserName, pPassword);
+            //System.out.println("ACA llama a la funcion para poderhacer el login");
+            Persona administrador =verificarAdministrador(pUserName, pPassword);
         if(administrador!=null){
             
             ServidorVentana vServidor=new ServidorVentana();
@@ -336,8 +335,7 @@ public class Login extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Los datos son incorrectos");
         }
-        
-        
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

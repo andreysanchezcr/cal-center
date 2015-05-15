@@ -2,6 +2,8 @@ package Interfaz;
 import javax.swing.*;
 import java.io.File;
 import Logica.*;//<---------------------------------------------------------------------Despues le borro
+import static Logica.Funciones.cargaInfoTiket;
+import static Logica.Funciones.getIDTiket;
 import static Logica.ManejadorDeListas.ListaDeAmarillos;
 import static Logica.ManejadorDeListas.ListaDeRojos;
 import static Logica.ManejadorDeListas.ListaDeVerdes;
@@ -158,10 +160,10 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +250,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 13)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setOpaque(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,8 +273,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                                     .addComponent(btnSetComoAmarillo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnSetComoVERDE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnSetComoRojo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(84, 84, 84)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,9 +351,8 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         File archivoActual= ventanaSeleccionArchivo.getSelectedFile();
         String pathArchivo = archivoActual.getAbsolutePath();
         //====================================================//
-        
        
-        ManejadorDeListas.addNewTiketsToLocalListPendientes(    MyExell.Open_Load_And_ReturnListOfTickets(pathArchivo)   );
+        ManejadorDeListas.addNewTiketsToLocalListPendientes(MyExell.Open_Load_And_ReturnListOfTickets(pathArchivo));
         
         //MyExell.save_All_Changes(pathArchivo, MyExell.Open_Load_And_ReturnListOfTickets(pathArchivo),MyExell.Open_Load_And_ReturnListOfTickets(pathArchivo),MyExell.Open_Load_And_ReturnListOfTickets(pathArchivo),MyExell.Open_Load_And_ReturnListOfTickets(pathArchivo));
 
@@ -373,6 +374,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     
     private void btnSetComoVERDEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoVERDEActionPerformed
         // TODO add your handling code here:
+        jTextArea1.setText("");
         String pTiket = Lista.getSelectedItem();
         Lista.remove(pTiket);
         Lista4.add(pTiket);
@@ -386,6 +388,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void btnSetComoAmarilloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoAmarilloActionPerformed
         // TODO add your handling code here:
+        jTextArea1.setText("");
         String pTiket = Lista.getSelectedItem();
         Lista.remove(pTiket);
         Lista6.add(pTiket);
@@ -398,6 +401,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void btnSetComoRojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoRojoActionPerformed
         // TODO add your handling code here:
+        jTextArea1.setText("");
         String pTiket = Lista.getSelectedItem();
         Lista.remove(pTiket);
         Lista5.add(pTiket);
@@ -417,6 +421,11 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         btnSetComoVERDE.setEnabled(true);
         btnSetComoAmarillo.setEnabled(true);
         btnSetComoRojo.setEnabled(true);
+        jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");        
+        String pID = getIDTiket(Lista.getSelectedItem().toString());
+        String pInfo = cargaInfoTiket(pID);
+        jTextArea1.append(pInfo);        
+        jTextArea1.append("\n___________________________________________");
     }//GEN-LAST:event_ListaItemStateChanged
 
     private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
