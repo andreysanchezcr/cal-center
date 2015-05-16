@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Logica;
 
 import Logica.Tickets;
 import java.util.ArrayList;
 
-/**
- *
- * @author root
- */
 public abstract class ManejadorDeListas {
 
 
@@ -21,13 +13,6 @@ public abstract class ManejadorDeListas {
     public static ArrayList<Tickets> ListaDeRojos = new ArrayList();
     
     
-    public static ArrayList getLists(){
-        ArrayList temp =new ArrayList();
-        temp.add(ListaDeVerdes);
-        temp.add(ListaDeAmarillos);
-        temp.add(ListaDeRojos);
-        return temp;
-    }
     public static void addNewTiketsToLocalListPendientes(ArrayList<Tickets> ListaDePendientesInsert){
         for (int i = 0; i < ListaDePendientesInsert.size();i++){
             ListaDePendientes.add(ListaDePendientesInsert.get(i));
@@ -56,7 +41,6 @@ public abstract class ManejadorDeListas {
     public static ArrayList<Tickets> getListaDePendientes() {
         return ListaDePendientes;
     }
-    
 
     public static void setListaDePendientes(ArrayList<Tickets> ListaDePendientes) {
         ManejadorDeListas.ListaDePendientes = ListaDePendientes;
