@@ -421,8 +421,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         try {
             this.servidor.gett().actualizarLista();
         } catch (IOException ex) {
-            System.out.println("EEERRROOOR");
-
             Logger.getLogger(ServidorVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
