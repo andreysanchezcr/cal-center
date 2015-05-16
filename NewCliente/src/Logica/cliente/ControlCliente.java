@@ -39,9 +39,10 @@ public class ControlCliente implements ActionListener, Runnable
     public ControlCliente(Socket socket, PanelCliente panel,String color)
     {
         this.panel = panel;
+        this.color=color;
         try
         {
-            this.color=color;
+            //this.color=color;
             objetoEntrante=new ObjectInputStream(socket.getInputStream());
             lista=(ArrayList)objetoEntrante.readObject();
             
@@ -88,12 +89,15 @@ public class ControlCliente implements ActionListener, Runnable
                 temp=(ArrayList)objetoEntrante.readObject();
                 System.out.println("color: "+this.color);
                 if(this.color.equals("Rojo")){
+                    System.out.println("Rojo");
                     this.lista=(ArrayList)temp.get(2);
                 }
                 else if(this.color.equals("Amarillo")){
+                    System.out.println("Amarillo");
                     this.lista=(ArrayList)temp.get(1);
                 }
                 else if(this.color.equals("Verde")){
+                    System.out.println("Verde");
                     this.lista=(ArrayList)temp.get(0);
                 }
                 

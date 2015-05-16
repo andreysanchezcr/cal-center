@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame implements  Runnable{
 
-    String color="Amarillo";
+    String color="Rojo";
     /**
      * Creates new form Login
      */
