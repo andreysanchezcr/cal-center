@@ -18,6 +18,13 @@ public abstract class ManejadorDeListas {
             ListaDePendientes.add(ListaDePendientesInsert.get(i));
         }
     }
+    public static ArrayList getLists(){
+        ArrayList temp=new ArrayList();
+        temp.add(ListaDeVerdes);
+        temp.add(ListaDeAmarillos);
+        temp.add(ListaDeRojos);
+        return temp;
+    }
 
     public static void addNewTiketsToLocalListVerdes(ArrayList<Tickets> ListaDeVerdesInsert){
         for (int i = 0; i < ListaDeVerdesInsert.size();i++){
