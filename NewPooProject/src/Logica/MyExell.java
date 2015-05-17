@@ -183,7 +183,7 @@ public abstract class MyExell {
 
                         Label lblFechaHoraRecepcion = new Label(0,i,"Mario Bross");
                         Tickets tempTiket = lista.get(i);
-
+                        
 
                         Label lblFechayHoraRecepcion = new Label(0,i+1,tempTiket.getFechayHoraRecepcion());
                         hojaTikets.addCell(lblFechayHoraRecepcion);
