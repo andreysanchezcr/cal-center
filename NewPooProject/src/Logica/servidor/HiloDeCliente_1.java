@@ -21,7 +21,7 @@ import javax.swing.event.ListDataListener;
 public class HiloDeCliente_1 implements Runnable, ListDataListener
 {
     /** Lista en la que se guarda toda la charla */
-    private DefaultListModel charla;
+    
 
     /** Socket al que est� conectado el cliente */
     private Socket socket;
@@ -42,18 +42,19 @@ public class HiloDeCliente_1 implements Runnable, ListDataListener
     public HiloDeCliente_1(DefaultListModel charla, Socket socket) throws IOException
     {
         
-        this.charla = charla;
+      
         this.socket = socket;
         ArrayList lista = ManejadorDeListas.ListaDeRojos;
         //lista.add("PERE");
-        salienteServidor=new ObjectOutputStream(socket.getOutputStream());
-        salienteServidor.writeObject(lista);
+        
         
         try
         {
+            salienteServidor=new ObjectOutputStream(socket.getOutputStream());
+        salienteServidor.writeObject(lista);
             dataInput = new DataInputStream(socket.getInputStream());
             dataOutput = new DataOutputStream(socket.getOutputStream());
-            charla.addListDataListener(this);
+            
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -75,12 +76,7 @@ public class HiloDeCliente_1 implements Runnable, ListDataListener
         {
             while (true)
             {
-                String texto = dataInput.readUTF();
-                synchronized (charla)
-                {
-                    charla.addElement(texto);
-                    System.out.println(texto);
-                }
+                
             }
         } catch (Exception e)
         {
@@ -114,6 +110,6 @@ public class HiloDeCliente_1 implements Runnable, ListDataListener
 
     @Override
     public void intervalAdded(ListDataEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }

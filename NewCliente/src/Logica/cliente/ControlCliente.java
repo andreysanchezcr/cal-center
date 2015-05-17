@@ -26,7 +26,7 @@ public class ControlCliente implements ActionListener, Runnable
     private DataOutputStream dataOutput;
 
     /** Panel con los controles para el usuario */
-    private PanelCliente panel;
+    
     ArrayList lista;
     ObjectInputStream objetoEntrante;
     String color;
@@ -38,7 +38,7 @@ public class ControlCliente implements ActionListener, Runnable
      */
     public ControlCliente(Socket socket, PanelCliente panel,String color)
     {
-        this.panel = panel;
+        
         this.color=color;
         try
         {
@@ -46,7 +46,7 @@ public class ControlCliente implements ActionListener, Runnable
             objetoEntrante=new ObjectInputStream(socket.getInputStream());
             lista=(ArrayList)objetoEntrante.readObject();
             
-            dataInput = new DataInputStream(socket.getInputStream());
+            
             dataOutput = new DataOutputStream(socket.getOutputStream());
             
             Thread hilo = new Thread(this);

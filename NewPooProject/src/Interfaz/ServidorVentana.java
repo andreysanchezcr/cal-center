@@ -95,6 +95,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         jLabel5.setText("jLabel5");
 
@@ -252,6 +253,8 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jButton1.setText("jButton1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -261,8 +264,13 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCargarTickets)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCargarTickets)
+                                .addGap(83, 83, 83)
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addGap(218, 218, 218)
                                 .addComponent(btnCargarTickets1))
@@ -319,7 +327,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                                 .addGap(21, 21, 21)
                                 .addComponent(btnSetComoRojo)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCargarTickets)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCargarTickets)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -482,6 +492,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnSetComoAmarillo;
     private javax.swing.JButton btnSetComoRojo;
     private javax.swing.JButton btnSetComoVERDE;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
