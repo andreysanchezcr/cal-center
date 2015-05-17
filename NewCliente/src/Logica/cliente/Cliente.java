@@ -4,12 +4,16 @@ package Logica.cliente;
 import Interfaz.Login;
 import Interfaz.ClienteVentana;
 import Logica.Persona;
+import Logica.Tickets;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -22,14 +26,21 @@ import javax.swing.WindowConstants;
  */
 
 public class Cliente
-{
+implements Runnable{
     /** Socket con el servidor del chat */
     private Socket socket;
 
     /** Panel con la ventana del cliente */
-    private PanelCliente panel;
-    ArrayList listaEmpleados= new ArrayList();
+    
     ObjectInputStream objeto_entrante;
+    ObjectOutputStream objeto_saliente;
+    boolean logueado=false;
+    DataOutputStream flujoSaliente;
+    DataInputStream flujoEntrante;
+    ArrayList listaTicketes;
+    Thread hilo;
+    Login parent;
+    boolean solicitud=false;
 
     /**
      * Arranca el Cliente de chat.
@@ -43,14 +54,13 @@ public class Cliente
     {
         try
         {
-            //creaYVisualizaVentana();
             socket = new Socket("localhost", 5557);
-            
-            DataOutputStream flujoSaliente = new DataOutputStream(socket.getOutputStream());
-            DataInputStream flujoEntrante = new DataInputStream(socket.getInputStream());
-            
+            this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
+           flujoSaliente = new DataOutputStream(socket.getOutputStream());
+            flujoEntrante = new DataInputStream(socket.getInputStream());
+            flujoSaliente.writeUTF("Login");
             flujoSaliente.writeUTF(correo+" "+contrasena);
-            
+            this.parent=parent;
             int indicador=flujoEntrante.readInt();
             System.out.println(indicador);
             if(indicador==0){
@@ -59,10 +69,11 @@ public class Cliente
                 String tipo=flujoEntrante.readUTF();
                 ClienteVentana ventana = new ClienteVentana(nombre,socket,tipo);
                 System.out.println("EXito");
-                ControlCliente control = new ControlCliente(socket, panel,parent.getColor());
-                
+                logueado=true;
+                socket.close();
                 
             }else{
+                socket.close();
                 System.out.println("Fallo");
             }
                         
@@ -72,6 +83,8 @@ public class Cliente
         {
             e.printStackTrace();
         }
+        this.hilo=new Thread(this);
+        hilo.start();
     }
     public static void main(String[] args) {
        
@@ -86,6 +99,59 @@ public class Cliente
         
             
         
+        
+    }
+    public int mandarLista() throws IOException{
+        while(true){
+            if(this.solicitud){
+                
+           
+            hilo.stop();
+            socket = new Socket("localhost", 5557);
+            flujoSaliente.writeUTF("Lista");
+            objeto_saliente=new ObjectOutputStream(socket.getOutputStream());
+            objeto_saliente.writeObject(this.listaTicketes);
+            socket.close();
+            hilo.resume();
+             }
+        }
+        
+        
+    }
+
+    @Override
+    public void run() {
+        try {
+            while(true){
+                solicitud=false;
+                
+            
+            socket = new Socket("localhost", 5557);
+            this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
+           flujoSaliente = new DataOutputStream(socket.getOutputStream());
+            flujoEntrante = new DataInputStream(socket.getInputStream());
+            System.out.println("Entroo");
+            flujoSaliente.writeUTF(this.parent.getColor());
+            this.listaTicketes=(ArrayList)this.objeto_entrante.readObject();
+            for(int i=0;i<this.listaTicketes.size();i++){
+                System.out.println(((Tickets)this.listaTicketes.get(i)).getAsunto());
+            }
+            
+            socket.close();
+            solicitud=true;
+            Thread.sleep(10000);
+            
+            }
+            
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

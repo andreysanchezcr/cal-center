@@ -428,11 +428,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnSetComoRojoActionPerformed
 
     public void actualizarCliente(){
-        try {
-            this.servidor.gett().actualizarLista();
-        } catch (IOException ex) {
-            Logger.getLogger(ServidorVentana.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
     private void ListaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListaItemStateChanged
         btnSetComoVERDE.setEnabled(true);

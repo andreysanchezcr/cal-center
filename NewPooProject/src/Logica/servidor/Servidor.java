@@ -1,10 +1,12 @@
 package Logica.servidor;
 
 import Interfaz.ServidorVentana;
+import Logica.ManejadorDeListas;
 
 import Logica.Persona;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -23,9 +25,10 @@ import javax.swing.DefaultListModel;
 public class Servidor implements Runnable{
 
     ArrayList listaEmpleados = new ArrayList();
-    ObjectInputStream objeto;
+    ObjectInputStream objetoentrante;
     DataInputStream dataInput;
         DataOutputStream saliente;
+        ObjectOutputStream objetosaliente;
         boolean sucess = false;
         ArrayList listaConexiones=new ArrayList();
         HiloDeCliente_1 cli;
@@ -76,43 +79,37 @@ public class Servidor implements Runnable{
     public ArrayList getListaEmpleados(){
         return listaEmpleados;
     }
-    public HiloDeCliente_1  gett(){
-        return cli;
-    }
-        
-        
-        
-        
-        
-        
-
-        
-
     
-    public void run() {
-        try {
-            ServerSocket socketServidor = new ServerSocket(5557);
-            //socketServidor.setSoTimeout(10);
-            System.out.println(socketServidor.getInetAddress());
-            System.out.println(socketServidor.getLocalSocketAddress());
-            while (true) {
-                Socket cliente = socketServidor.accept();
-                
-                dataInput = new DataInputStream(cliente.getInputStream());
-                saliente = new DataOutputStream(cliente.getOutputStream());
-                String login = dataInput.readUTF();
-                String nombre="";
-                String tipo="";
+        
+        
+        
+        public void sendRojo() throws IOException{
+            
+            objetosaliente.writeObject(ManejadorDeListas.ListaDeRojos);
+        }
+        public void sendAmarillo() throws IOException{
+            
+            objetosaliente.writeObject(ManejadorDeListas.ListaDeAmarillos);
+        }
+        public void sendVerde() throws IOException{
+            
+            objetosaliente.writeObject(ManejadorDeListas.ListaDeVerdes);
+        }
+        
+        
 
-                for (int i = 1; i < listaEmpleados.size(); i++) {
+        public void loggin(String login) throws IOException{
+            String nombre="";
+            String tipo="";
+            Persona temp=null;
+            for (int i = 1; i < listaEmpleados.size(); i++) {
 
-                    Persona temp = (Persona) listaEmpleados.get(i);
+                    temp = (Persona) listaEmpleados.get(i);
                     if (login.equals(temp.correo + " " + temp.contraseña)) {
                         sucess = true;
-                        nombre=temp.getNombre();
-                        tipo=temp.getCategoria();
-                        temp.conectar();
                         listaEmpleados.set(i, temp);
+                        
+                        
                         
                         break;
                         
@@ -120,31 +117,72 @@ public class Servidor implements Runnable{
                     }
 
                 }
+            if(sucess){
+                saliente.writeInt(0);
+                        nombre=temp.getNombre();
+                        tipo=temp.getCategoria();
+                        temp.conectar();
+                        
+                        ventana.setListaEmpleados(listaEmpleados);
+                        ventana.setConectados();
+                        saliente.writeUTF(nombre);
+                        saliente.writeUTF(tipo);
+            }else{
+                saliente.writeInt(-1);
+            }
+            
+        }
+
+    
+    public void run() {
+        try {
+            ServerSocket socketServidor = new ServerSocket(5557);
+            
+            while (true) {
+                Socket cliente = socketServidor.accept();
+                System.out.println("nueva conexion");
                 
-                if (sucess) {
-
-                    saliente.writeInt(0);
+                dataInput = new DataInputStream(cliente.getInputStream());
+                saliente = new DataOutputStream(cliente.getOutputStream());
+                objetosaliente=new ObjectOutputStream(cliente.getOutputStream());
+                String instruccion=dataInput.readUTF();
+                System.out.println(instruccion);
+               
+                if(instruccion.equals("Login")){
+                    String login = dataInput.readUTF();
+                    loggin(login);
+                }else if(instruccion.equals("Rojo")){
+                    this.sendRojo();
                     
-                    System.out.println("Correcto");
-                    ventana.setListaEmpleados(listaEmpleados);
-                    ventana.setConectados();
-                    saliente.writeUTF(nombre);
-                    saliente.writeUTF(tipo);
-                    HiloDeCliente_1 nuevoCliente = new HiloDeCliente_1(charla, cliente);
-                    Thread hilo = new Thread(nuevoCliente);
-                    listaConexiones.add(hilo);
-                    cli=nuevoCliente;
-                    hilo.start();
-                    
-                  
-                    login = "";
-                    
-
-                    sucess = false;
-                } else {
-                    System.out.println("Incorrecto");
-                    saliente.writeInt(-1);
                 }
+                else if(instruccion.equals("Verde")){
+                    this.sendVerde();
+                    
+                }
+                else if(instruccion.equals("Amarillo")){
+                    this.sendAmarillo();
+                    
+                }
+                else if(instruccion.equals("ListaRojo")){
+                    ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
+                    
+                    
+                }
+                else if(instruccion.equals("ListaVerde")){
+                    ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
+                    
+                    
+                }
+                else if(instruccion.equals("ListaAmarillo")){
+                    ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+                    
+                    
+                }
+                    
+                    
+                
+                
+                
                     
                 
 
