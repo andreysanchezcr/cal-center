@@ -481,6 +481,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void btStatusMonitoreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStatusMonitoreoActionPerformed
         VnServidorReportes ventanaMonitoreo = new VnServidorReportes(this);
+        ventanaMonitoreo.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btStatusMonitoreoActionPerformed
 
