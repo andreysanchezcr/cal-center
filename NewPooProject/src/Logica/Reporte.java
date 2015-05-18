@@ -92,10 +92,10 @@ public abstract class Reporte {
         return intTiempoAtencionIndividualTotosLosTickets;
     }
     
-    public static ArrayList<Tickets>  findAndGetTiketsAtendidos(){
+    /*public static ArrayList<Tickets>  findAndGetTiketsAtendidos(){
         
     
     
-    }
+    }*/
     
 }

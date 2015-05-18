@@ -3,6 +3,9 @@ import javax.swing.*;
 import java.io.File;
 import Logica.*;//<---------------------------------------------------------------------Despues le borro
 import static Logica.Funciones.cargaInfoTiket;
+import static Logica.Funciones.cargaInfoTiketAmarillo;
+import static Logica.Funciones.cargaInfoTiketRojo;
+import static Logica.Funciones.cargaInfoTiketVerde;
 import static Logica.Funciones.getIDTiket;
 import static Logica.ManejadorDeListas.ListaDeAmarillos;
 import static Logica.ManejadorDeListas.ListaDeRojos;
@@ -253,6 +256,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        btStatusMonitoreo.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         btStatusMonitoreo.setText("Status y Monitoreo ");
         btStatusMonitoreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,7 +323,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pnEmpleadosConectados, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(pnEmpleadosConectados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(btnSetComoVERDE)
@@ -453,6 +457,11 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void Lista4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Lista4ItemStateChanged
         // TODO add your handling code here:
+        jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");        
+        String pID = getIDTiket(Lista4.getSelectedItem().toString());
+        String pInfo = cargaInfoTiketVerde(pID);
+        jTextArea1.append(pInfo);        
+        jTextArea1.append("\n___________________________________________");
     }//GEN-LAST:event_Lista4ItemStateChanged
 
     private void Lista4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista4ActionPerformed
@@ -461,6 +470,11 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void Lista5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Lista5ItemStateChanged
         // TODO add your handling code here:
+        jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");        
+        String pID = getIDTiket(Lista5.getSelectedItem().toString());
+        String pInfo = cargaInfoTiketRojo(pID);
+        jTextArea1.append(pInfo);        
+        jTextArea1.append("\n___________________________________________");
     }//GEN-LAST:event_Lista5ItemStateChanged
 
     private void Lista5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista5ActionPerformed
@@ -469,6 +483,11 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void Lista6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Lista6ItemStateChanged
         // TODO add your handling code here:
+        jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");        
+        String pID = getIDTiket(Lista6.getSelectedItem().toString());
+        String pInfo = cargaInfoTiketAmarillo(pID);
+        jTextArea1.append(pInfo);        
+        jTextArea1.append("\n___________________________________________");
     }//GEN-LAST:event_Lista6ItemStateChanged
 
     private void Lista6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista6ActionPerformed
