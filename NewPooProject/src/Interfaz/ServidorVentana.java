@@ -253,6 +253,11 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Ver Reportes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -469,6 +474,12 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     private void Lista6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Lista6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        VnServidorReportes vnReportes = new VnServidorReportes(this);
+        vnReportes.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
