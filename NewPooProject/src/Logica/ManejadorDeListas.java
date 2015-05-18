@@ -67,11 +67,11 @@ public abstract class ManejadorDeListas {
                         ListaDestino.add(ListaDePendientes.get(i));
                         ListaDePendientes.remove(i);
                 
-                        System.out.println("Se encontro el objeto ya fue agregado");
+                        //System.out.println("Se encontro el objeto ya fue agregado");
                         break;
                     }
                     //Si no sigue buscando
-                    else{System.out.println("No se ha encontado tiket con->"+MyID+"<- en conparacion con->"+Integer.toString(ListaDePendientes.get(i).getIDTicket())+"<-");}
+                    //else{System.out.println("No se ha encontado tiket con->"+MyID+"<- en conparacion con->"+Integer.toString(ListaDePendientes.get(i).getIDTicket())+"<-");}
                 }
             }
             MyID = MyID+StrOfJList.charAt(n);
