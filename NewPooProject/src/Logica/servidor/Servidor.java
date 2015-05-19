@@ -132,6 +132,21 @@ public class Servidor implements Runnable{
             }
             
         }
+        public void desconectarPersona(String nombre){
+            int i =0;
+            for(i =0;i<this.listaEmpleados.size();i++){
+                    if(((Persona)listaEmpleados.get(i)).getNombre().equals(nombre)){
+                        ((Persona)listaEmpleados.get(i)).desconectar();
+                        this.ventana.setLista(listaEmpleados);
+                        break;    
+                        }
+                    }
+            this.ventana.setConectados();
+           
+            
+        
+        }
+        
 
     
     public void run() {
@@ -151,17 +166,21 @@ public class Servidor implements Runnable{
                 if(instruccion.equals("Login")){
                     String login = dataInput.readUTF();
                     loggin(login);
-                }else if(instruccion.equals("Rojo")){
+                }else if(instruccion.equals("ROJO")){
                     this.sendRojo();
                     
                 }
-                else if(instruccion.equals("Verde")){
+                else if(instruccion.equals("VERDE")){
                     this.sendVerde();
                     
                 }
-                else if(instruccion.equals("Amarillo")){
+                else if(instruccion.equals("AMARILLO")){
                     this.sendAmarillo();
                     
+                }
+                else if(instruccion.equals("Desconectar")){
+                    String persona=dataInput.readUTF();
+                    desconectarPersona(persona);
                 }
                 else if(instruccion.equals("ListaRojo")){
                     ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();

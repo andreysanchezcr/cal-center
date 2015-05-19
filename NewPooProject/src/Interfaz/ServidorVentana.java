@@ -49,19 +49,20 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     }
     public void setConectados(){
         if(((Persona)listaEmpleados.get(1)).getEstado()){
-            jLabel2.setText("Fernando conectado");
+            
+            jLabel2.setText(((Persona)listaEmpleados.get(1)).getNombre()+" conectado");
         }else{
-            jLabel2.setText("Fernando desconectado");
+            jLabel2.setText(((Persona)listaEmpleados.get(1)).getNombre()+" desconectado");
         }
         if(((Persona)listaEmpleados.get(2)).getEstado()){
-            jLabel3.setText("Luis conectado");
+            jLabel3.setText(((Persona)listaEmpleados.get(2)).getNombre()+" conectado");
         }else{
-            jLabel3.setText("Luis desconectado");
+            jLabel3.setText(((Persona)listaEmpleados.get(2)).getNombre()+" desconectado");
         }
-        if(((Persona)listaEmpleados.get(1)).getEstado()){
-            jLabel4.setText("Junior conectado");
+        if(((Persona)listaEmpleados.get(0)).getEstado()){
+            jLabel4.setText(((Persona)listaEmpleados.get(0)).getNombre()+" conectado");
         }else{
-            jLabel4.setText("Junior desconectado");
+            jLabel4.setText(((Persona)listaEmpleados.get(0)).getNombre()+" conectado");
         }
     }
     public void setListaEmpleados(ArrayList lista){
@@ -378,6 +379,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     public void setServidor(Servidor servidor){
         this.servidor=servidor;
+    }
+    public void setLista(ArrayList lista){
+        this.listaEmpleados=lista;
     }
     public void actualizarListaTiquetes() throws IOException{
         ArrayList lista=servidor.getListaConexiones();

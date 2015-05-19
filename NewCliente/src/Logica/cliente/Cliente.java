@@ -41,6 +41,7 @@ implements Runnable{
     Thread hilo;
     Login parent;
     boolean solicitud=false;
+    String nombre;
 
     /**
      * Arranca el Cliente de chat.
@@ -54,6 +55,7 @@ implements Runnable{
     {
         try
         {
+            this.nombre =nombre;
             socket = new Socket("localhost", 5557);
             this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
            flujoSaliente = new DataOutputStream(socket.getOutputStream());
@@ -67,7 +69,7 @@ implements Runnable{
                 parent.dispose();
                 String nombre=flujoEntrante.readUTF();
                 String tipo=flujoEntrante.readUTF();
-                ClienteVentana ventana = new ClienteVentana(nombre,socket,tipo);
+                ClienteVentana ventana = new ClienteVentana(nombre,socket,tipo,this);
                 System.out.println("EXito");
                 logueado=true;
                 socket.close();
@@ -113,10 +115,24 @@ implements Runnable{
             objeto_saliente.writeObject(this.listaTicketes);
             socket.close();
             hilo.resume();
+            return 0;
              }
         }
         
         
+    }
+   
+    public void desconectar() throws IOException, InterruptedException{
+        
+        
+        
+        socket = new Socket("localhost", 5557);
+        System.out.println("111111");
+            flujoSaliente = new DataOutputStream(socket.getOutputStream());
+        this.flujoSaliente.writeUTF("Desconectar");
+        System.out.println("111111");
+        this.flujoSaliente.writeUTF("Fernando");
+        System.out.println("111111");
     }
 
     @Override
