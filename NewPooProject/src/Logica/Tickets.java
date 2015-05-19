@@ -28,6 +28,8 @@ public class Tickets implements Serializable{
         this.ID_CLIENTE = ID_CLIENTE;
         this.asunto = asunto;
         this.IDTicket = IDTicket;
+        this.Comentario=Comentario;
+        this.estado="Sin atender";
     }
 
     public Tickets(String FechayHoraRecepcion, String ID_CLIENTE, String asunto, 
@@ -44,7 +46,9 @@ public class Tickets implements Serializable{
         this.fechayHoraAtencion=fechayHoraAtencion;
         this.tiempoSegundos=tiempoSegundos;
         this.Comentario=Comentario;
-        this.estado=estado;
+        
+        this.Comentario=Comentario;
+        this.estado="Sin atender";
     }
     
     public Tickets(String asunto, int IDTicket, String categoria, String estado){
@@ -52,6 +56,9 @@ public class Tickets implements Serializable{
         this.IDTicket = IDTicket;
         this.categoria = categoria;
         this.estado = estado;
+    }
+    public String getEstadoActual(){
+        return getAsunto()+" "+getEstado();
     }
     
     

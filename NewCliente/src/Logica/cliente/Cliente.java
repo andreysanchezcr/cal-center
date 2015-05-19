@@ -40,12 +40,13 @@ implements Runnable{
     boolean logueado=false;
     DataOutputStream flujoSaliente;
     DataInputStream flujoEntrante;
-    static ArrayList listaTicketes;
+    ArrayList listaTicketes;
     Thread hilo;
     Login parent;
     boolean solicitud=false;
     String nombre;
-
+    ClienteVentana clienteventana;
+    
     /**
      * Arranca el Cliente de chat.
      * @param args
@@ -73,7 +74,7 @@ implements Runnable{
                 parent.dispose();
                 String nombre=flujoEntrante.readUTF();
                 String tipo=flujoEntrante.readUTF();
-                ClienteVentana ventana = new ClienteVentana(nombre,socket,tipo,this);
+                clienteventana = new ClienteVentana(nombre,socket,tipo,this);
                 System.out.println("EXito");
                 logueado=true;
                 socket.close();
@@ -110,31 +111,42 @@ implements Runnable{
     public String getColor(){
         return parent.getColor();
     }
-    public int mandarLista() throws IOException{
-        while(true){
-            if(this.solicitud){
-                
-           
-            hilo.stop();
-            socket = new Socket("localhost", 5557);
-            flujoSaliente.writeUTF("Lista");
-            objeto_saliente=new ObjectOutputStream(socket.getOutputStream());
-            objeto_saliente.writeObject(this.listaTicketes);
-            socket.close();
-            hilo.resume();
-            return 0;
-             }
-        }
+    public void mandarLista(int indice) throws IOException{
+        socket = new Socket("localhost", 5557);
+        System.out.println("Mandando lista");
+        System.out.println(this.getColor());
+        flujoSaliente = new DataOutputStream(socket.getOutputStream());
+        this.flujoSaliente.writeUTF("Lista"+this.getColor());
+        
+        flujoSaliente.writeInt(indice);
+//this.flujoSaliente.writeUTF(this.parent.getNombre());
+        
         
         
     }
    
-    public static void cargarListaTikets(){   
+    public void cargarListaTikets(){   
         //ListaEmpleado=new List();
         //ListaEmpleado.clear();
         for (int x=ListaEmpleado.countItems(); x<listaTicketes.size(); x++) { 
             Tickets tiket = (Tickets)listaTicketes.get(x);
-            ListaEmpleado.add(tiket.getAsunto());
+            ListaEmpleado.add(tiket.getEstadoActual());
+        }
+        
+    }
+    public void modificarEstadoTicket(int indice) throws IOException{
+        Tickets temp =(Tickets)listaTicketes.get(indice);
+        temp.setEstado("En atencion");
+        this.listaTicketes.set(indice, temp);
+        modificarJList();
+        mandarLista(indice);
+        
+    }
+    public void modificarJList(){
+        for(int i=0;i<listaTicketes.size();i++){
+            if(((Tickets)listaTicketes.get(i)).getEstado().equals("En atencion")&&!ListaEmpleado.getItem(i).equals(((Tickets)listaTicketes.get(i)).getEstadoActual())){
+                ListaEmpleado.replaceItem(((Tickets)listaTicketes.get(i)).getEstadoActual(), i);
+            }
         }
         
     }
@@ -149,7 +161,7 @@ implements Runnable{
             flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Desconectar");
         System.out.println("111111");
-        this.flujoSaliente.writeUTF(this.parent.getNombre());
+        this.flujoSaliente.writeUTF(this.clienteventana.getNombre());
         System.out.println("111111");
         //socket.close();
     }
@@ -172,6 +184,7 @@ implements Runnable{
                 System.out.println(((Tickets)this.listaTicketes.get(i)).getAsunto());
             }
             cargarListaTikets();
+            modificarJList();
             socket.close();
             solicitud=true;
             Thread.sleep(10000);

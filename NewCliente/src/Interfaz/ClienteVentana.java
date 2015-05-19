@@ -3,7 +3,7 @@ package Interfaz;
 import static Logica.Funciones.cargarLista;
 import Logica.Persona;
 import Logica.cliente.Cliente;
-import static Logica.cliente.Cliente.cargarListaTikets;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -225,14 +225,16 @@ public class ClienteVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //cargarLista();
-        cargarListaTikets();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            cliente.modificarEstadoTicket(ListaEmpleado.getSelectedIndex());
+        } catch (IOException ex) {
+            System.out.println("Error al enviar lista");
+            Logger.getLogger(ClienteVentana.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -4,6 +4,7 @@ import Interfaz.ServidorVentana;
 import Logica.ManejadorDeListas;
 
 import Logica.Persona;
+import Logica.Tickets;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -12,6 +13,8 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.DefaultListModel;
 
@@ -146,20 +149,43 @@ public class Servidor implements Runnable{
             
         
         }
+        public void modificarEstadoTicketAmarillo(int indice) throws IOException{
+        Tickets temp =(Tickets)ManejadorDeListas.ListaDeAmarillos.get(indice);
+        temp.setEstado("En atencion");
+        ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
+        
+    }
+        
+        public void modificarEstadoTicketRojo(int indice) throws IOException{
+        Tickets temp =(Tickets)ManejadorDeListas.ListaDeRojos.get(indice);
+        temp.setEstado("En atencion");
+        ManejadorDeListas.ListaDeRojos.set(indice, temp);
+        
+    }
+        
+        public void modificarEstadoTicketVerde(int indice) throws IOException{
+        Tickets temp =(Tickets)ManejadorDeListas.ListaDeVerdes.get(indice);
+        temp.setEstado("En atencion");
+        
+        ManejadorDeListas.ListaDeVerdes.set(indice, temp);
+        
+    }
         
 
     
     public void run() {
+        
         try {
             ServerSocket socketServidor = new ServerSocket(5557);
             
             while (true) {
                 Socket cliente = socketServidor.accept();
                 System.out.println("nueva conexion");
-                
+                //ObjectInputStream objetoentrante=new ObjectInputStream(cliente.getInputStream());
                 dataInput = new DataInputStream(cliente.getInputStream());
                 saliente = new DataOutputStream(cliente.getOutputStream());
                 objetosaliente=new ObjectOutputStream(cliente.getOutputStream());
+                
                 String instruccion=dataInput.readUTF();
                 System.out.println(instruccion);
                
@@ -180,35 +206,46 @@ public class Servidor implements Runnable{
                 }
                 else if(instruccion.equals("Desconectar")){
                     String persona=dataInput.readUTF();
+                    System.out.println("Se ha desconectado: "+persona);
                     desconectarPersona(persona);
                     cliente.close();
                 }
-                else if(instruccion.equals("ListaRojo")){
-                    ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
+                else if(instruccion.equals("ListaROJO")){
+                    int indice=dataInput.readInt();
+                    
+                    this.modificarEstadoTicketRojo(indice);
+                    //ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
                     
                     
                 }
-                else if(instruccion.equals("ListaVerde")){
-                    ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
+                else if(instruccion.equals("ListaVERDE")){
+                    int indice=dataInput.readInt();
+                    
+                    this.modificarEstadoTicketVerde(indice);
+                    // ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
                     
                     
                 }
-                else if(instruccion.equals("ListaAmarillo")){
-                    ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+                else if(instruccion.equals("ListaAMARILLO")){
+                    int indice=dataInput.readInt();
+                    
+                    this.modificarEstadoTicketAmarillo(indice);
+                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
                     
                     
                 }
-                    
-                    
                 
                 
                 
-                    
                 
 
+                
+                
+                
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    }
+        } 
+    }    
 

@@ -33,6 +33,7 @@ public class Tickets implements Serializable{
         this.ID_CLIENTE = ID_CLIENTE;
         this.asunto = asunto;
         this.IDTicket = IDTicket;
+        this.estado="Sin atender";
     }
     /**
      * Contructor con todos los atributos (Exell.java creara objetos completos a partir de la carga del archivo"Tickets Rojos, Amarillos y Verdes")
@@ -61,7 +62,7 @@ public class Tickets implements Serializable{
         this.fechayHoraAtencion=fechayHoraAtencion;
         this.tiempoSegundos=tiempoSegundos;
         this.Comentario=Comentario;
-        this.estado=estado;
+        this.estado="Sin atender";
     }
     
     public Tickets(String asunto, int IDTicket, String categoria, String estado){
@@ -155,6 +156,10 @@ public class Tickets implements Serializable{
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    public String getEstadoActual(){
+        return getAsunto()+" "+getEstado();
+    }
+    
     
     public String toString(){
         String datos = "Asunto: " + getAsunto() + "\n" +
