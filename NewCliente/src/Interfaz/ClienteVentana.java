@@ -25,6 +25,8 @@ public class ClienteVentana extends javax.swing.JFrame {
     public String getNombre(){
         return nombre;
     }
+    
+    
     public ClienteVentana(String nombre,Socket socket,String tipo,Cliente cliente) throws IOException {
         initComponents();
         this.nombre=nombre;
