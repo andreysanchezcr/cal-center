@@ -182,19 +182,19 @@ public class Servidor implements Runnable{
                     String persona=dataInput.readUTF();
                     desconectarPersona(persona);
                 }
-                else if(instruccion.equals("ListaRojo")){
+                else if(instruccion.equals("ListaROJO")){
                     ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
-                    
+                    System.out.println("Se ha mandado una lista roja");
                     
                 }
-                else if(instruccion.equals("ListaVerde")){
+                else if(instruccion.equals("ListaVERDE")){
                     ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
-                    
+                    System.out.print("Se ha mandado una lista Verde");
                     
                 }
-                else if(instruccion.equals("ListaAmarillo")){
+                else if(instruccion.equals("ListaAMARILLO")){
                     ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-                    
+                    System.out.println("Se ha mandado una lista amarilla");
                     
                 }
                     

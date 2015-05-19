@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -32,8 +33,12 @@ public class ClienteVentana extends javax.swing.JFrame {
         jLabel6.setText(nombre);
         this.socket=socket;
         this.setVisible(true);
-        jLabel9.setText(tipo);
+        jLabel9.setText(cliente.getColor());
        // objeto=new ObjectInputStream(socket.getInputStream());
+    }
+    public void errorDeComunicacion(){
+       JOptionPane.showMessageDialog(this, "Error de comunicacion\ncon el servidor!");
+
     }
 
     /**
@@ -192,13 +197,14 @@ public class ClienteVentana extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             this.cliente.desconectar();
+            this.dispose();
         } catch (IOException ex) {
             System.out.println("Error al desconectar");
             Logger.getLogger(ClienteVentana.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(ClienteVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
-      //this.dispose();
+      
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

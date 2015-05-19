@@ -174,7 +174,9 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         acercaDeFrame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+    public void servidorNoIniciado(){
+        JOptionPane.showMessageDialog(this, "¡Error\nservidor no iniciado!");
+    }
     /**
      * @param args the command line arguments
      */
