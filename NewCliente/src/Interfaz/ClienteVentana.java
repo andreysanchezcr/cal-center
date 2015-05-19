@@ -36,7 +36,7 @@ public class ClienteVentana extends javax.swing.JFrame {
         jLabel6.setText(nombre);
         this.socket=socket;
         this.setVisible(true);
-        jLabel9.setText(tipo);
+        jLabel9.setText(cliente.getColor());
        // objeto=new ObjectInputStream(socket.getInputStream());
     }
 
@@ -238,6 +238,7 @@ public class ClienteVentana extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             this.cliente.desconectar();
+            this.dispose();
         } catch (IOException ex) {
             System.out.println("Error al desconectar");
             Logger.getLogger(ClienteVentana.class.getName()).log(Level.SEVERE, null, ex);

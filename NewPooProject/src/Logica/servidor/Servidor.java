@@ -181,6 +181,7 @@ public class Servidor implements Runnable{
                 else if(instruccion.equals("Desconectar")){
                     String persona=dataInput.readUTF();
                     desconectarPersona(persona);
+                    cliente.close();
                 }
                 else if(instruccion.equals("ListaRojo")){
                     ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();

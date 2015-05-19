@@ -6,6 +6,7 @@ import Interfaz.ClienteVentana;
 import static Interfaz.ClienteVentana.ListaEmpleado;
 import Logica.Persona;
 import Logica.Tickets;
+import java.awt.List;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import sun.security.krb5.internal.Ticket;
 
 /**
  * Clase con el main de un cliente del chat.
@@ -52,6 +54,7 @@ implements Runnable{
     /**
      * Crea la ventana, establece la conexi�n e instancia al controlador.
      */
+    
     public Cliente(String correo, String contrasena,Login parent)
     {
         try
@@ -104,6 +107,9 @@ implements Runnable{
         
         
     }
+    public String getColor(){
+        return parent.getColor();
+    }
     public int mandarLista() throws IOException{
         while(true){
             if(this.solicitud){
@@ -123,10 +129,12 @@ implements Runnable{
         
     }
    
-    public static void cargarListaTikets(){        
-        for (int x=0; x<listaTicketes.size(); x++) { 
-            Object tiket = listaTicketes.get(x);
-            ListaEmpleado.add(tiket.toString());
+    public static void cargarListaTikets(){   
+        //ListaEmpleado=new List();
+        //ListaEmpleado.clear();
+        for (int x=ListaEmpleado.countItems(); x<listaTicketes.size(); x++) { 
+            Tickets tiket = (Tickets)listaTicketes.get(x);
+            ListaEmpleado.add(tiket.getAsunto());
         }
         
     }
@@ -141,8 +149,9 @@ implements Runnable{
             flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Desconectar");
         System.out.println("111111");
-        this.flujoSaliente.writeUTF("Fernando");
+        this.flujoSaliente.writeUTF(this.parent.getNombre());
         System.out.println("111111");
+        //socket.close();
     }
 
     @Override
@@ -162,7 +171,7 @@ implements Runnable{
             for(int i=0;i<this.listaTicketes.size();i++){
                 System.out.println(((Tickets)this.listaTicketes.get(i)).getAsunto());
             }
-            
+            cargarListaTikets();
             socket.close();
             solicitud=true;
             Thread.sleep(10000);

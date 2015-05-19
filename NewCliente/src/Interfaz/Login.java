@@ -28,6 +28,10 @@ public class Login extends javax.swing.JFrame implements  Runnable{
     public String getColor(){
         return color;
     }
+    public String getNombre(){
+        return nombre;
+    }
+    String nombre;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,7 +162,7 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         else{
             System.out.println("ACA llama a la funcion para poder hacer el login del cliente");
         }
-        
+        this.nombre=pUserName;
         this.color =(String)this.jComboBox1.getSelectedItem();
         Cliente cliente = new Cliente(pUserName,pPassword,this);
         

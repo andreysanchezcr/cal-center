@@ -44,9 +44,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         this.setVisible(true);
         
     }
-    public void setLabel(){
-        jLabel2.setText("Conectado");
-    }
+   
     public void setConectados(){
         if(((Persona)listaEmpleados.get(1)).getEstado()){
             
@@ -59,10 +57,10 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         }else{
             jLabel3.setText(((Persona)listaEmpleados.get(2)).getNombre()+" desconectado");
         }
-        if(((Persona)listaEmpleados.get(0)).getEstado()){
-            jLabel4.setText(((Persona)listaEmpleados.get(0)).getNombre()+" conectado");
+        if(((Persona)listaEmpleados.get(3)).getEstado()){
+            jLabel4.setText(((Persona)listaEmpleados.get(3)).getNombre()+" conectado");
         }else{
-            jLabel4.setText(((Persona)listaEmpleados.get(0)).getNombre()+" conectado");
+            jLabel4.setText(((Persona)listaEmpleados.get(3)).getNombre()+" desconectado");
         }
     }
     public void setListaEmpleados(ArrayList lista){
