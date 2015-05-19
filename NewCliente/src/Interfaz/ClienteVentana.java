@@ -61,8 +61,7 @@ public class ClienteVentana extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-<<<<<<< HEAD
-=======
+
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -70,7 +69,7 @@ public class ClienteVentana extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
->>>>>>> origin/master
+
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,9 +144,9 @@ public class ClienteVentana extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
+
         jButton3.setText("Desconectar");
-=======
+
         jLabel7.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 102, 102));
         jLabel7.setText("Cuadro Informativo");
@@ -179,15 +178,14 @@ public class ClienteVentana extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(102, 0, 102));
         jButton3.setText("Cambiar categoría");
         jButton3.setToolTipText("Carga en la lista los tickets pendientes");
->>>>>>> origin/master
+
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-<<<<<<< HEAD
-=======
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -219,7 +217,7 @@ public class ClienteVentana extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
->>>>>>> origin/master
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,7 +236,7 @@ public class ClienteVentana extends javax.swing.JFrame {
                         .addGap(77, 77, 77)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-<<<<<<< HEAD
+
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -248,7 +246,7 @@ public class ClienteVentana extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(47, 47, 47))))
-=======
+
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -262,9 +260,7 @@ public class ClienteVentana extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addComponent(jLabel7)))
-                        .addGap(313, 313, 313))))
->>>>>>> origin/master
-        );
+                        .addGap(313, 313, 313)))));
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -276,14 +272,14 @@ public class ClienteVentana extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-<<<<<<< HEAD
+
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addContainerGap())
-=======
+
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
@@ -299,9 +295,7 @@ public class ClienteVentana extends javax.swing.JFrame {
                             .addComponent(jButton2))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
->>>>>>> origin/master
-        );
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -315,7 +309,7 @@ public class ClienteVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-<<<<<<< HEAD
+
         try {
             this.cliente.desconectar();
             this.dispose();
@@ -326,9 +320,9 @@ public class ClienteVentana extends javax.swing.JFrame {
             Logger.getLogger(ClienteVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
       
-=======
+
         // TODO add your handling code here:
->>>>>>> origin/master
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
