@@ -49,6 +49,18 @@ public abstract class ManejadorDeListas {
         return ListaDePendientes;
     }
 
+    public static ArrayList<Tickets> getListaDeAmarillos() {
+        return ListaDeAmarillos;
+    }
+
+    public static ArrayList<Tickets> getListaDeRojos() {
+        return ListaDeRojos;
+    }
+    
+    public static ArrayList<Tickets> getListaDeVerdes() {
+        return ListaDeVerdes;
+    }
+    
     public static void setListaDePendientes(ArrayList<Tickets> ListaDePendientes) {
         ManejadorDeListas.ListaDePendientes = ListaDePendientes;
     }
@@ -64,6 +76,7 @@ public abstract class ManejadorDeListas {
                 for(int i = 0; i < ListaDePendientes.size() ;i ++){
                     //Si encuentra el objeto con el mismo ID
                     if(Integer.toString(ListaDePendientes.get(i).getIDTicket()).equals(MyID)){
+                        //ListaDePendientes.get(i).setCategoria(MyID);
                         ListaDestino.add(ListaDePendientes.get(i));
                         ListaDePendientes.remove(i);
                 

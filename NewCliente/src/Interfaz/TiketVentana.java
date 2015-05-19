@@ -17,6 +17,37 @@ public class TiketVentana extends javax.swing.JFrame {
     public TiketVentana() {
         initComponents();
     }
+    public boolean issuspended = false;//para saber si el hilo esta suspendido o pausado
+    int hora = 0, min = 0, seg = 0, ds = 0;//unidades de medida
+    Thread hilo = new Thread() {//declaramos el hilo
+
+        @Override
+        public void run() {
+            try {
+                while (true) {//ciclo infinito
+                    if (ds == 99) {//si los decisegundos son iguales a 99
+                        ds = 0;//decisegundo vuelve a empezar en cero
+                        seg++;//y aumenta un segundo
+                    }
+                    if (seg == 59) {//si los segundos son iguales a 59
+                        seg = 0;//segundo vuelve a empezar en cero
+                        min++;//y aumenta un minuto
+                    }
+                    if (min == 59) {//si los minutos son iguales a 59
+                        min = 0;//minuto vuelve a empezar en cero
+                        hora++;//y aumenta una hora
+                    }
+                    ds++;//aumentan las decimas de segundo
+
+                    lblTime.setText(hora + ":" + min + ":" + seg + ":" + ds);//se muestra en el jlabel
+
+                    hilo.sleep(10);//que duerma una decima de segundo
+                }
+            } catch (java.lang.InterruptedException ie) {
+                System.out.println(ie.getMessage());
+            }
+        }
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,6 +63,9 @@ public class TiketVentana extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
+        lblTime = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
+        btnPausa = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -55,15 +89,49 @@ public class TiketVentana extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cronómetro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 0, 14))); // NOI18N
 
+        lblTime.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTime.setText("0:0:0:0");
+
+        btnInicio.setText("Iniciar");
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
+
+        btnPausa.setText("Pausar");
+        btnPausa.setEnabled(false);
+        btnPausa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPausaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPausa, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 96, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lblTime)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInicio)
+                    .addComponent(btnPausa))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
@@ -97,7 +165,7 @@ public class TiketVentana extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +208,26 @@ public class TiketVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        btnInicio.setEnabled(false);
+        btnPausa.setEnabled(true);
+        if (!issuspended) {//si no esta suspendido o pausado
+            hilo.start();//el hilo empieza
+
+        } else {//de lo contrario
+            hilo.resume();//el hilo se reanuda
+            issuspended = false;//el hilo ya no esta suspendido
+
+        }
+    }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void btnPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPausaActionPerformed
+        hilo.suspend();//se suspende o pausa el hilo
+        issuspended = true;//el hilo esta suspendido
+        btnInicio.setEnabled(true);
+        btnPausa.setEnabled(false);
+    }//GEN-LAST:event_btnPausaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,6 +264,8 @@ public class TiketVentana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnPausa;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -185,5 +275,6 @@ public class TiketVentana extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JLabel lblTime;
     // End of variables declaration//GEN-END:variables
 }

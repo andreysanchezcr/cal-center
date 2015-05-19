@@ -16,6 +16,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
      */
     public VnServidorReportes(ServidorVentana ventanaPadre) {
         initComponents();
+        setLocationRelativeTo(null);
         this.ventanaPadre = ventanaPadre;
     }
     public VnServidorReportes() {
@@ -57,7 +58,8 @@ public class VnServidorReportes extends javax.swing.JFrame {
             }
         });
 
-        pnStatusGlobal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status Global", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Schoolbook L", 1, 24), java.awt.Color.orange)); // NOI18N
+        pnStatusGlobal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status Global", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 1, 24), new java.awt.Color(255, 102, 0))); // NOI18N
+        pnStatusGlobal.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout pnStatusGlobalLayout = new javax.swing.GroupLayout(pnStatusGlobal);
         pnStatusGlobal.setLayout(pnStatusGlobalLayout);
@@ -70,7 +72,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
             .addGap(0, 82, Short.MAX_VALUE)
         );
 
-        pnReporteEficiencia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reporte Eficiencia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Schoolbook L", 1, 18), java.awt.Color.orange)); // NOI18N
+        pnReporteEficiencia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reporte Eficiencia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 1, 18), new java.awt.Color(255, 102, 0))); // NOI18N
 
         pnDetalleTicketsEmpleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle Tickets Atendidos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cantarell", 1, 12), java.awt.Color.orange)); // NOI18N
 
@@ -110,11 +112,11 @@ public class VnServidorReportes extends javax.swing.JFrame {
         pnReporteEficienciaLayout.setVerticalGroup(
             pnReporteEficienciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnReporteEficienciaLayout.createSequentialGroup()
-                .addGap(0, 130, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(pnDetalleTicketsEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pnActividadReciente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actividad Reciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Schoolbook L", 1, 18), java.awt.Color.orange)); // NOI18N
+        pnActividadReciente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actividad Reciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 1, 18), new java.awt.Color(255, 102, 0))); // NOI18N
 
         javax.swing.GroupLayout pnActividadRecienteLayout = new javax.swing.GroupLayout(pnActividadReciente);
         pnActividadReciente.setLayout(pnActividadRecienteLayout);
@@ -160,7 +162,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
         );
 
         pack();
