@@ -3,6 +3,7 @@ package Logica.cliente;
 
 import Interfaz.Login;
 import Interfaz.ClienteVentana;
+import static Interfaz.ClienteVentana.ListaEmpleado;
 import Logica.Persona;
 import Logica.Tickets;
 import java.io.DataInputStream;
@@ -37,7 +38,7 @@ implements Runnable{
     boolean logueado=false;
     DataOutputStream flujoSaliente;
     DataInputStream flujoEntrante;
-    ArrayList listaTicketes;
+    static ArrayList listaTicketes;
     Thread hilo;
     Login parent;
     boolean solicitud=false;
@@ -122,6 +123,15 @@ implements Runnable{
         
     }
    
+    public static void cargarListaTikets(){        
+        for (int x=0; x<listaTicketes.size(); x++) { 
+            Object tiket = listaTicketes.get(x);
+            ListaEmpleado.add(tiket.toString());
+        }
+        
+    }
+    
+    
     public void desconectar() throws IOException, InterruptedException{
         
         

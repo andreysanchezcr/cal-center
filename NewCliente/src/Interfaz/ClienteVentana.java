@@ -3,6 +3,7 @@ package Interfaz;
 import static Logica.Funciones.cargarLista;
 import Logica.Persona;
 import Logica.cliente.Cliente;
+import static Logica.cliente.Cliente.cargarListaTikets;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -225,7 +226,9 @@ public class ClienteVentana extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        cargarLista();
+        //cargarLista();
+        cargarListaTikets();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

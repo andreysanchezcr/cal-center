@@ -64,6 +64,4 @@ public class Funciones {
         }
         //System.out.println("¡Todos los Clientes cargados!");
     }
-    
-    
 }
