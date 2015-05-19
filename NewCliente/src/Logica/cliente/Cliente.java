@@ -42,7 +42,7 @@ implements Runnable{
     Login parent;
     boolean solicitud=false;
     String nombre;
-    ClienteVentana ventana;
+
     /**
      * Arranca el Cliente de chat.
      * @param args
@@ -56,7 +56,6 @@ implements Runnable{
         try
         {
             this.nombre =nombre;
-            
             socket = new Socket("localhost", 5557);
             this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
            flujoSaliente = new DataOutputStream(socket.getOutputStream());
@@ -70,7 +69,7 @@ implements Runnable{
                 parent.dispose();
                 String nombre=flujoEntrante.readUTF();
                 String tipo=flujoEntrante.readUTF();
-                ventana = new ClienteVentana(nombre,socket,tipo,this);
+                ClienteVentana ventana = new ClienteVentana(nombre,socket,tipo,this);
                 System.out.println("EXito");
                 logueado=true;
                 socket.close();
@@ -84,14 +83,10 @@ implements Runnable{
             
         } catch (Exception e)
         {
-            parent.servidorNoIniciado();
-            
+            e.printStackTrace();
         }
         this.hilo=new Thread(this);
         hilo.start();
-    }
-    public String getColor(){
-        return parent.getColor();
     }
     public static void main(String[] args) {
        
@@ -108,22 +103,21 @@ implements Runnable{
         
         
     }
-    public void mandarLista() throws IOException{
-        
+    public int mandarLista() throws IOException{
+        while(true){
+            if(this.solicitud){
                 
            
-            //hilo.stop();
+            hilo.stop();
             socket = new Socket("localhost", 5557);
-            flujoSaliente=new DataOutputStream(socket.getOutputStream());
+            flujoSaliente.writeUTF("Lista");
             objeto_saliente=new ObjectOutputStream(socket.getOutputStream());
-            flujoSaliente.writeUTF("Lista"+parent.getColor());
-            
             objeto_saliente.writeObject(this.listaTicketes);
             socket.close();
-           // hilo.resume();
-            
-             
-        
+            hilo.resume();
+            return 0;
+             }
+        }
         
         
     }
@@ -168,13 +162,11 @@ implements Runnable{
             
             
         } catch (IOException ex) {
-            ventana.errorDeComunicacion();
-            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            ventana.errorDeComunicacion();
-            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
