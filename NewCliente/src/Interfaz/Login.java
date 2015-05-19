@@ -45,9 +45,7 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -80,15 +78,10 @@ public class Login extends javax.swing.JFrame implements  Runnable{
 
         jLabel5.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel5.setText("Puerto:");
+        jLabel5.setText("Categoría:");
 
-        jLabel6.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel6.setText("HOST:");
-
-        jTextField2.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-
-        jTextField3.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VERDE", "AMARILLO", "ROJO" }));
 
         jMenu1.setText("Menú");
 
@@ -118,8 +111,7 @@ public class Login extends javax.swing.JFrame implements  Runnable{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1)
@@ -127,11 +119,7 @@ public class Login extends javax.swing.JFrame implements  Runnable{
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,12 +138,8 @@ public class Login extends javax.swing.JFrame implements  Runnable{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addComponent(jButton1)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -167,10 +151,8 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         // TODO add your handling code here:
         String pUserName=jTextField1.getText();
         String pPassword=jPasswordField1.getText();
-        //String pPassword2=jPasswordField1.getSelectedText();
-        String pPuerto=jTextField2.getText();
-        String pHost=jTextField3.getText();
-        if(pUserName.equals("") || pPassword.equals("") || pPuerto.equals("") || pHost.equals("")){
+        //String pPassword2=jPasswordField1.getSelectedText();        
+        if(pUserName.equals("") || pPassword.equals("")){
             JOptionPane.showMessageDialog(this, "¡Complete todos los espacios solicitados\npara poder continuar!");
         }
         else{
@@ -230,18 +212,16 @@ public class Login extends javax.swing.JFrame implements  Runnable{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
     @Override
