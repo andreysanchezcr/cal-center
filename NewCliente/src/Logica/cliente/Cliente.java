@@ -93,36 +93,42 @@ implements Runnable{
         this.hilo=new Thread(this);
         hilo.start();
     }
-    public static void main(String[] args) {
-       
-        Cliente cl=new Cliente("fernando@tec.ac.cr","12345",null);
-       
-        
-        
-        
-        
-        
-        
-        
-            
-        
-        
-    }
+   
     public String getColor(){
         return parent.getColor();
     }
-    public void mandarLista(int indice) throws IOException{
+    public void mandarListaAtencion(int indice) throws IOException{
         socket = new Socket("localhost", 5557);
         System.out.println("Mandando lista");
         System.out.println(this.getColor());
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Lista"+this.getColor());
         
+        
         flujoSaliente.writeInt(indice);
+        this.flujoSaliente.writeUTF("En atencion");
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
         
         
+    }
+    public void mandarListaAtendido(int indice) throws IOException{
+        socket = new Socket("localhost", 5557);
+        System.out.println("Mandando lista");
+        System.out.println(this.getColor());
+        flujoSaliente = new DataOutputStream(socket.getOutputStream());
+        this.flujoSaliente.writeUTF("Lista"+this.getColor());
+        
+        
+        flujoSaliente.writeInt(indice);
+        this.flujoSaliente.writeUTF("Atendido");
+//this.flujoSaliente.writeUTF(this.parent.getNombre());
+        
+        
+        
+    }
+    public ArrayList getListaTickets(){
+        return this.listaTicketes;
     }
    
     public void cargarListaTikets(){   
@@ -134,17 +140,25 @@ implements Runnable{
         }
         
     }
-    public void modificarEstadoTicket(int indice) throws IOException{
+    public void modificarEstadoTicketAtencion(int indice) throws IOException{
         Tickets temp =(Tickets)listaTicketes.get(indice);
         temp.setEstado("En atencion");
         this.listaTicketes.set(indice, temp);
         modificarJList();
-        mandarLista(indice);
+        mandarListaAtencion(indice);
+        
+    }
+    public void modificarEstadoTicketAtendido(int indice) throws IOException{
+        Tickets temp =(Tickets)listaTicketes.get(indice);
+        temp.setEstado("Atendido");
+        this.listaTicketes.set(indice, temp);
+        modificarJList();
+        mandarListaAtendido(indice);
         
     }
     public void modificarJList(){
         for(int i=0;i<listaTicketes.size();i++){
-            if(((Tickets)listaTicketes.get(i)).getEstado().equals("En atencion")&&!ListaEmpleado.getItem(i).equals(((Tickets)listaTicketes.get(i)).getEstadoActual())){
+            if((((Tickets)listaTicketes.get(i)).getEstado().equals("En atencion")||((Tickets)listaTicketes.get(i)).getEstado().equals("Atendido"))&&!ListaEmpleado.getItem(i).equals(((Tickets)listaTicketes.get(i)).getEstadoActual())){
                 ListaEmpleado.replaceItem(((Tickets)listaTicketes.get(i)).getEstadoActual(), i);
             }
         }

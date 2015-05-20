@@ -2,6 +2,7 @@ package Interfaz;
 
 import static Logica.Funciones.cargarLista;
 import Logica.Persona;
+import Logica.Tickets;
 import Logica.cliente.Cliente;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -213,11 +215,28 @@ public class ClienteVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            cliente.modificarEstadoTicket(ListaEmpleado.getSelectedIndex());
+        
+            if(ListaEmpleado.getItem(ListaEmpleado.getSelectedIndex()).substring(ListaEmpleado.getItem(ListaEmpleado.getSelectedIndex()).length()-1).equals("n")){
+                JOptionPane.showMessageDialog(this, "El cliente esta siendo atendido actualmente");
+            }
+            else if(ListaEmpleado.getItem(ListaEmpleado.getSelectedIndex()).substring(ListaEmpleado.getItem(ListaEmpleado.getSelectedIndex()).length()-1).equals("o")){
+                JOptionPane.showMessageDialog(this, "El cliente ya ha sido atendido");
+            }
+
+            else{
+                try {
+                
+            
+            cliente.modificarEstadoTicketAtencion(ListaEmpleado.getSelectedIndex());
+            int indice=ListaEmpleado.getSelectedIndex();
+            
+           // System.out.println((Tickets)this.cliente.getListaTickets().get(ListaEmpleado.getSelectedIndex())) ;
+            TiketVentana temp=new TiketVentana(this);
+            ListaEmpleado.select(indice);
         } catch (IOException ex) {
             System.out.println("Error al enviar lista");
             Logger.getLogger(ClienteVentana.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
