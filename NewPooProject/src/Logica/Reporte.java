@@ -15,6 +15,7 @@
 package Logica;
 
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 /**
  *
@@ -97,5 +98,15 @@ public abstract class Reporte {
     
     
     }*/
+    
+    
+    public static void llenarEmpleadoInfo(JLabel etiqueta,String ID_Empleado){
+        etiqueta = new JLabel ("<html> <font size=\"3\" color=\"red\">Hola<br>mundo</html>"); 
+    
+    
+        etiqueta.repaint();
+    }
+    
+    
     
 }

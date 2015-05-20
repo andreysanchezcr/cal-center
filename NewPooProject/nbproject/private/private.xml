@@ -3,18 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Andrey/Desktop/cal-center/NewPooProject/src/Logica/servidor/Servidor.java</file>
-            <file>file:/C:/Users/Andrey/Desktop/cal-center/NewPooProject/src/Interfaz/Login.java</file>
-            <file>file:/C:/Users/Andrey/Desktop/cal-center/NewPooProject/src/Interfaz/ServidorVentana.java</file>
-            <file>file:/C:/Users/Andrey/Desktop/cal-center/NewPooProject/src/Logica/servidor/HiloDeCliente_1.java</file>
-=======
             <file>file:/root/NEWPOOPROGRA/cal-center/NewPooProject/src/Logica/MyExell.java</file>
             <file>file:/root/NEWPOOPROGRA/cal-center/NewPooProject/src/Interfaz/Login.java</file>
             <file>file:/root/NEWPOOPROGRA/cal-center/NewPooProject/src/Logica/Reporte.java</file>
             <file>file:/root/NEWPOOPROGRA/cal-center/NewPooProject/src/Logica/ManejadorDeListas.java</file>
             <file>file:/root/NEWPOOPROGRA/cal-center/NewPooProject/src/Logica/Tickets.java</file>
->>>>>>> origin/master
+            <file>file:/root/NEWPOOPROGRA/cal-center/NewPooProject/src/Interfaz/VnServidorReportes.java</file>
+            <file>file:/root/NEWPOOPROGRA/cal-center/NewPooProject/src/Interfaz/AcercaDe.java</file>
+            <file>file:/root/NEWPOOPROGRA/cal-center/NewPooProject/src/Interfaz/ServidorVentana.java</file>
         </group>
     </open-files>
 </project-private>
