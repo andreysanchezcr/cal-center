@@ -151,12 +151,14 @@ public class Servidor implements Runnable{
         }
         public void modificarEstadoTicketAmarillo(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeAmarillos.get(indice);
-        if(tipo.equals("En atencion")){
+        if(tipo.equals("")){
             
         
         temp.setEstado("En atencion");
         }else{
             temp.setEstado("Atendido");
+            System.out.println(tipo);
+            temp.setComentario(tipo);
         }
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
         
@@ -164,12 +166,14 @@ public class Servidor implements Runnable{
         
         public void modificarEstadoTicketRojo(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeRojos.get(indice);
-        if(tipo.equals("En atencion")){
+        if(tipo.equals("")){
             
         
         temp.setEstado("En atencion");
         }else{
             temp.setEstado("Atendido");
+            System.out.println(tipo);
+            temp.setComentario(tipo);
         }
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
         
@@ -177,14 +181,15 @@ public class Servidor implements Runnable{
         
         public void modificarEstadoTicketVerde(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeVerdes.get(indice);
-        if(tipo.equals("En atencion")){
+        if(tipo.equals("")){
             
         
         temp.setEstado("En atencion");
         }else{
             temp.setEstado("Atendido");
+            System.out.println(tipo);
+            temp.setComentario(tipo);
         }
-        
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
         
     }
@@ -230,7 +235,10 @@ public class Servidor implements Runnable{
                 }
                 else if(instruccion.equals("ListaROJO")){
                     int indice=dataInput.readInt();
+                    
                     String tipo=dataInput.readUTF();
+                     
+                     
                     
                     this.modificarEstadoTicketRojo(indice,tipo);
                     //ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
@@ -238,8 +246,12 @@ public class Servidor implements Runnable{
                     
                 }
                 else if(instruccion.equals("ListaVERDE")){
-                    int indice=dataInput.readInt();
+                   int indice=dataInput.readInt();
+                    
                     String tipo=dataInput.readUTF();
+                    
+                     
+                  //  System.out.println(comentario);
                     
                     this.modificarEstadoTicketVerde(indice,tipo);
                     // ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
@@ -249,6 +261,8 @@ public class Servidor implements Runnable{
                 else if(instruccion.equals("ListaAMARILLO")){
                     int indice=dataInput.readInt();
                     String tipo=dataInput.readUTF();
+                    String comentario=dataInput.readUTF();
+                    System.out.println(comentario);
                     
                     this.modificarEstadoTicketAmarillo(indice,tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
@@ -266,7 +280,7 @@ public class Servidor implements Runnable{
             }
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         } 
     }    
 

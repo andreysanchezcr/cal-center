@@ -225,13 +225,14 @@ public class ClienteVentana extends javax.swing.JFrame {
 
             else{
                 try {
-                
-            
-            cliente.modificarEstadoTicketAtencion(ListaEmpleado.getSelectedIndex());
+                    
             int indice=ListaEmpleado.getSelectedIndex();
+            System.out.println("El indice es: "+indice);
+            cliente.modificarEstadoTicketAtencion(ListaEmpleado.getSelectedIndex());
+            
             
            // System.out.println((Tickets)this.cliente.getListaTickets().get(ListaEmpleado.getSelectedIndex())) ;
-            TiketVentana temp=new TiketVentana(this);
+            TiketVentana temp=new TiketVentana(this,indice);
             ListaEmpleado.select(indice);
         } catch (IOException ex) {
             System.out.println("Error al enviar lista");

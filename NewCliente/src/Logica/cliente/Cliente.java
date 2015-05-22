@@ -106,13 +106,13 @@ implements Runnable{
         
         
         flujoSaliente.writeInt(indice);
-        this.flujoSaliente.writeUTF("En atencion");
+        this.flujoSaliente.writeUTF("");
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
         
         
     }
-    public void mandarListaAtendido(int indice) throws IOException{
+    public void mandarListaAtendido(int indice,String comentario) throws IOException{
         socket = new Socket("localhost", 5557);
         System.out.println("Mandando lista");
         System.out.println(this.getColor());
@@ -121,10 +121,22 @@ implements Runnable{
         
         
         flujoSaliente.writeInt(indice);
-        this.flujoSaliente.writeUTF("Atendido");
+        this.flujoSaliente.writeUTF(comentario);
+        //this.flujoSaliente.writeUTF("PERROOO");
+       
+        socket.close();
+        
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
         
+        
+    }
+    public void mandarMensaje() throws IOException{
+        socket = new Socket("localhost", 5557);
+       
+        flujoSaliente = new DataOutputStream(socket.getOutputStream());
+        flujoSaliente.writeUTF("PRUEBA");
+        socket.close();
         
     }
     public ArrayList getListaTickets(){
@@ -148,13 +160,14 @@ implements Runnable{
         mandarListaAtencion(indice);
         
     }
-    public void modificarEstadoTicketAtendido(int indice) throws IOException{
+    public void modificarEstadoTicketAtendido(int indice,String comentario) throws IOException{
         Tickets temp =(Tickets)listaTicketes.get(indice);
         temp.setEstado("Atendido");
         this.listaTicketes.set(indice, temp);
         modificarJList();
-        mandarListaAtendido(indice);
         
+        mandarListaAtendido(indice,comentario);
+      
     }
     public void modificarJList(){
         for(int i=0;i<listaTicketes.size();i++){

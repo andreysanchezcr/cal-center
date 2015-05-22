@@ -21,14 +21,19 @@ public class TiketVentana extends javax.swing.JFrame {
      * Creates new form TiketVentana
      */
     Tickets actual; 
-
+    int indice;
     ClienteVentana parent;
-    public TiketVentana(ClienteVentana parent) {
-      
-        this.actual=actual;
+    public TiketVentana(ClienteVentana parent,int indice) {
+      this.indice=indice;
+        
         this.parent=parent;
         initComponents();
         this.setVisible(true);
+        
+        System.out.println(":::::::::::::::::::::::::::");
+        this.actual=(Tickets)parent.cliente.getListaTickets().get(indice);
+        System.out.println(actual.getAsunto());
+        System.out.println("ESTE ES EL ASUNTO");
     }
     public boolean issuspended = false;//para saber si el hilo esta suspendido o pausado
     int hora = 0, min = 0, seg = 0, ds = 0;//unidades de medida
@@ -81,7 +86,7 @@ public class TiketVentana extends javax.swing.JFrame {
         btnPausa = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        tcomentario = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,9 +155,9 @@ public class TiketVentana extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel3.setText("Comentario");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        tcomentario.setColumns(20);
+        tcomentario.setRows(5);
+        jScrollPane2.setViewportView(tcomentario);
 
         jButton2.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jButton2.setText("Pendiente");
@@ -219,8 +224,11 @@ public class TiketVentana extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            parent.cliente.modificarEstadoTicketAtendido(ListaEmpleado.getSelectedIndex());
+            parent.cliente.modificarEstadoTicketAtendido(indice,tcomentario.getText());
+            
+            this.dispose();
         } catch (IOException ex) {
+            System.out.println(tcomentario.getText());
             Logger.getLogger(TiketVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -261,7 +269,7 @@ public class TiketVentana extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lblTime;
+    private javax.swing.JTextArea tcomentario;
     // End of variables declaration//GEN-END:variables
 }
