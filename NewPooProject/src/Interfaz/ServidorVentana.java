@@ -81,13 +81,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         }catch (Exception ex){
         ex.printStackTrace();
         }
- 
-            
-            
-            
-            
-            
-            
             
             System.exit(0);
     }    

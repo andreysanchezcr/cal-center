@@ -24,7 +24,13 @@ public abstract class MyExell {
     
     public static Workbook libroDeTrabajo;
     public static WritableWorkbook copiaDeLibro;
-    public static WritableSheet hojaTikets;
+    
+    
+    public static WritableSheet hojaTiketsPendientes;
+    public static WritableSheet hojaTiketsVerdes;
+    public static WritableSheet hojaTiketsAmarillos;
+    public static WritableSheet hojaTiketsRojos;
+            
     
     public static void open(String path){
     
@@ -132,10 +138,10 @@ public abstract class MyExell {
                 //copiaDeLibro =  Workbook.createWorkbook(new File (" TICKETS_"+cortar(path)+strFechaHoraParaFile+".xls"),libroDeTrabajo);
                 //copiaDeLibro =  Workbook.createWorkbook(new File (path+"/TICKETS_"+strFechaHoraParaFile+".xls"),libroDeTrabajo);
                
-                WritableSheet hojaTiketsPendientes = copiaDeLibro.createSheet("Tickets Pendientes", 0);
-                WritableSheet hojaTiketsVerdes = copiaDeLibro.createSheet("Tickets Verdes", 1);
-                WritableSheet hojaTiketsAmarillos = copiaDeLibro.createSheet("Tickets Amarillo", 2);
-                WritableSheet hojaTiketsRojos = copiaDeLibro.createSheet("Tickets Rojos", 3);
+                 hojaTiketsPendientes = copiaDeLibro.createSheet("Tickets Pendientes", 0);
+                 hojaTiketsVerdes = copiaDeLibro.createSheet("Tickets Verdes", 1);
+                hojaTiketsAmarillos = copiaDeLibro.createSheet("Tickets Amarillo", 2);
+                 hojaTiketsRojos = copiaDeLibro.createSheet("Tickets Rojos", 3);
                 
                 
                 insertSheet(ManejadorDeListas.getListaDePendientes(),hojaTiketsPendientes);
@@ -143,7 +149,7 @@ public abstract class MyExell {
                 insertSheet(ManejadorDeListas.getListaDeAmarillos(),hojaTiketsAmarillos);
                 insertSheet(ManejadorDeListas.getListaDeRojos(),hojaTiketsRojos);
 
-                copiaDeLibro.write();
+                //copiaDeLibro.write();
                 copiaDeLibro.close();
                 
                 
@@ -182,7 +188,11 @@ public abstract class MyExell {
                     hojaTikets.addCell(lblComentario);
                     Label lblestado = new Label(9,i+1,tempTiket.getEstado());
                     hojaTikets.addCell(lblestado);
-                    
+                    try {
+                        copiaDeLibro.write();
+                    } catch (IOException ex) {
+                        Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 
             }
