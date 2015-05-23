@@ -92,6 +92,7 @@ public abstract class ManejadorDeListas {
         for(int i = 0; i < ListaDePendientes.size() ;i ++){
         }    
     }
-
+    public static void getCantidadTiketsAtendidos(){
+    }
 
 }
