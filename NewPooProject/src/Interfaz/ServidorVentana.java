@@ -42,9 +42,22 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         initComponents();
         setLocationRelativeTo(null);
         this.setVisible(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                close();
+            }
+        });
+        
         
     }
    
+    private void close(){
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
+            "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            
+            System.exit(0);
+    }    
     public void setConectados(){
         if(((Persona)listaEmpleados.get(1)).getEstado()){
             
@@ -101,7 +114,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
         jLabel5.setText("jLabel5");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setName("SERVIDOR"); // NOI18N
         setResizable(false);
 
