@@ -53,8 +53,41 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     }
    
     private void close(){
-        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
-            "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        JFileChooser jF1 = null;
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea guardar los cambios "+"\n"+" producidos en el Sstema?",
+            "Guardar Cambios", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            
+            
+            
+            
+                    
+            
+            
+            jF1= new JFileChooser();
+            jF1.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            jF1.setAcceptAllFileFilterUsed(false);
+        
+        String ruta = "";
+        try{
+        if(jF1.showSaveDialog(null)==jF1.APPROVE_OPTION){
+            ruta = jF1.getSelectedFile().getAbsolutePath();
+            //Aqui ya tiens la ruta,,,ahora puedes crear un fichero n esa ruta y escribir lo k kieras...
+            //System.out.println("ESTEEE ES EL PAAAATH->"+ruta+"<-");
+            
+            MyExell.save_All_Changes(ruta);
+            
+
+        }
+        }catch (Exception ex){
+        ex.printStackTrace();
+        }
+ 
+            
+            
+            
+            
+            
+            
             
             System.exit(0);
     }    

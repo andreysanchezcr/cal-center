@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import jxl.*;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -118,105 +117,77 @@ public abstract class MyExell {
     
     
     
-        public static void save_All_Changes(String path, ArrayList<Tickets> listaPendientes,
-                                                ArrayList<Tickets> listaVerdes,
-                                                ArrayList<Tickets> listaAmarillos,
-                                                ArrayList<Tickets> listaRojos) {
+        public static void save_All_Changes(String path) {
         
-
             //Fecha y Hora para el Nombre del Archivo Final
             Date fechaHoraActualParaFile = new Date();
-            String strFechaHoraParaFile = new SimpleDateFormat("/dd-MM-yyyy hh:mm aaa").format(fechaHoraActualParaFile);    
-
+            String strFechaHoraParaFile = new SimpleDateFormat("dd-MM-yyyy hh:mm aaa").format(fechaHoraActualParaFile);    
 
             //Abrir archivo .xls para clonarlo
-            open(path);
+            //open(path);
 
 
             try {
+                copiaDeLibro = Workbook.createWorkbook(new File("TICKETS_"+strFechaHoraParaFile+".xls")); 
+                //copiaDeLibro =  Workbook.createWorkbook(new File (" TICKETS_"+cortar(path)+strFechaHoraParaFile+".xls"),libroDeTrabajo);
+                //copiaDeLibro =  Workbook.createWorkbook(new File (path+"/TICKETS_"+strFechaHoraParaFile+".xls"),libroDeTrabajo);
+               
+                WritableSheet hojaTiketsPendientes = copiaDeLibro.createSheet("Tickets Pendientes", 0);
+                WritableSheet hojaTiketsVerdes = copiaDeLibro.createSheet("Tickets Verdes", 1);
+                WritableSheet hojaTiketsAmarillos = copiaDeLibro.createSheet("Tickets Amarillo", 2);
+                WritableSheet hojaTiketsRojos = copiaDeLibro.createSheet("Tickets Rojos", 3);
+                
+                
+                insertSheet(ManejadorDeListas.getListaDePendientes(),hojaTiketsPendientes);
+                insertSheet(ManejadorDeListas.getListaDeVerdes(),hojaTiketsVerdes);
+                insertSheet(ManejadorDeListas.getListaDeAmarillos(),hojaTiketsAmarillos);
+                insertSheet(ManejadorDeListas.getListaDeRojos(),hojaTiketsRojos);
 
-                copiaDeLibro =  Workbook.createWorkbook(new File (" TICKETS_"+cortar(path)+strFechaHoraParaFile+".xls"),libroDeTrabajo);
-
-                insertSheet(listaPendientes,0);
-                insertSheet(listaVerdes,1);
-                insertSheet(listaAmarillos,2);
-                insertSheet(listaRojos,3);
-
+                copiaDeLibro.write();
+                copiaDeLibro.close();
+                
+                
             } catch (IOException wse) {
                System.out.println("ERROR---->>"+wse.getMessage());
-            }
-
+            } catch (WriteException ex) {
+            Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
 
-
-        private static void insertSheet(ArrayList<Tickets> lista , int numeroHoja){
-        try {
-
-                
-            
-                
-            //=======================================Verificar si la hoja existe    
-                if(copiaDeLibro.getSheet(numeroHoja)!= null){
-                    hojaTikets = copiaDeLibro.getSheet(numeroHoja);
-                }
+        private static void insertSheet(ArrayList<Tickets> lista , WritableSheet hojaTikets){
+            try{
+                for(int i =0; i+1<lista.size(); i++){
                     
-                else{
-                    if(numeroHoja == 0){
-                        hojaTikets = copiaDeLibro.createSheet("Tickets Pendientes", numeroHoja);
-                    }
-                    if(numeroHoja == 1){
-                        hojaTikets = copiaDeLibro.createSheet("Tickets Verdes", numeroHoja);
-                    }
-                    if(numeroHoja == 2){
-                        hojaTikets = copiaDeLibro.createSheet("Tickets Amarillo", numeroHoja);
-                    }
-                    if(numeroHoja == 3){
-                        hojaTikets = copiaDeLibro.createSheet("Tickets Rojos", numeroHoja);
-                    }
-
+                    
+                    Tickets tempTiket = lista.get(i);
+                    
+                    
+                    Label lblFechayHoraRecepcion = new Label(0,i+1,tempTiket.getFechayHoraRecepcion());
+                    hojaTikets.addCell(lblFechayHoraRecepcion);
+                    Label lblID_CLIENTE = new Label(1,i+1,tempTiket.getID_CLIENTE());
+                    hojaTikets.addCell(lblID_CLIENTE);
+                    Label lblasunto = new Label(2,i+1,tempTiket.getAsunto());
+                    hojaTikets.addCell(lblasunto);
+                    Label lblIDTicket = new Label(3,i+1,Integer.toString(tempTiket.getIDTicket()));
+                    hojaTikets.addCell(lblIDTicket);
+                    Label lblcategoria= new Label(4,i+1,tempTiket.getCategoria());
+                    hojaTikets.addCell(lblcategoria);
+                    Label lblID_EMPLEADO = new Label(5,i+1,tempTiket.getID_EMPLEADO());
+                    hojaTikets.addCell(lblID_EMPLEADO);
+                    Label lblfechayHoraAtencion = new Label(6,i+1,tempTiket.getFechayHoraAtencion());
+                    hojaTikets.addCell(lblfechayHoraAtencion);
+                    Label lbltiempoSegundos = new Label(7,i+1,tempTiket.getTiempoSegundos());
+                    hojaTikets.addCell(lbltiempoSegundos);
+                    Label lblComentario = new Label(8,i+1,tempTiket.getComentario());
+                    hojaTikets.addCell(lblComentario);
+                    Label lblestado = new Label(9,i+1,tempTiket.getEstado());
+                    hojaTikets.addCell(lblestado);
+                    
                 }
-            //=======================================    
                 
-                
-                try{
-                    for(int i =0; i+1<lista.size(); i++){
-
-                        Label lblFechaHoraRecepcion = new Label(0,i,"Mario Bross");
-                        Tickets tempTiket = lista.get(i);
-                        
-
-                        Label lblFechayHoraRecepcion = new Label(0,i+1,tempTiket.getFechayHoraRecepcion());
-                        hojaTikets.addCell(lblFechayHoraRecepcion);
-                        Label lblID_CLIENTE = new Label(1,i+1,tempTiket.getID_CLIENTE());
-                        hojaTikets.addCell(lblID_CLIENTE);
-                        Label lblasunto = new Label(2,i+1,tempTiket.getAsunto());
-                        hojaTikets.addCell(lblasunto);
-                        Label lblIDTicket = new Label(3,i+1,Integer.toString(tempTiket.getIDTicket()));
-                        hojaTikets.addCell(lblIDTicket);
-                        Label lblcategoria= new Label(4,i+1,tempTiket.getCategoria());
-                        hojaTikets.addCell(lblcategoria);
-                        Label lblID_EMPLEADO = new Label(5,i+1,tempTiket.getID_EMPLEADO());
-                        hojaTikets.addCell(lblID_EMPLEADO);
-                        Label lblfechayHoraAtencion = new Label(6,i+1,tempTiket.getFechayHoraAtencion());
-                        hojaTikets.addCell(lblfechayHoraAtencion);
-                        Label lbltiempoSegundos = new Label(7,i+1,tempTiket.getTiempoSegundos());
-                        hojaTikets.addCell(lbltiempoSegundos);
-                        Label lblComentario = new Label(8,i+1,tempTiket.getComentario());
-                        hojaTikets.addCell(lblComentario);
-                        Label lblestado = new Label(9,i+1,tempTiket.getEstado());
-                        hojaTikets.addCell(lblestado);
-
-                    }
-                    copiaDeLibro.write();
-                    copiaDeLibro.close();    
-                }
-                catch (WriteException wexep){
-                    System.out.println("ERROR---->>"+wexep.getMessage());
-                }
-
-
-            } catch (IOException wse) {
-               System.out.println("ERROR---->>"+wse.getMessage());
+            }
+            catch (WriteException wexep){
+                System.out.println("ERROR---->>"+wexep.getMessage());
             }
         }
 
