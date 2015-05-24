@@ -28,16 +28,14 @@ public class TiketVentana extends javax.swing.JFrame {
         
         this.parent=parent;
         initComponents();
-<<<<<<< HEAD
-        iniciarCrono();
-=======
+
         this.setVisible(true);
         
         System.out.println(":::::::::::::::::::::::::::");
         this.actual=(Tickets)parent.cliente.getListaTickets().get(indice);
         System.out.println(actual.getAsunto());
         System.out.println("ESTE ES EL ASUNTO");
->>>>>>> origin/master
+
     }
     public boolean issuspended = false;//para saber si el hilo esta suspendido o pausado
     int hora = 0, min = 0, seg = 0, ds = 0;//unidades de medida

@@ -196,13 +196,13 @@ public class Servidor implements Runnable{
             
         
         temp.setEstado("En atencion");
-        historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: ");
+        historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
         }else{
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
-            historial.add(this.getName(tipo)+" esta atendido el tickete numero: ");
-            System.out.println(tipo);
-            temp.setComentario(tipo);
+            historial.add(this.getName(tipo)+" esta atendido el tickete numero: "+this.getTicketeActual(tipo));
+            System.out.println(this.getOracion(tipo));
+            temp.setComentario(this.getOracion(tipo));
         }
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
         
@@ -214,6 +214,7 @@ public class Servidor implements Runnable{
                 return temp;
             }
         temp=temp+oracion.charAt(i);
+        System.out.println("Este es el valo de temp "+temp);
     
         }
         
@@ -223,9 +224,25 @@ public class Servidor implements Runnable{
     public String getOracion(String oracion){
         String temp="";
         for(int i=0;i<oracion.length();i++){
+                 if(oracion.charAt(i)=='%'){
+                temp="";
+            }
+        temp=temp+oracion.charAt(i);
+    
+        }
+        
+        //System.out.println("Se ha retornado null");
+        return temp;
+    }
+    public String getTicketeActual(String oracion){
+        String temp="";
+        for(int i=0;i<oracion.length();i++){
                  if(oracion.charAt(i)=='@'){
                 temp="";
             }
+                 if(oracion.charAt(i)=='%'){
+                     return temp;
+                 }
         temp=temp+oracion.charAt(i);
     
         }
