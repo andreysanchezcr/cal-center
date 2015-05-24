@@ -4,6 +4,7 @@ package Interfaz;
 
 import Logica.Persona;
 import Logica.servidor.Servidor;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -13,6 +14,8 @@ public class Login extends javax.swing.JFrame {
     private ArrayList listaEmpleados=new ArrayList();
     public Login() {
         initComponents();
+        //this.getContentPane().setBackground(Color.gray);
+        this.getContentPane().setBackground(new Color(0,0,204)); 
         setLocationRelativeTo(null);
         registrarPersonas();
     }
@@ -191,23 +194,24 @@ public class Login extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(475, 409));
+        setBackground(new java.awt.Color(0, 0, 204));
+        setPreferredSize(new java.awt.Dimension(480, 409));
         setResizable(false);
 
         jPasswordField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("Simulador de Atención a Tickets");
 
-        jLabel2.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel2.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre de Usuario:");
 
         jTextField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel4.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contraseña:");
 
         jButton1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
@@ -221,8 +225,8 @@ public class Login extends javax.swing.JFrame {
         jTextField6.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jTextField6.setText("5454");
 
-        jLabel10.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel10.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Puerto:");
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TuCalllCenterLogoResize.png"))); // NOI18N
