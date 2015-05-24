@@ -25,6 +25,28 @@ public abstract class ManejadorDeListas {
         temp.add(ListaDeRojos);
         return temp;
     }
+    
+    public static int cantidadSegundos(ArrayList<Tickets> lista, String idEmpleado){
+        int largoLista = lista.size();
+        int cantRevisados = 0;
+        int tiempoTotal = 0;
+        while(cantRevisados < largoLista){
+            if(lista.get(cantRevisados).getID_EMPLEADO().equals(idEmpleado)){
+                tiempoTotal = tiempoTotal + Integer.parseInt(lista.get(cantRevisados).getTiempoSegundos());
+            }
+            cantRevisados = cantRevisados+1;
+        }
+        return tiempoTotal;
+        
+    }
+    
+    public static int cantidadSegEmpleados(String idEmpleado){
+        int totalTime = 0;
+        totalTime = totalTime + cantidadSegundos(ListaDeVerdes,idEmpleado);
+        totalTime = totalTime + cantidadSegundos(ListaDeAmarillos,idEmpleado);
+        totalTime = totalTime + cantidadSegundos(ListaDeRojos,idEmpleado);
+        return totalTime;
+    }
 
     public static void addNewTiketsToLocalListVerdes(ArrayList<Tickets> ListaDeVerdesInsert){
         for (int i = 0; i < ListaDeVerdesInsert.size();i++){
