@@ -505,6 +505,13 @@ public class Servidor implements Runnable{
                    
                     
                 }
+                else if(instruccion.equals("Reporte")){
+                    System.out.println("Entro en obtenr reporte");
+                    String tipo=this.dataInput.readUTF();
+                    System.out.println("Nombre de la persona que lo solicito: "+this.getName(tipo));
+                    System.out.println("Esta es la fecha: "+this.getOracion(tipo));
+                
+                }
                 
                 
                 

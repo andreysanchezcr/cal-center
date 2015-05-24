@@ -5,6 +5,9 @@
  */
 package Interfaz;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -99,7 +102,12 @@ public class ComprobarLogin extends javax.swing.JFrame {
         if(parent.verificarUsuario(tusuario.getText(), tcontrasena.getText())){
             ////
             System.out.println("DATOS CORRECTORS");
-            this.parent.parent.cliente.getReporte(this.parent.getFecha());
+            try {
+                this.parent.parent.cliente.getReporte(this.parent.getFecha());
+            } catch (IOException ex) {
+                System.out.println("eROR AL OBTENER LA FECHA");
+                Logger.getLogger(ComprobarLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Datos no validos");

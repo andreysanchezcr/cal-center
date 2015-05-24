@@ -133,6 +133,7 @@ implements Runnable{
         
        // flujoSaliente.writeInt(indice);
          this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+fecha);
+         System.out.println("Finalizando de obtener el reporte");
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
     }
