@@ -62,12 +62,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea guardar los cambios "+"\n"+" producidos en el Sstema?",
             "Guardar Cambios", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             
-            
-            
-            
-                    
-            
-            
             jF1= new JFileChooser();
             jF1.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             jF1.setAcceptAllFileFilterUsed(false);
@@ -91,21 +85,31 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         System.exit(0);
     }    
     public void setConectados(){
-        if(((Persona)listaEmpleados.get(1)).getEstado()){
-            
-            jLabel2.setText(((Persona)listaEmpleados.get(1)).getNombre()+" conectado");
+        //set a los iconos con las imágenes
+        ImageIcon ofLine = new ImageIcon(this.getClass().getResource("/Images/offlineResize.png"));
+        ImageIcon onLine = new ImageIcon(this.getClass().getResource("/Images/onlineResize.png"));
+        
+        
+        if(((Persona)listaEmpleados.get(1)).getEstado()){            
+            jLabel2.setText(((Persona)listaEmpleados.get(1)).getNombre());
+            jLabel8.setIcon(onLine);
         }else{
-            jLabel2.setText(((Persona)listaEmpleados.get(1)).getNombre()+" desconectado");
+            jLabel2.setText(((Persona)listaEmpleados.get(1)).getNombre());
+            jLabel8.setIcon(ofLine);
         }
         if(((Persona)listaEmpleados.get(2)).getEstado()){
-            jLabel3.setText(((Persona)listaEmpleados.get(2)).getNombre()+" conectado");
+            jLabel3.setText(((Persona)listaEmpleados.get(2)).getNombre());
+            jLabel12.setIcon(onLine);
         }else{
-            jLabel3.setText(((Persona)listaEmpleados.get(2)).getNombre()+" desconectado");
+            jLabel3.setText(((Persona)listaEmpleados.get(2)).getNombre());
+            jLabel12.setIcon(ofLine);
         }
         if(((Persona)listaEmpleados.get(3)).getEstado()){
-            jLabel4.setText(((Persona)listaEmpleados.get(3)).getNombre()+" conectado");
+            jLabel4.setText(((Persona)listaEmpleados.get(3)).getNombre());
+            jLabel13.setIcon(onLine);
         }else{
-            jLabel4.setText(((Persona)listaEmpleados.get(3)).getNombre()+" desconectado");
+            jLabel4.setText(((Persona)listaEmpleados.get(3)).getNombre());
+            jLabel13.setIcon(ofLine);
         }
     }
     public void setListaEmpleados(ArrayList lista){
@@ -146,7 +150,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         btStatusMonitoreo = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
 
         jLabel5.setText("jLabel5");
 
@@ -332,8 +335,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TuCalllCenterLogoSinFondoResize.png"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -354,14 +355,12 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnCargarTickets)
                                         .addGap(211, 211, 211)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(btnSetComoAmarillo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnSetComoVERDE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnSetComoRojo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel6))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnSetComoAmarillo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSetComoVERDE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSetComoRojo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btStatusMonitoreo, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                                     .addComponent(pnEmpleadosConectados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -396,10 +395,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Lista, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCargarTickets))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(pnEmpleadosConectados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -410,9 +405,11 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                                 .addGap(21, 21, 21)
                                 .addComponent(btnSetComoRojo)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btStatusMonitoreo)
-                            .addComponent(jLabel6))))
+                        .addComponent(btStatusMonitoreo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lista, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCargarTickets)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -467,16 +464,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             
         }
     }
-    public void setVerde(){
-        ImageIcon verde = new ImageIcon(getClass().getResource("/Images/onlineResize.png"));
-        jLabel8.setIcon(verde);
-       
-    }
-    public void setRojo(){
-        ImageIcon rojo = new ImageIcon(getClass().getResource("/Images/offlineResize.png"));
-        jLabel8.setIcon(rojo);
-       
-    }
+    
     
     private void btnSetComoVERDEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoVERDEActionPerformed
           jTextArea1.setText("");
@@ -574,7 +562,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void btnCargarTickets1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTickets1ActionPerformed
         // TODO add your handling code here:
-        setVerde();
+        
     }//GEN-LAST:event_btnCargarTickets1ActionPerformed
 
     private void Lista4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Lista4ItemStateChanged
@@ -621,6 +609,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         Reporte.actualizarReportesDeCantidades();
         ventanaMonitoreo.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_btStatusMonitoreoActionPerformed
 
     /**
@@ -648,7 +637,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
