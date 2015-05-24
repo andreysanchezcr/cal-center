@@ -27,28 +27,16 @@ public abstract class ManejadorDeListas {
         return temp;
     }
     
-    public static void cargaListaActividadReciente(String actividad){
-        
-        if(actividad!=null){
-            try{
-                    ListaActividadReciente.add(actividad);
-            }catch(Exception e){
-                System.out.println("La lista aun no se ha inicializado");
-            }
-         
-           
-        }
-        
+    public static void cargaListaActividadReciente(){
+        ListaActividadReciente.add("          (0 0) ");
+        ListaActividadReciente.add("  ---oOO-- (_) ----oOO---");
+        ListaActividadReciente.add("-----------------------------------------------");
+        ListaActividadReciente.add("| QUE LINDA ESTA PROGRA!.. :3 |");
+        ListaActividadReciente.add("-----------------------------------------------");
+        ListaActividadReciente.add("         |__|__|  ");
+        ListaActividadReciente.add("          || ||  ");
+        ListaActividadReciente.add("         ooO Ooo ");
     }
-    public static void clearActividadReciente(){
-        ListaActividadReciente.clear();
-    }
-    public static void setActividadReciente(ArrayList lista){
-        for(int i=0;i<lista.size();i++){
-          ListaActividadReciente.add((String)lista.get(i));
-      
-        }
-        }
 
     public static void addNewTiketsToLocalListVerdes(ArrayList<Tickets> ListaDeVerdesInsert){
         for (int i = 0; i < ListaDeVerdesInsert.size();i++){

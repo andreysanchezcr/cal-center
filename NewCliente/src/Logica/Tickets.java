@@ -23,7 +23,7 @@ public class Tickets implements Serializable{
     private String estado;
     private String comentarioNoLiberado;
 
-    public Tickets(){}
+
     public Tickets(String FechayHoraRecepcion, String ID_CLIENTE, String asunto, int IDTicket){
         this.FechayHoraRecepcion = FechayHoraRecepcion;
         this.ID_CLIENTE = ID_CLIENTE;
