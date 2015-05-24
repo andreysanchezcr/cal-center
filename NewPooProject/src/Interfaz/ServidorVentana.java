@@ -67,19 +67,20 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             jF1.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             jF1.setAcceptAllFileFilterUsed(false);
         
-        String ruta = "";
-        try{
-        if(jF1.showSaveDialog(null)==jF1.APPROVE_OPTION){
-            ruta = jF1.getSelectedFile().getAbsolutePath();
-            //Aqui ya tiens la ruta,,,ahora puedes crear un fichero n esa ruta y escribir lo k kieras...
-            //System.out.println("ESTEEE ES EL PAAAATH->"+ruta+"<-");
+            String ruta = "";
+            try{
+            if(jF1.showSaveDialog(null)==jF1.APPROVE_OPTION){
+                ruta = jF1.getSelectedFile().getAbsolutePath();
+                //Aqui ya tiens la ruta,,,ahora puedes crear un fichero n esa ruta y escribir lo k kieras...
+                //System.out.println("ESTEEE ES EL PAAAATH->"+ruta+"<-");
             
-            MyExell.save_All_Changes(ruta);
-            
+                MyExell.save_All_Changes(ruta);
+                System.out.println("Guardo CAmbios");
 
         }else{System.exit(0);}  // Cerrar el sistema incondicionalmente
         }catch (Exception ex){
-        ex.printStackTrace();
+                System.out.println("ex.getMessage()");
+               
         }
         }
         System.exit(0);

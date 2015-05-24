@@ -133,14 +133,15 @@ public abstract class MyExell {
         
             //Fecha y Hora para el Nombre del Archivo Final
             Date fechaHoraActualParaFile = new Date();
-            String strFechaHoraParaFile = new SimpleDateFormat("dd-MM-yyyy hh:mm aaa").format(fechaHoraActualParaFile);    
+            String strFechaHoraParaFile = new SimpleDateFormat("ddMMyyyy").format(fechaHoraActualParaFile);    
 
             //Abrir archivo .xls para clonarlo
             //open(path);
 
 
             try {
-                copiaDeLibro = Workbook.createWorkbook(new File(path+"TICKETS_"+strFechaHoraParaFile+".xls")); 
+                copiaDeLibro = Workbook.createWorkbook(new File(path+"/TICKETS_"+strFechaHoraParaFile+".xls")); 
+                System.out.println(path+"TICKETS_"+strFechaHoraParaFile+".xls");
                 //copiaDeLibro =  Workbook.createWorkbook(new File (" TICKETS_"+cortar(path)+strFechaHoraParaFile+".xls"),libroDeTrabajo);
                 //copiaDeLibro =  Workbook.createWorkbook(new File (path+"/TICKETS_"+strFechaHoraParaFile+".xls"),libroDeTrabajo);
                 hojaTiketsPendientes = copiaDeLibro.createSheet("Tickets Pendientes", 0);
