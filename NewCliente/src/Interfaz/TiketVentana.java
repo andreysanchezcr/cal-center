@@ -31,6 +31,7 @@ public class TiketVentana extends javax.swing.JFrame {
 
         this.setVisible(true);
         this.indice=indice;
+        this.parent=parent;
         
         System.out.println(":::::::::::::::::::::::::::");
         this.actual=(Tickets)parent.cliente.getListaTickets().get(indice);
