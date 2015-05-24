@@ -18,6 +18,7 @@ public class TiketVentana extends javax.swing.JFrame {
     
     public TiketVentana() {
         initComponents();
+        iniciarCrono();
     }
 
     TiketVentana(ClienteVentana aThis, int indice) {
