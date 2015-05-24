@@ -178,6 +178,7 @@ public class Servidor implements Runnable{
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
+            ManejadorDeListas.MegaLista.add(temp);
         }
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
         
@@ -201,6 +202,7 @@ public class Servidor implements Runnable{
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
+            ManejadorDeListas.MegaLista.add(temp);
         }
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
         
@@ -221,11 +223,14 @@ public class Servidor implements Runnable{
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
+           
             ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
 //System.out.println(this.getOracion(tipo));
+            
             temp.setComentario(this.getOracion(tipo));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
+            ManejadorDeListas.MegaLista.add(temp);
             //Manejado
         }
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
