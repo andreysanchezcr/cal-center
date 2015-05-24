@@ -5,6 +5,7 @@
  */
 package Logica;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,25 @@ import java.util.ArrayList;
  * @author Fernando
  */
 public class Funciones {
+    
+    
+    
+    public static void moveFiles(String originPathFile)
+    {	
+    	try{
+ 
+    	   File afile =new File("C:\\folderA\\Afile.txt");
+ 
+    	   if(afile.renameTo(new File("C:\\folderB\\" + afile.getName()))){
+    		System.out.println("File is moved successful!");
+    	   }else{
+    		System.out.println("File is failed to move!");
+    	   }
+ 
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
     /*
     Basicamente este metodo toma una cadena y retorna solo la parte del ID guiado x
     indices tiene capacidad para retornar hasta un id maximo de 999999 se le puede
@@ -65,6 +85,7 @@ public class Funciones {
         }
     return result;
     }
+    
     
     public static String cargaInfoTiketAmarillo(String pID){
             String result = null;
