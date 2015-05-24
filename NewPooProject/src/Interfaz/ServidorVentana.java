@@ -42,7 +42,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         initComponents();
         setLocationRelativeTo(null);
         
-        MyExell.generateMegaExell();
         
         Lista.setMultipleMode(true);
         
