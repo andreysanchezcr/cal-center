@@ -35,8 +35,10 @@ public class Servidor implements Runnable{
         boolean sucess = false;
         ArrayList listaConexiones=new ArrayList();
         HiloDeCliente_1 cli;
+    ArrayList historial;
 
     private void registrarPersonas() {
+        historial=new ArrayList();
         Persona admn = new Persona("Admin", "admin@tec.ac.cr", "12345", null, true);
         Persona rojo = new Persona("Fernando", "fernando@tec.ac.cr", "12345", "Rojo", true);
         Persona verde = new Persona("Luis", "luis@tec.ac.cr", "12345", "Amarillo", true);
@@ -73,7 +75,7 @@ public class Servidor implements Runnable{
         
         
             
-        }
+    }
     public ArrayList getListaConexiones(){
         return listaConexiones;
     }
@@ -95,8 +97,13 @@ public class Servidor implements Runnable{
             objetosaliente.writeObject(ManejadorDeListas.ListaDeAmarillos);
         }
         public void sendVerde() throws IOException{
-            
+            System.out.println("ENTRO EN VERDEEEE");
+            ManejadorDeListas.ListaDeVerdes.size();
+            for(int i =0;i<ManejadorDeListas.ListaDeVerdes.size();i++){
+                System.out.println(ManejadorDeListas.ListaDeVerdes.get(i));
+            }
             objetosaliente.writeObject(ManejadorDeListas.ListaDeVerdes);
+            System.out.println("SALIOS EN VERDEEEE");
         }
         
         
@@ -130,6 +137,7 @@ public class Servidor implements Runnable{
                         ventana.setConectados();
                         saliente.writeUTF(nombre);
                         saliente.writeUTF(tipo);
+                        historial.add(nombre+" se ha conectado");
             }else{
                 saliente.writeInt(-1);
             }
@@ -144,6 +152,7 @@ public class Servidor implements Runnable{
                         break;    
                         }
                     }
+            historial.add(nombre+" se ha desconectado");
             this.ventana.setConectados();
            
             
@@ -153,10 +162,11 @@ public class Servidor implements Runnable{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeAmarillos.get(indice);
         if(tipo.equals("")){
             
-        
+        historial.add("Un nuevo ticket esta en atencion");
         temp.setEstado("En atencion");
         }else{
             temp.setEstado("Atendido");
+            historial.add("Un nuevo ticket atendido");
             System.out.println(tipo);
             temp.setComentario(tipo);
         }
@@ -168,9 +178,10 @@ public class Servidor implements Runnable{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeRojos.get(indice);
         if(tipo.equals("")){
             
-        
+        historial.add("Un nuevo ticket esta en atencion");
         temp.setEstado("En atencion");
         }else{
+            historial.add("Un nuevo ticket atendido");
             temp.setEstado("Atendido");
             System.out.println(tipo);
             temp.setComentario(tipo);
@@ -179,19 +190,48 @@ public class Servidor implements Runnable{
         
     }
         
-        public void modificarEstadoTicketVerde(int indice,String tipo) throws IOException{
+    public void modificarEstadoTicketVerde(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeVerdes.get(indice);
-        if(tipo.equals("")){
+        if(this.getOracion(tipo).equals("")){
             
         
         temp.setEstado("En atencion");
+        historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: ");
         }else{
             temp.setEstado("Atendido");
+            System.out.println("ATEMDIDO");
+            historial.add(this.getName(tipo)+" esta atendido el tickete numero: ");
             System.out.println(tipo);
             temp.setComentario(tipo);
         }
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
         
+    }
+    public String getName(String oracion){
+        String temp="";
+        for(int i=0;i<oracion.length();i++){
+                 if(oracion.charAt(i)=='@'){
+                return temp;
+            }
+        temp=temp+oracion.charAt(i);
+    
+        }
+        
+        System.out.println("Se ha retornado null");
+        return "";
+       }
+    public String getOracion(String oracion){
+        String temp="";
+        for(int i=0;i<oracion.length();i++){
+                 if(oracion.charAt(i)=='@'){
+                temp="";
+            }
+        temp=temp+oracion.charAt(i);
+    
+        }
+        
+        //System.out.println("Se ha retornado null");
+        return temp;
     }
         
 
@@ -202,17 +242,24 @@ public class Servidor implements Runnable{
             ServerSocket socketServidor = new ServerSocket(5557);
             
             while (true) {
+                
+                System.out.println("------INICIA   HISTORIAL______");
+                for(int i =0;i<historial.size();i++){
+                    System.out.println(historial.get(i));
+                }
+                System.out.println("------TERMINa    HISTORIAL______");
                 Socket cliente = socketServidor.accept();
-                System.out.println("nueva conexion");
+                
                 //ObjectInputStream objetoentrante=new ObjectInputStream(cliente.getInputStream());
                 dataInput = new DataInputStream(cliente.getInputStream());
                 saliente = new DataOutputStream(cliente.getOutputStream());
                 objetosaliente=new ObjectOutputStream(cliente.getOutputStream());
                 
                 String instruccion=dataInput.readUTF();
-                System.out.println(instruccion);
+                System.out.println("instruccion: "+instruccion);
                
                 if(instruccion.equals("Login")){
+                    
                     String login = dataInput.readUTF();
                     loggin(login);
                 }else if(instruccion.equals("ROJO")){
@@ -241,6 +288,7 @@ public class Servidor implements Runnable{
                      
                     
                     this.modificarEstadoTicketRojo(indice,tipo);
+                    
                     //ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
                     
                     
@@ -251,7 +299,7 @@ public class Servidor implements Runnable{
                     String tipo=dataInput.readUTF();
                     
                      
-                  //  System.out.println(comentario);
+                    System.out.println(tipo+"Este es el tip");
                     
                     this.modificarEstadoTicketVerde(indice,tipo);
                     // ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
@@ -261,12 +309,10 @@ public class Servidor implements Runnable{
                 else if(instruccion.equals("ListaAMARILLO")){
                     int indice=dataInput.readInt();
                     String tipo=dataInput.readUTF();
-                    String comentario=dataInput.readUTF();
-                    System.out.println(comentario);
                     
                     this.modificarEstadoTicketAmarillo(indice,tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-                    
+                   
                     
                 }
                 
