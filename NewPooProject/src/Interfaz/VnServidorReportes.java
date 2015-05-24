@@ -95,21 +95,16 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(800, 500));
         jTabbedPane2.setRequestFocusEnabled(false);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado General ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 0, 18), new java.awt.Color(255, 102, 0))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status General ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Schoolbook L", 0, 10), new java.awt.Color(255, 0, 250))); // NOI18N
 
-        lblTiketsAtendidos.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTiketsAtendidos.setText("TIkets Atendidos                    ");
 
-        lblTicketsPendientes.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTicketsPendientes.setText("Tikets Pendientes");
 
-        lblTicketsSinCategorizar.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTicketsSinCategorizar.setText("Tikets Sin Categorizar");
 
-        lblTicketsEnSistema.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTicketsEnSistema.setText("Total Tikets en Sistema");
 
-        lblTicketsEnAtencion.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTicketsEnAtencion.setText("Tikets Aun En Atencion");
 
         javax.swing.GroupLayout pnGraficoNumTiketsLayout = new javax.swing.GroupLayout(pnGraficoNumTikets);
@@ -153,7 +148,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
                         .addComponent(lblTicketsSinCategorizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblTicketsEnSistema)
-                        .addGap(0, 17, Short.MAX_VALUE))
+                        .addGap(0, 44, Short.MAX_VALUE))
                     .addComponent(pnGraficoNumTikets, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -177,13 +172,13 @@ public class VnServidorReportes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(ListaActividadReciente, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 139, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(ListaActividadReciente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -191,15 +186,17 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Estado", jPanel4);
@@ -227,7 +224,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addComponent(lblFernadoInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(lblFernadoInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -326,7 +323,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVolverPrincipal)
                 .addContainerGap())
@@ -336,9 +333,9 @@ public class VnServidorReportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverPrincipalActionPerformed
-        //this.ventanaPadre.setVisible(true);
-        //this.dispose();
-        cargaListaActividadReciente();
+        this.ventanaPadre.setVisible(true);
+        this.dispose();
+      //  cargaListaActividadReciente();
     }//GEN-LAST:event_btnVolverPrincipalActionPerformed
 
     private void ListaActividadRecienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListaActividadRecienteItemStateChanged
