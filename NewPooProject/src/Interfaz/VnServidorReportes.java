@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import Logica.ManejadorDeListas;
 import static Logica.ManejadorDeListas.cargaListaActividadReciente;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -44,6 +45,21 @@ public class VnServidorReportes extends javax.swing.JFrame {
     public VnServidorReportes() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    public void cargarDatos(){
+        String FernandoInfo = "";
+        String JuniorInfo = "";
+        String LuisInfo = "";
+        FernandoInfo = FernandoInfo + ManejadorDeListas.tiempoSegEmpleado("Fernando");
+        FernandoInfo = FernandoInfo + ManejadorDeListas.arrgloTiketsLiberados[0];
+        JuniorInfo = JuniorInfo + ManejadorDeListas.tiempoSegEmpleado("Junior");
+        JuniorInfo = JuniorInfo + ManejadorDeListas.arrgloTiketsLiberados[1];
+        LuisInfo = LuisInfo + ManejadorDeListas.tiempoSegEmpleado("Luis");
+        LuisInfo = LuisInfo + ManejadorDeListas.arrgloTiketsLiberados[2];
+        lblFernadoInfo.setText(FernandoInfo);
+        lblJuniorInfo.setText(JuniorInfo);
+        lblLuisInfo.setText(LuisInfo);
     }
     /**
      * This method is called from within the constructor to initialize the form.
