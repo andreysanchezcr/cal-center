@@ -38,6 +38,7 @@ public class TiketVentana extends javax.swing.JFrame {
         System.out.println(actual.getAsunto());
         System.out.println("ESTE ES EL ASUNTO");
         this.iniciarCrono();
+        jTextArea1.setText(actual.toString());
 
 
     }
@@ -46,8 +47,9 @@ public class TiketVentana extends javax.swing.JFrame {
         hilo.start();
     }
     
+    
     public boolean issuspended = false;//para saber si el hilo esta suspendido o pausado
-    int hora = 0, min = 0, seg = 0, ds = 0;//unidades de medida
+    int hora = 00, min = 00, seg = 00, ds = 00;//unidades de medida
     Thread hilo = new Thread() {//declaramos el hilo
 
         @Override
@@ -55,15 +57,15 @@ public class TiketVentana extends javax.swing.JFrame {
             try {
                 while (true) {//ciclo infinito
                     if (ds == 99) {//si los decisegundos son iguales a 99
-                        ds = 0;//decisegundo vuelve a empezar en cero
+                        ds = 00;//decisegundo vuelve a empezar en cero
                         seg++;//y aumenta un segundo
                     }
                     if (seg == 59) {//si los segundos son iguales a 59
-                        seg = 0;//segundo vuelve a empezar en cero
+                        seg = 00;//segundo vuelve a empezar en cero
                         min++;//y aumenta un minuto
                     }
                     if (min == 59) {//si los minutos son iguales a 59
-                        min = 0;//minuto vuelve a empezar en cero
+                        min = 00;//minuto vuelve a empezar en cero
                         hora++;//y aumenta una hora
                     }
                     ds++;//aumentan las decimas de segundo
