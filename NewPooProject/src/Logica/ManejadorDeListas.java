@@ -1,6 +1,7 @@
 
 package Logica;
 
+import static Interfaz.VnServidorReportes.ListaActividadReciente;
 import Logica.Tickets;
 import java.util.ArrayList;
 
@@ -12,9 +13,6 @@ public abstract class ManejadorDeListas {
     public static ArrayList<Tickets> ListaDeAmarillos = new ArrayList();
     public static ArrayList<Tickets> ListaDeRojos = new ArrayList();
     public static int arrgloTiketsLiberados[]={0,0,0};
-    public static ArrayList<Tickets> MegaLISTA = new ArrayList();
-    
-    
     
     public static void addNewTiketsToLocalListPendientes(ArrayList<Tickets> ListaDePendientesInsert){
         for (int i = 0; i < ListaDePendientesInsert.size();i++){
@@ -27,6 +25,17 @@ public abstract class ManejadorDeListas {
         temp.add(ListaDeAmarillos);
         temp.add(ListaDeRojos);
         return temp;
+    }
+    
+    public static void cargaListaActividadReciente(){
+        ListaActividadReciente.add("          (0 0) ");
+        ListaActividadReciente.add("  ---oOO-- (_) ----oOO---");
+        ListaActividadReciente.add("-----------------------------------------------");
+        ListaActividadReciente.add("| QUE LINDA ESTA PROGRA!.. :3 |");
+        ListaActividadReciente.add("-----------------------------------------------");
+        ListaActividadReciente.add("         |__|__|  ");
+        ListaActividadReciente.add("          || ||  ");
+        ListaActividadReciente.add("         ooO Ooo ");
     }
 
     public static void addNewTiketsToLocalListVerdes(ArrayList<Tickets> ListaDeVerdesInsert){

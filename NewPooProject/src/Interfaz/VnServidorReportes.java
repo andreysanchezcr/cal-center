@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import static Logica.ManejadorDeListas.cargaListaActividadReciente;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -25,34 +26,24 @@ public class VnServidorReportes extends javax.swing.JFrame {
     public VnServidorReportes(ServidorVentana ventanaPadre) {
         initComponents();
         setLocationRelativeTo(null);
+        //cargaListaActividadReciente();
         this.ventanaPadre = ventanaPadre;
-        
-        
-        
         
         dataset.setValue(9,"Atendidos","Reporte de Tickets");
         dataset.setValue(10,"Aun EN Atencion","Reporte de Tickets");
         dataset.setValue(70,"Pendientes","Reporte de Tickets");
         dataset.setValue(25,"Sin Categorizar","Reporte de Tickets");
        
-        
-        
         JFreeChart chart = ChartFactory.createBarChart("", "", "Cantidad", dataset, PlotOrientation.VERTICAL, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
-        
         
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBounds(0, 0, 250, 170);
         this.pnGraficoNumTikets.add(chartPanel);
         
-        
-        
-         
-        
-        
-        
     }
     public VnServidorReportes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,6 +65,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
         lblTicketsEnAtencion = new javax.swing.JLabel();
         pnGraficoNumTikets = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        ListaActividadReciente = new java.awt.List();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -91,13 +83,15 @@ public class VnServidorReportes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        btnVolverPrincipal.setText("VOlver");
+        btnVolverPrincipal.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
+        btnVolverPrincipal.setText("Volver");
         btnVolverPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverPrincipalActionPerformed(evt);
             }
         });
 
+        jTabbedPane2.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(800, 500));
         jTabbedPane2.setRequestFocusEnabled(false);
 
@@ -159,17 +153,32 @@ public class VnServidorReportes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actividad Reciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Schoolbook L", 1, 14), new java.awt.Color(240, 0, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actividad Reciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 0, 18), new java.awt.Color(255, 102, 0))); // NOI18N
+
+        ListaActividadReciente.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ListaActividadRecienteItemStateChanged(evt);
+            }
+        });
+        ListaActividadReciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListaActividadRecienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(ListaActividadReciente, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 129, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(ListaActividadReciente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -190,7 +199,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Status", jPanel4);
+        jTabbedPane2.addTab("Estado", jPanel4);
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Fernando"));
 
@@ -215,7 +224,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addComponent(lblFernadoInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                .addComponent(lblFernadoInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -266,7 +275,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
             .addComponent(jScrollPane3)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addComponent(lblLuisInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 136, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,25 +316,35 @@ public class VnServidorReportes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 744, Short.MAX_VALUE)
+                .addGap(0, 463, Short.MAX_VALUE)
                 .addComponent(btnVolverPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVolverPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnVolverPrincipal)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverPrincipalActionPerformed
-        this.ventanaPadre.setVisible(true);
-        this.dispose();
+        //this.ventanaPadre.setVisible(true);
+        //this.dispose();
+        cargaListaActividadReciente();
     }//GEN-LAST:event_btnVolverPrincipalActionPerformed
+
+    private void ListaActividadRecienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListaActividadRecienteItemStateChanged
+       // TODO add your handling code here:               
+    }//GEN-LAST:event_ListaActividadRecienteItemStateChanged
+
+    private void ListaActividadRecienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActividadRecienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListaActividadRecienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,6 +382,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static java.awt.List ListaActividadReciente;
     private javax.swing.JButton btnVolverPrincipal;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
