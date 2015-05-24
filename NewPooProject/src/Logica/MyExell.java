@@ -320,7 +320,8 @@ public abstract class MyExell {
         
         
         public static void generateMegaExell (){
-        
+            System.out.println("##############");
+           
         try {
             WritableWorkbook MegaExell = Workbook.createWorkbook(new File("MegaExell.xls"));
             
