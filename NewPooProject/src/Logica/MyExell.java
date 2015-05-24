@@ -141,7 +141,7 @@ public abstract class MyExell {
 
             try {
                 copiaDeLibro = Workbook.createWorkbook(new File(path+"/TICKETS_"+strFechaHoraParaFile+".xls")); 
-                System.out.println(path+"TICKETS_"+strFechaHoraParaFile+".xls");
+             //   System.out.println(path+"TICKETS_"+strFechaHoraParaFile+".xls");
                 //copiaDeLibro =  Workbook.createWorkbook(new File (" TICKETS_"+cortar(path)+strFechaHoraParaFile+".xls"),libroDeTrabajo);
                 //copiaDeLibro =  Workbook.createWorkbook(new File (path+"/TICKETS_"+strFechaHoraParaFile+".xls"),libroDeTrabajo);
                 hojaTiketsPendientes = copiaDeLibro.createSheet("Tickets Pendientes", 0);

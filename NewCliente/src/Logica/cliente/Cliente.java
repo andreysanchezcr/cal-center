@@ -135,9 +135,11 @@ implements Runnable{
        // flujoSaliente.writeInt(indice);
          this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+fecha);
          System.out.println("Finalizando de obtener el reporte");
-         String resultadotemporal=this.flujoEntrante.readUTF();
+        // String resultadotemporal=this.flujoEntrante.readUTF();
          System.out.println("Estos es lo que se ha obtenido en get reporte"
-                 + resultadotemporal);
+                 + "");
+         String resultado=this.flujoEntrante.readUTF();
+         System.out.println("Este es el resultado de get reporte: "+resultado);
          
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         

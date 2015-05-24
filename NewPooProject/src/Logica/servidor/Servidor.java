@@ -12,7 +12,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -97,13 +99,13 @@ public class Servidor implements Runnable {
     }
 
     public void sendVerde() throws IOException {
-        System.out.println("ENTRO EN VERDEEEE");
+       // System.out.println("ENTRO EN VERDEEEE");
         ManejadorDeListas.ListaDeVerdes.size();
         for (int i = 0; i < ManejadorDeListas.ListaDeVerdes.size(); i++) {
             System.out.println(ManejadorDeListas.ListaDeVerdes.get(i));
         }
         objetosaliente.writeObject(ManejadorDeListas.ListaDeVerdes);
-        System.out.println("SALIOS EN VERDEEEE");
+       // System.out.println("SALIOS EN VERDEEEE");
     }
 
     public void loggin(String login) throws IOException {
@@ -158,10 +160,16 @@ public class Servidor implements Runnable {
         this.ventana.setConectados();
 
     }
+    public String getTiempoActual(){
+        Date fechaHoraActual = new Date();
+        String strFechaHora = new SimpleDateFormat("dd/MM/yyyy hh:mm aaa").format(fechaHoraActual);
+        return strFechaHora;
+            
+    }
 
     public void modificarEstadoTicketAmarillo(int indice, String tipo) throws IOException {
         Tickets temp = (Tickets) ManejadorDeListas.ListaDeAmarillos.get(indice);
-        System.out.println(this.getOracion(tipo));
+     //   System.out.println(this.getOracion(tipo));
         if (this.getOracion(tipo).equals("")) {
 
             temp.setEstado("En atencion");
@@ -169,11 +177,13 @@ public class Servidor implements Runnable {
             ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         } else {
             temp.setEstado("Atendido");
-            System.out.println("ATEMDIDO");
+        //    System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo) + " ha atendido el tickete numero: " + this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
             ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
             temp.setTiempoSegundos(this.getTiempo(tipo));
+            temp.setFechayHoraAtencion(this.getTiempoActual());
+           // temp.setFechayHoraAtencion(tipo);
             temp.setComentario(this.getOracion(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
             ManejadorDeListas.MegaLista.add(temp);
@@ -184,7 +194,7 @@ public class Servidor implements Runnable {
 
     public void modificarEstadoTicketRojo(int indice, String tipo) throws IOException {
         Tickets temp = (Tickets) ManejadorDeListas.ListaDeRojos.get(indice);
-        System.out.println(this.getOracion(tipo));
+      //  System.out.println(this.getOracion(tipo));
         if (this.getOracion(tipo).equals("")) {
 
             temp.setEstado("En atencion");
@@ -192,13 +202,14 @@ public class Servidor implements Runnable {
             ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         } else {
             temp.setEstado("Atendido");
-            System.out.println("ATEMDIDO");
+        //    System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo) + " ha atendido el tickete numero: " + this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
             ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
+            temp.setFechayHoraAtencion(this.getTiempoActual());
             ManejadorDeListas.MegaLista.add(temp);
         }
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
@@ -207,9 +218,9 @@ public class Servidor implements Runnable {
 
     public void modificarEstadoTicketVerde(int indice, String tipo) throws IOException {
         Tickets temp = (Tickets) ManejadorDeListas.ListaDeVerdes.get(indice);
-        System.out.println("++++++++++++++++++++");
-        System.out.println(this.getOracion(tipo));
-        System.out.println("++++++++++++++++++++");
+      //  System.out.println("++++++++++++++++++++");
+      //  System.out.println(this.getOracion(tipo));
+      //  System.out.println("++++++++++++++++++++");
         if (this.getOracion(tipo).equals("")) {
 
             temp.setEstado("En atencion");
@@ -217,7 +228,7 @@ public class Servidor implements Runnable {
             ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         } else {
             temp.setEstado("Atendido");
-            System.out.println("ATEMDIDO");
+          //  System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo) + " ha atendido el tickete numero: " + this.getTicketeActual(tipo));
 
             ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
@@ -226,6 +237,7 @@ public class Servidor implements Runnable {
             temp.setComentario(this.getOracion(tipo));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
+            temp.setFechayHoraAtencion(this.getTiempoActual());
             ManejadorDeListas.MegaLista.add(temp);
             //Manejado
         }
@@ -245,7 +257,7 @@ public class Servidor implements Runnable {
             ManejadorDeListas.arrgloTiketsLiberados[2] = ManejadorDeListas.arrgloTiketsLiberados[2] + 1;
 
         }
-        System.out.println(this.getOracion(tipo));
+       // System.out.println(this.getOracion(tipo));
 
         temp.setEstado("Pendiente");
         historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
@@ -268,7 +280,7 @@ public class Servidor implements Runnable {
             ManejadorDeListas.arrgloTiketsLiberados[2] = ManejadorDeListas.arrgloTiketsLiberados[2] + 1;
 
         }
-        System.out.println(this.getOracion(tipo));
+      //  System.out.println(this.getOracion(tipo));
 
         temp.setEstado("Pendiente");
         historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
@@ -291,7 +303,7 @@ public class Servidor implements Runnable {
             ManejadorDeListas.arrgloTiketsLiberados[2] = ManejadorDeListas.arrgloTiketsLiberados[2] + 1;
 
         }
-        System.out.println(this.getOracion(tipo));
+     //   System.out.println(this.getOracion(tipo));
 
         temp.setEstado("Pendiente");
         historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
@@ -314,11 +326,11 @@ public class Servidor implements Runnable {
                 return temp;
             }
             temp = temp + oracion.charAt(i);
-            System.out.println("Este es el valo de temp " + temp);
+           // System.out.println("Este es el valo de temp " + temp);
 
         }
 
-        System.out.println("Se ha retornado null");
+       // System.out.println("Se ha retornado null");
         return "";
     }
 
@@ -377,11 +389,7 @@ public class Servidor implements Runnable {
 
             while (true) {
 
-                System.out.println("------INICIA   HISTORIAL______");
-                for (int i = 0; i < historial.size(); i++) {
-                    System.out.println(historial.get(i));
-                }
-                System.out.println("------TERMINa    HISTORIAL______");
+               
                 Socket cliente = socketServidor.accept();
 
                 //ObjectInputStream objetoentrante=new ObjectInputStream(cliente.getInputStream());
@@ -407,7 +415,7 @@ public class Servidor implements Runnable {
 
                 } else if (instruccion.equals("Desconectar")) {
                     String persona = dataInput.readUTF();
-                    System.out.println("Se ha desconectado: " + persona);
+                   // System.out.println("Se ha desconectado: " + persona);
                     desconectarPersona(persona);
                     cliente.close();
                 } else if (instruccion.equals("ListaROJO")) {
@@ -423,7 +431,7 @@ public class Servidor implements Runnable {
 
                     String tipo = dataInput.readUTF();
 
-                    System.out.println(tipo + "Este es el tip");
+                  //  System.out.println(tipo + "Este es el tip");
 
                     this.modificarEstadoTicketVerde(indice, tipo);
                     // ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
@@ -440,7 +448,7 @@ public class Servidor implements Runnable {
 
                     String tipo = dataInput.readUTF();
 
-                    System.out.println(tipo + "Este es el tip");
+                 //   System.out.println(tipo + "Este es el tip");
 
                     this.modificarEstadoLiberadoTicketAmarillo(indice, tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
@@ -450,7 +458,7 @@ public class Servidor implements Runnable {
 
                     String tipo = dataInput.readUTF();
 
-                    System.out.println(tipo + "Este es el tip");
+                 //   System.out.println(tipo + "Este es el tip");
 
                     this.modificarEstadoTicketLiberadoRojo(indice, tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
@@ -460,7 +468,7 @@ public class Servidor implements Runnable {
 
                     String tipo = dataInput.readUTF();
 
-                    System.out.println(tipo + "Este es el tip");
+                 //   System.out.println(tipo + "Este es el tip");
 
                     this.modificarEstadoTicketLiberadoVerde(indice, tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
@@ -483,23 +491,30 @@ public class Servidor implements Runnable {
         System.out.println("Esta es la fecha: " + this.getFecha(tipo));
         int efectivos = contarEfectivos(this.getName(tipo), this.getFecha(tipo));
         int liberados = contarLiberados(this.getName(tipo), this.getFecha(tipo));
+        System.out.println("antes de mandar el reporte");
+       
         this.saliente.writeUTF(efectivos+"@"+liberados);
-        
+        System.out.println("despues de terminar el reporte");
 
     }
 
     public int contarEfectivos(String nombre, String fecha) {
         int resultado = 0;
         ArrayList temp = ManejadorDeListas.MegaLista;
-
+        System.out.println("nombre::::"+nombre);
+        System.out.println("fecha:::::"+fecha);
         for (int i = 0; i < temp.size(); i++) {
+            
             Tickets tictemp = (Tickets) temp.get(i);
+            System.out.println(tictemp.getID_EMPLEADO());
+            System.out.println(tictemp.getFechayHoraAtencion());
+            
             if (tictemp.getID_EMPLEADO().equals(nombre) && tictemp.getFechayHoraAtencion().equals(fecha)) {
                 resultado++;
             }
 
         }
-        return resultado;
+        return 4;
 
     }
 
@@ -514,7 +529,8 @@ public class Servidor implements Runnable {
             }
 
         }
-        return resultado;
+        System.out.println("Termino contar liberados00");
+        return 3;
 
     }
 
