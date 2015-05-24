@@ -43,7 +43,10 @@ public abstract class ManejadorDeListas {
             ListaDeRojos.add(ListaDeRojosInsert.get(i));
         }
     }
-    public String getDia(String fecha){
+    
+   
+    
+    public static String getDia(String fecha){
         String temp="";
         for(int i=0;i<fecha.length();i++){
         if(fecha.charAt(i)=='/'){
@@ -54,7 +57,7 @@ public abstract class ManejadorDeListas {
         System.out.println("Error en la funcion get dia");
         return "";
     }
-    public String getMes(String fecha){
+    public static String getMes(String fecha){
         String temp="";
         int contador=0;
         for(int i=0;i<fecha.length();i++){
@@ -74,7 +77,7 @@ public abstract class ManejadorDeListas {
         System.out.println("Error en la funcion get mes");
         return "";
     }
-    public String getAno(String fecha){
+    public static String getAno(String fecha){
         String temp="";
         int contador=0;
         for(int i=0;i<fecha.length();i++){
@@ -139,6 +142,54 @@ public abstract class ManejadorDeListas {
         }    
     }
     public static void getCantidadTiketsAtendidos(){
+    }
+    
+    public static int tiempoSegundos(ArrayList<Tickets> lista, String idEmpleado){
+        int largoLista = lista.size();
+        int recorrido = 0;
+        int tiempoTotal = 0;
+        while(recorrido < largoLista){
+            if(lista.get(recorrido).getID_EMPLEADO().equals(idEmpleado)){
+                tiempoTotal = tiempoTotal + Integer.parseInt(lista.get(recorrido).getTiempoSegundos());
+            }
+            recorrido = recorrido +1;
+        }
+        return tiempoTotal;
+    }
+    
+    public static int tiempoSegEmpleado(String idEmpleado){
+        int tiempoTotalEmpleado = 0;
+        tiempoTotalEmpleado = tiempoSegundos(ListaDeVerdes, idEmpleado);
+        tiempoTotalEmpleado = tiempoSegundos(ListaDeAmarillos, idEmpleado);
+        tiempoTotalEmpleado = tiempoSegundos(ListaDeRojos, idEmpleado);
+        return tiempoTotalEmpleado;
+    }
+    
+    public static  ArrayList<Tickets> ticketEntreFecha(int dia1, int mes1, int ano1, int dia2, int mes2, int ano2, ArrayList<Tickets> lista){
+        int largoLista = lista.size();
+        int recorrido = 0;
+        ArrayList<Tickets> listaFecha = new ArrayList<Tickets>();
+        if(ano1 == ano2){
+            while(recorrido < largoLista){
+                if(Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) == ano1){
+                    listaFecha.add(lista.get(recorrido));
+                }
+                recorrido = recorrido +1;
+            }
+        }
+        else{
+            while(recorrido < largoLista){
+            if((Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) <= ano1) && (Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) >= ano2)){
+                if((Integer.parseInt(getMes(lista.get(recorrido).getFechayHoraRecepcion())) <= mes1) && (Integer.parseInt(getMes(lista.get(recorrido).getFechayHoraRecepcion())) >= mes2)){
+                    if((Integer.parseInt(getDia(lista.get(recorrido).getFechayHoraRecepcion())) <= dia1) && (Integer.parseInt(getDia(lista.get(recorrido).getFechayHoraRecepcion())) >= dia2)){
+                        listaFecha.add(lista.get(recorrido));
+                        }
+                    }
+                }
+            recorrido = recorrido+1;
+            }
+        }
+        return listaFecha;
     }
 
 }
