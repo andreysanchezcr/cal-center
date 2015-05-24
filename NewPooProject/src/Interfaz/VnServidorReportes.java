@@ -316,7 +316,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
                 new VnServidorReportes().setVisible(true);
             }
         });
-    }zz
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static java.awt.List ListaActividadReciente;
