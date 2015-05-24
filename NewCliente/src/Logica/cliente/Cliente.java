@@ -127,6 +127,7 @@ implements Runnable{
         System.out.println("Obteniendo reporte");
         
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
+        flujoEntrante=new DataInputStream(socket.getInputStream());
         
         this.flujoSaliente.writeUTF("Reporte");
         
@@ -134,9 +135,41 @@ implements Runnable{
        // flujoSaliente.writeInt(indice);
          this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+fecha);
          System.out.println("Finalizando de obtener el reporte");
+         String resultadotemporal=this.flujoEntrante.readUTF();
+         System.out.println("Estos es lo que se ha obtenido en get reporte"
+                 + resultadotemporal);
+         
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
     }
+    public int getEfectivos(String oracion){
+        String temporal="";
+        for(int i=0;i<oracion.length();i++){
+            if(oracion.charAt(i)=='@'){
+                return Integer.parseInt(temporal);
+                
+            }
+            temporal=temporal+oracion.charAt(i);
+        }
+        System.out.println("NO HAY EFECTIVOS");
+        return 0;
+    }
+    public int getLiberados(String oracion){
+        String temporal="";
+        for(int i=0;i<oracion.length();i++){
+            if(oracion.charAt(i)=='@'){
+                temporal="";
+                continue;
+                
+            }
+            temporal=temporal+oracion.charAt(i);
+        }
+        //System.out.println("NO HAY EFECTIVOS");
+        return Integer.parseInt(temporal);
+    }
+    
+    
+    
     public void mandarListaAtendido(int indice,String comentario) throws IOException{
         socket = new Socket("localhost", 5557);
         

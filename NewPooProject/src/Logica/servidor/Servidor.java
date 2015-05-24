@@ -25,20 +25,20 @@ import javax.swing.DefaultListModel;
  * @author Chuidiang
  *
  */
-public class Servidor implements Runnable{
+public class Servidor implements Runnable {
 
     ArrayList listaEmpleados = new ArrayList();
     ObjectInputStream objetoentrante;
     DataInputStream dataInput;
-        DataOutputStream saliente;
-        ObjectOutputStream objetosaliente;
-        boolean sucess = false;
-        ArrayList listaConexiones=new ArrayList();
-        HiloDeCliente_1 cli;
+    DataOutputStream saliente;
+    ObjectOutputStream objetosaliente;
+    boolean sucess = false;
+    ArrayList listaConexiones = new ArrayList();
+    HiloDeCliente_1 cli;
     ArrayList historial;
 
     private void registrarPersonas() {
-        historial=new ArrayList();
+        historial = new ArrayList();
         Persona admn = new Persona("Admin", "admin@tec.ac.cr", "12345", null, true);
         Persona rojo = new Persona("Fernando", "fernando@tec.ac.cr", "12345", "Rojo", true);
         Persona verde = new Persona("Luis", "luis@tec.ac.cr", "12345", "Amarillo", true);
@@ -49,7 +49,8 @@ public class Servidor implements Runnable{
         listaEmpleados.add((Persona) amarillo);
 
     }
-    public ArrayList getHistorial(){
+
+    public ArrayList getHistorial() {
         return historial;
     }
     /**
@@ -70,172 +71,158 @@ public class Servidor implements Runnable{
      */
     public Servidor(ServidorVentana ventana) {
         registrarPersonas();
-        this.ventana=ventana;
+        this.ventana = ventana;
         ventana.setServidor(this);
         ventana.setListaEmpleados(listaEmpleados);
         ventana.setConectados();
-        
-        
-        
-            
+
     }
-    public ArrayList getListaConexiones(){
+
+    public ArrayList getListaConexiones() {
         return listaConexiones;
     }
-    
-    
-    public ArrayList getListaEmpleados(){
+
+    public ArrayList getListaEmpleados() {
         return listaEmpleados;
     }
-    
-        
-        
-        
-        public void sendRojo() throws IOException{
-            
-            objetosaliente.writeObject(ManejadorDeListas.ListaDeRojos);
-        }
-        public void sendAmarillo() throws IOException{
-            
-            objetosaliente.writeObject(ManejadorDeListas.ListaDeAmarillos);
-        }
-        public void sendVerde() throws IOException{
-            System.out.println("ENTRO EN VERDEEEE");
-            ManejadorDeListas.ListaDeVerdes.size();
-            for(int i =0;i<ManejadorDeListas.ListaDeVerdes.size();i++){
-                System.out.println(ManejadorDeListas.ListaDeVerdes.get(i));
-            }
-            objetosaliente.writeObject(ManejadorDeListas.ListaDeVerdes);
-            System.out.println("SALIOS EN VERDEEEE");
-        }
-        
-        
 
-        public void loggin(String login) throws IOException{
-            String nombre="";
-            String tipo="";
-            Persona temp=null;
-            for (int i = 1; i < listaEmpleados.size(); i++) {
+    public void sendRojo() throws IOException {
 
-                    temp = (Persona) listaEmpleados.get(i);
-                    if (login.equals(temp.correo + " " + temp.contraseña)) {
-                        if(!temp.getEstado()){
-                            sucess = true;
-                        
-                            listaEmpleados.set(i, temp);
-                        
-                        
-                        
-                        
-                        
-                        }
-                        break;
-                        
+        objetosaliente.writeObject(ManejadorDeListas.ListaDeRojos);
+    }
 
-                    }
+    public void sendAmarillo() throws IOException {
+
+        objetosaliente.writeObject(ManejadorDeListas.ListaDeAmarillos);
+    }
+
+    public void sendVerde() throws IOException {
+        System.out.println("ENTRO EN VERDEEEE");
+        ManejadorDeListas.ListaDeVerdes.size();
+        for (int i = 0; i < ManejadorDeListas.ListaDeVerdes.size(); i++) {
+            System.out.println(ManejadorDeListas.ListaDeVerdes.get(i));
+        }
+        objetosaliente.writeObject(ManejadorDeListas.ListaDeVerdes);
+        System.out.println("SALIOS EN VERDEEEE");
+    }
+
+    public void loggin(String login) throws IOException {
+        String nombre = "";
+        String tipo = "";
+        Persona temp = null;
+        for (int i = 1; i < listaEmpleados.size(); i++) {
+
+            temp = (Persona) listaEmpleados.get(i);
+            if (login.equals(temp.correo + " " + temp.contraseña)) {
+                if (!temp.getEstado()) {
+                    sucess = true;
+
+                    listaEmpleados.set(i, temp);
 
                 }
-            if(sucess){
-                saliente.writeInt(0);
-                        nombre=temp.getNombre();
-                        tipo=temp.getCategoria();
-                        temp.conectar();
-                        
-                        ventana.setListaEmpleados(listaEmpleados);
-                        ventana.setConectados();
-                        saliente.writeUTF(nombre);
-                        saliente.writeUTF(tipo);
-                        historial.add(nombre+" se ha conectado");
-                        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
-            }else{
-                saliente.writeInt(-1);
+                break;
+
             }
-            sucess=false;
-            
+
         }
-        public void desconectarPersona(String nombre){
-            int i =0;
-            for(i =0;i<this.listaEmpleados.size();i++){
-                    if(((Persona)listaEmpleados.get(i)).getNombre().equals(nombre)){
-                        ((Persona)listaEmpleados.get(i)).desconectar();
-                        this.ventana.setLista(listaEmpleados);
-                        break;    
-                        }
-                    }
-            historial.add(nombre+" se ha desconectado");
-            ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
-            this.ventana.setConectados();
-           
-            
-        
+        if (sucess) {
+            saliente.writeInt(0);
+            nombre = temp.getNombre();
+            tipo = temp.getCategoria();
+            temp.conectar();
+
+            ventana.setListaEmpleados(listaEmpleados);
+            ventana.setConectados();
+            saliente.writeUTF(nombre);
+            saliente.writeUTF(tipo);
+            historial.add(nombre + " se ha conectado");
+            ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
+        } else {
+            saliente.writeInt(-1);
         }
-        public void modificarEstadoTicketAmarillo(int indice,String tipo) throws IOException{
-        Tickets temp =(Tickets)ManejadorDeListas.ListaDeAmarillos.get(indice);
+        sucess = false;
+
+    }
+
+    public void desconectarPersona(String nombre) {
+        int i = 0;
+        for (i = 0; i < this.listaEmpleados.size(); i++) {
+            if (((Persona) listaEmpleados.get(i)).getNombre().equals(nombre)) {
+                ((Persona) listaEmpleados.get(i)).desconectar();
+                this.ventana.setLista(listaEmpleados);
+                break;
+            }
+        }
+        historial.add(nombre + " se ha desconectado");
+        ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
+        this.ventana.setConectados();
+
+    }
+
+    public void modificarEstadoTicketAmarillo(int indice, String tipo) throws IOException {
+        Tickets temp = (Tickets) ManejadorDeListas.ListaDeAmarillos.get(indice);
         System.out.println(this.getOracion(tipo));
-        if(this.getOracion(tipo).equals("")){
-            
-        
-        temp.setEstado("En atencion");
-        historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
-        }else{
+        if (this.getOracion(tipo).equals("")) {
+
+            temp.setEstado("En atencion");
+            historial.add(this.getName(tipo) + " esta atendiendo el tickete numero: " + this.getTicketeActual(tipo));
+            ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
+        } else {
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
-            historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
+            historial.add(this.getName(tipo) + " ha atendido el tickete numero: " + this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
-            ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
+            ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
             ManejadorDeListas.MegaLista.add(temp);
         }
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
-        
+
     }
-        
-        public void modificarEstadoTicketRojo(int indice,String tipo) throws IOException{
-        Tickets temp =(Tickets)ManejadorDeListas.ListaDeRojos.get(indice);
+
+    public void modificarEstadoTicketRojo(int indice, String tipo) throws IOException {
+        Tickets temp = (Tickets) ManejadorDeListas.ListaDeRojos.get(indice);
         System.out.println(this.getOracion(tipo));
-        if(this.getOracion(tipo).equals("")){
-            
-        
-        temp.setEstado("En atencion");
-        historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
-        }else{
+        if (this.getOracion(tipo).equals("")) {
+
+            temp.setEstado("En atencion");
+            historial.add(this.getName(tipo) + " esta atendiendo el tickete numero: " + this.getTicketeActual(tipo));
+            ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
+        } else {
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
-            historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
+            historial.add(this.getName(tipo) + " ha atendido el tickete numero: " + this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
-            ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
+            ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
             ManejadorDeListas.MegaLista.add(temp);
         }
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
-        
+
     }
-        
-    public void modificarEstadoTicketVerde(int indice,String tipo) throws IOException{
-        Tickets temp =(Tickets)ManejadorDeListas.ListaDeVerdes.get(indice);
+
+    public void modificarEstadoTicketVerde(int indice, String tipo) throws IOException {
+        Tickets temp = (Tickets) ManejadorDeListas.ListaDeVerdes.get(indice);
         System.out.println("++++++++++++++++++++");
         System.out.println(this.getOracion(tipo));
         System.out.println("++++++++++++++++++++");
-        if(this.getOracion(tipo).equals("")){
-            
-        
-        temp.setEstado("En atencion");
-        historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
-        }else{
+        if (this.getOracion(tipo).equals("")) {
+
+            temp.setEstado("En atencion");
+            historial.add(this.getName(tipo) + " esta atendiendo el tickete numero: " + this.getTicketeActual(tipo));
+            ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
+        } else {
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
-            historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
-           
-            ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
+            historial.add(this.getName(tipo) + " ha atendido el tickete numero: " + this.getTicketeActual(tipo));
+
+            ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
 //System.out.println(this.getOracion(tipo));
-            
+
             temp.setComentario(this.getOracion(tipo));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
@@ -243,300 +230,303 @@ public class Servidor implements Runnable{
             //Manejado
         }
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
-        
+
     }
-    public void modificarEstadoTicketLiberadoVerde(int indice, String tipo){
-     Tickets temp =(Tickets)ManejadorDeListas.ListaDeVerdes.get(indice);
-     if(this.getName(tipo).equals("Fernando")){
-        ManejadorDeListas.arrgloTiketsLiberados[0]=ManejadorDeListas.arrgloTiketsLiberados[0]+1;
-      
-     }
-     else if(this.getName(tipo).equals("Junior")){
-        ManejadorDeListas.arrgloTiketsLiberados[1]=ManejadorDeListas.arrgloTiketsLiberados[1]+1;
-      
-     }
-     else if(this.getName(tipo).equals("Luis")){
-        ManejadorDeListas.arrgloTiketsLiberados[2]=ManejadorDeListas.arrgloTiketsLiberados[2]+1;
-      
-     }
+
+    public void modificarEstadoTicketLiberadoVerde(int indice, String tipo) {
+        Tickets temp = (Tickets) ManejadorDeListas.ListaDeVerdes.get(indice);
+        if (this.getName(tipo).equals("Fernando")) {
+            ManejadorDeListas.arrgloTiketsLiberados[0] = ManejadorDeListas.arrgloTiketsLiberados[0] + 1;
+
+        } else if (this.getName(tipo).equals("Junior")) {
+            ManejadorDeListas.arrgloTiketsLiberados[1] = ManejadorDeListas.arrgloTiketsLiberados[1] + 1;
+
+        } else if (this.getName(tipo).equals("Luis")) {
+            ManejadorDeListas.arrgloTiketsLiberados[2] = ManejadorDeListas.arrgloTiketsLiberados[2] + 1;
+
+        }
         System.out.println(this.getOracion(tipo));
-        
+
         temp.setEstado("Pendiente");
-        historial.add(this.getName(tipo)+" ha liberado el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
+        historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
+        ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         temp.setComentarioLiberado(this.getOracion(tipo));
-        
+
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
-        
+
     }
-    public void modificarEstadoLiberadoTicketAmarillo(int indice, String tipo){
-     Tickets temp =(Tickets)ManejadorDeListas.ListaDeAmarillos.get(indice);
-     if(this.getName(tipo).equals("Fernando")){
-        ManejadorDeListas.arrgloTiketsLiberados[0]=ManejadorDeListas.arrgloTiketsLiberados[0]+1;
-      
-     }
-     else if(this.getName(tipo).equals("Junior")){
-        ManejadorDeListas.arrgloTiketsLiberados[1]=ManejadorDeListas.arrgloTiketsLiberados[1]+1;
-      
-     }
-     else if(this.getName(tipo).equals("Luis")){
-        ManejadorDeListas.arrgloTiketsLiberados[2]=ManejadorDeListas.arrgloTiketsLiberados[2]+1;
-      
-     }
+
+    public void modificarEstadoLiberadoTicketAmarillo(int indice, String tipo) {
+        Tickets temp = (Tickets) ManejadorDeListas.ListaDeAmarillos.get(indice);
+        if (this.getName(tipo).equals("Fernando")) {
+            ManejadorDeListas.arrgloTiketsLiberados[0] = ManejadorDeListas.arrgloTiketsLiberados[0] + 1;
+
+        } else if (this.getName(tipo).equals("Junior")) {
+            ManejadorDeListas.arrgloTiketsLiberados[1] = ManejadorDeListas.arrgloTiketsLiberados[1] + 1;
+
+        } else if (this.getName(tipo).equals("Luis")) {
+            ManejadorDeListas.arrgloTiketsLiberados[2] = ManejadorDeListas.arrgloTiketsLiberados[2] + 1;
+
+        }
         System.out.println(this.getOracion(tipo));
-        
+
         temp.setEstado("Pendiente");
-        historial.add(this.getName(tipo)+" ha liberado el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
+        historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
+        ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         temp.setComentarioLiberado(this.getOracion(tipo));
-        
+
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
-        
+
     }
-    public void modificarEstadoTicketLiberadoRojo(int indice, String tipo){
-     Tickets temp =(Tickets)ManejadorDeListas.ListaDeRojos.get(indice);
-     if(this.getName(tipo).equals("Fernando")){
-        ManejadorDeListas.arrgloTiketsLiberados[0]=ManejadorDeListas.arrgloTiketsLiberados[0]+1;
-      
-     }
-     else if(this.getName(tipo).equals("Junior")){
-        ManejadorDeListas.arrgloTiketsLiberados[1]=ManejadorDeListas.arrgloTiketsLiberados[1]+1;
-      
-     }
-     else if(this.getName(tipo).equals("Luis")){
-        ManejadorDeListas.arrgloTiketsLiberados[2]=ManejadorDeListas.arrgloTiketsLiberados[2]+1;
-      
-     }
+
+    public void modificarEstadoTicketLiberadoRojo(int indice, String tipo) {
+        Tickets temp = (Tickets) ManejadorDeListas.ListaDeRojos.get(indice);
+        if (this.getName(tipo).equals("Fernando")) {
+            ManejadorDeListas.arrgloTiketsLiberados[0] = ManejadorDeListas.arrgloTiketsLiberados[0] + 1;
+
+        } else if (this.getName(tipo).equals("Junior")) {
+            ManejadorDeListas.arrgloTiketsLiberados[1] = ManejadorDeListas.arrgloTiketsLiberados[1] + 1;
+
+        } else if (this.getName(tipo).equals("Luis")) {
+            ManejadorDeListas.arrgloTiketsLiberados[2] = ManejadorDeListas.arrgloTiketsLiberados[2] + 1;
+
+        }
         System.out.println(this.getOracion(tipo));
-        
+
         temp.setEstado("Pendiente");
-        historial.add(this.getName(tipo)+" ha liberado el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
+        historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
+        ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         temp.setComentarioLiberado(this.getOracion(tipo));
-        
+
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
-        
+
     }
-    public void rellenarActividadReciente(){
+
+    public void rellenarActividadReciente() {
         ManejadorDeListas.clearActividadReciente();
         ManejadorDeListas.setActividadReciente(historial);
     }
-    
-    
-    
-    
-    
-    public String getName(String oracion){
-        String temp="";
-        for(int i=0;i<oracion.length();i++){
-                 if(oracion.charAt(i)=='@'){
+
+    public String getName(String oracion) {
+        String temp = "";
+        for (int i = 0; i < oracion.length(); i++) {
+            if (oracion.charAt(i) == '@') {
                 return temp;
             }
-        temp=temp+oracion.charAt(i);
-        System.out.println("Este es el valo de temp "+temp);
-    
+            temp = temp + oracion.charAt(i);
+            System.out.println("Este es el valo de temp " + temp);
+
         }
-        
+
         System.out.println("Se ha retornado null");
         return "";
-       }
-    public String getOracion(String oracion){
-        String temp="";
-        for(int i=0;i<oracion.length();i++){
-                 if(oracion.charAt(i)=='%'){
-                temp="";
-                continue;
-            }
-                 if(oracion.charAt(i)=='&'){
-                     return temp;
-                 }
-        temp=temp+oracion.charAt(i);
-    
-        }
-        
-        //System.out.println("Se ha retornado null");
-        return temp;
     }
-    public String getTicketeActual(String oracion){
-        String temp="";
-        for(int i=0;i<oracion.length();i++){
-                 if(oracion.charAt(i)=='@'){
-                temp="";
-                continue;
-            }
-                 if(oracion.charAt(i)=='%'){
-                     return temp;
-                 }
-        temp=temp+oracion.charAt(i);
-    
-        }
-        
-        //System.out.println("Se ha retornado null");
-        return temp;
-    }
-    public String getTiempo(String oracion){
-        String temp="";
-        for(int i =0;i<oracion.length();i++){
-            if(oracion.charAt(i)=='&'){
-                temp="";
-                continue;
-            }
-            temp=temp+oracion.charAt(i);
-        }
-        return temp;
-    }
-        
 
-    
+    public String getOracion(String oracion) {
+        String temp = "";
+        for (int i = 0; i < oracion.length(); i++) {
+            if (oracion.charAt(i) == '%') {
+                temp = "";
+                continue;
+            }
+            if (oracion.charAt(i) == '&') {
+                return temp;
+            }
+            temp = temp + oracion.charAt(i);
+
+        }
+
+        //System.out.println("Se ha retornado null");
+        return temp;
+    }
+
+    public String getTicketeActual(String oracion) {
+        String temp = "";
+        for (int i = 0; i < oracion.length(); i++) {
+            if (oracion.charAt(i) == '@') {
+                temp = "";
+                continue;
+            }
+            if (oracion.charAt(i) == '%') {
+                return temp;
+            }
+            temp = temp + oracion.charAt(i);
+
+        }
+
+        //System.out.println("Se ha retornado null");
+        return temp;
+    }
+
+    public String getTiempo(String oracion) {
+        String temp = "";
+        for (int i = 0; i < oracion.length(); i++) {
+            if (oracion.charAt(i) == '&') {
+                temp = "";
+                continue;
+            }
+            temp = temp + oracion.charAt(i);
+        }
+        return temp;
+    }
+
     public void run() {
-        
+
         try {
             ServerSocket socketServidor = new ServerSocket(5557);
-            
+
             while (true) {
-                
+
                 System.out.println("------INICIA   HISTORIAL______");
-                for(int i =0;i<historial.size();i++){
+                for (int i = 0; i < historial.size(); i++) {
                     System.out.println(historial.get(i));
                 }
                 System.out.println("------TERMINa    HISTORIAL______");
                 Socket cliente = socketServidor.accept();
-                
+
                 //ObjectInputStream objetoentrante=new ObjectInputStream(cliente.getInputStream());
                 dataInput = new DataInputStream(cliente.getInputStream());
                 saliente = new DataOutputStream(cliente.getOutputStream());
-                objetosaliente=new ObjectOutputStream(cliente.getOutputStream());
-                
-                String instruccion=dataInput.readUTF();
-                System.out.println("instruccion: "+instruccion);
-               
-                if(instruccion.equals("Login")){
-                    
+                objetosaliente = new ObjectOutputStream(cliente.getOutputStream());
+
+                String instruccion = dataInput.readUTF();
+                System.out.println("instruccion: " + instruccion);
+
+                if (instruccion.equals("Login")) {
+
                     String login = dataInput.readUTF();
                     loggin(login);
-                }else if(instruccion.equals("ROJO")){
+                } else if (instruccion.equals("ROJO")) {
                     this.sendRojo();
-                    
-                }
-                else if(instruccion.equals("VERDE")){
+
+                } else if (instruccion.equals("VERDE")) {
                     this.sendVerde();
-                    
-                }
-                else if(instruccion.equals("AMARILLO")){
+
+                } else if (instruccion.equals("AMARILLO")) {
                     this.sendAmarillo();
-                    
-                }
-                else if(instruccion.equals("Desconectar")){
-                    String persona=dataInput.readUTF();
-                    System.out.println("Se ha desconectado: "+persona);
+
+                } else if (instruccion.equals("Desconectar")) {
+                    String persona = dataInput.readUTF();
+                    System.out.println("Se ha desconectado: " + persona);
                     desconectarPersona(persona);
                     cliente.close();
-                }
-                else if(instruccion.equals("ListaROJO")){
-                    int indice=dataInput.readInt();
-                    
-                    String tipo=dataInput.readUTF();
-                     
-                     
-                    
-                    this.modificarEstadoTicketRojo(indice,tipo);
-                    
-                    //ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
-                    
-                    
-                }
-                else if(instruccion.equals("ListaVERDE")){
-                   int indice=dataInput.readInt();
-                    
-                    String tipo=dataInput.readUTF();
-                    
-                     
-                    System.out.println(tipo+"Este es el tip");
-                    
-                    this.modificarEstadoTicketVerde(indice,tipo);
-                    // ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
-                    
-                    
-                }
-                else if(instruccion.equals("ListaAMARILLO")){
-                    int indice=dataInput.readInt();
-                    String tipo=dataInput.readUTF();
-                    
-                    this.modificarEstadoTicketAmarillo(indice,tipo);
-                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-                   
-                    
-                }
-                else if(instruccion.equals("ListaLiberadoAMARILLO")){
-                    int indice=dataInput.readInt();
-                    
-                    String tipo=dataInput.readUTF();
-                    
-                     
-                    System.out.println(tipo+"Este es el tip");
-                    
-                    this.modificarEstadoLiberadoTicketAmarillo(indice,tipo);
-                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-                   
-                    
-                }
-                else if(instruccion.equals("ListaLiberadoROJO")){
-                    int indice=dataInput.readInt();
-                    
-                    String tipo=dataInput.readUTF();
-                    
-                     
-                    System.out.println(tipo+"Este es el tip");
-                    
-                    this.modificarEstadoTicketLiberadoRojo(indice,tipo);
-                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-                   
-                    
-                }else if(instruccion.equals("ListaLiberadoVERDE")){
-                    int indice=dataInput.readInt();
-                    
-                    String tipo=dataInput.readUTF();
-                    
-                     
-                    System.out.println(tipo+"Este es el tip");
-                    
-                    this.modificarEstadoTicketLiberadoVerde(indice,tipo);
-                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-                   
-                    
-                }
-                else if(instruccion.equals("Reporte")){
-                    System.out.println("Entro en obtenr reporte");
-                    String tipo=this.dataInput.readUTF();
-                    System.out.println("Nombre de la persona que lo solicito: "+this.getName(tipo));
-                    System.out.println("Esta es la fecha: "+this.getFecha(tipo));
-                
-                }
-                
-                
-                
-                
-                
-                
+                } else if (instruccion.equals("ListaROJO")) {
+                    int indice = dataInput.readInt();
 
-                
-                
-                
+                    String tipo = dataInput.readUTF();
+
+                    this.modificarEstadoTicketRojo(indice, tipo);
+
+                    //ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
+                } else if (instruccion.equals("ListaVERDE")) {
+                    int indice = dataInput.readInt();
+
+                    String tipo = dataInput.readUTF();
+
+                    System.out.println(tipo + "Este es el tip");
+
+                    this.modificarEstadoTicketVerde(indice, tipo);
+                    // ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
+
+                } else if (instruccion.equals("ListaAMARILLO")) {
+                    int indice = dataInput.readInt();
+                    String tipo = dataInput.readUTF();
+
+                    this.modificarEstadoTicketAmarillo(indice, tipo);
+                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+
+                } else if (instruccion.equals("ListaLiberadoAMARILLO")) {
+                    int indice = dataInput.readInt();
+
+                    String tipo = dataInput.readUTF();
+
+                    System.out.println(tipo + "Este es el tip");
+
+                    this.modificarEstadoLiberadoTicketAmarillo(indice, tipo);
+                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+
+                } else if (instruccion.equals("ListaLiberadoROJO")) {
+                    int indice = dataInput.readInt();
+
+                    String tipo = dataInput.readUTF();
+
+                    System.out.println(tipo + "Este es el tip");
+
+                    this.modificarEstadoTicketLiberadoRojo(indice, tipo);
+                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+
+                } else if (instruccion.equals("ListaLiberadoVERDE")) {
+                    int indice = dataInput.readInt();
+
+                    String tipo = dataInput.readUTF();
+
+                    System.out.println(tipo + "Este es el tip");
+
+                    this.modificarEstadoTicketLiberadoVerde(indice, tipo);
+                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+
+                } else if (instruccion.equals("Reporte")) {
+                    mandarReporteIndividual();
+
+                }
+
             }
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        } 
-    public String getFecha(String oracion){
-        String temp="";
-        for(int i=0;i<oracion.length();i++){
-            if(oracion.charAt(i)=='@'){
-                temp="";
+        }
+    }
+
+    public void mandarReporteIndividual() throws IOException {
+        System.out.println("Entro en obtenr reporte");
+        String tipo = this.dataInput.readUTF();
+        System.out.println("Nombre de la persona que lo solicito: " + this.getName(tipo));
+        System.out.println("Esta es la fecha: " + this.getFecha(tipo));
+        int efectivos = contarEfectivos(this.getName(tipo), this.getFecha(tipo));
+        int liberados = contarLiberados(this.getName(tipo), this.getFecha(tipo));
+        this.saliente.writeUTF(efectivos+"@"+liberados);
+        
+
+    }
+
+    public int contarEfectivos(String nombre, String fecha) {
+        int resultado = 0;
+        ArrayList temp = ManejadorDeListas.MegaLista;
+
+        for (int i = 0; i < temp.size(); i++) {
+            Tickets tictemp = (Tickets) temp.get(i);
+            if (tictemp.getID_EMPLEADO().equals(nombre) && tictemp.getFechayHoraAtencion().equals(fecha)) {
+                resultado++;
+            }
+
+        }
+        return resultado;
+
+    }
+
+    public int contarLiberados(String nombre, String fecha) {
+        int resultado = 0;
+        ArrayList temp = ManejadorDeListas.MegaLiberados;
+
+        for (int i = 0; i < temp.size(); i++) {
+            Tickets tictemp = (Tickets) temp.get(i);
+            if (tictemp.getID_EMPLEADO().equals(nombre) && tictemp.getFechayHoraAtencion().equals(fecha)) {
+                resultado++;
+            }
+
+        }
+        return resultado;
+
+    }
+
+    public String getFecha(String oracion) {
+        String temp = "";
+        for (int i = 0; i < oracion.length(); i++) {
+            if (oracion.charAt(i) == '@') {
+                temp = "";
                 continue;
             }
-            temp=temp+oracion.charAt(i);
+            temp = temp + oracion.charAt(i);
         }
         return temp;
     }
-    }    
-
+}

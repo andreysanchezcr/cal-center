@@ -57,13 +57,18 @@ public class ClienteReporte extends javax.swing.JFrame {
     }
     public String getFecha(){
         
+        String año = Integer.toString(calendario.getCalendar().get(java.util.Calendar.YEAR));
+   String mes = Integer.toString(calendario.getCalendar().get(java.util.Calendar.MONTH) + 1);
+    String dia = Integer.toString(calendario.getCalendar().get(java.util.Calendar.DATE));
+        
+        
+        
+        
+        
+        
 //        date.getCalendar().getTime().getDay()
-        String fec=""+date.getDate().getMonth();
-        System.out.println("fsdfasfasfasfasfasfafasdfasgasfas"+fec);
-        String fecha=date.getCalendar().getTime().getDay()+"/"+date.getCalendar().getTime().getMonth()+"/"+date.getCalendar().getTime().getYear();
-    
-        System.out.println("ESta es la fechaaaaaaa: "+fecha);
-        return fecha;
+        
+        return dia+"/"+mes+"/"+año;
     }
     public boolean verificarUsuario(String nombre,String contrasena){
         if(nombre.equals(parent.cliente.getUsuario())&&contrasena.equals(parent.cliente.getContrasena())){
@@ -94,7 +99,7 @@ public class ClienteReporte extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        date = new com.toedter.calendar.JDateChooser();
+        calendario = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,7 +172,7 @@ public class ClienteReporte extends javax.swing.JFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +192,7 @@ public class ClienteReporte extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNumTicketsResividos)
@@ -220,7 +225,7 @@ public class ClienteReporte extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser date;
+    private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
