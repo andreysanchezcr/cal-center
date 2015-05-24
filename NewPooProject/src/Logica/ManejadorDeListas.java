@@ -27,9 +27,15 @@ public abstract class ManejadorDeListas {
         return temp;
     }
     
-    public static void cargaListaActividadReciente(String actividad){
-        ListaActividadReciente.add(actividad);
-        
+    public static void cargaListaActividadReciente(){
+        ListaActividadReciente.add("          (0 0) ");
+        ListaActividadReciente.add("  ---oOO-- (_) ----oOO---");
+        ListaActividadReciente.add("-----------------------------------------------");
+        ListaActividadReciente.add("| QUE LINDA ESTA PROGRA!.. :3 |");
+        ListaActividadReciente.add("-----------------------------------------------");
+        ListaActividadReciente.add("         |__|__|  ");
+        ListaActividadReciente.add("          || ||  ");
+        ListaActividadReciente.add("         ooO Ooo ");
     }
 
     public static void addNewTiketsToLocalListVerdes(ArrayList<Tickets> ListaDeVerdesInsert){

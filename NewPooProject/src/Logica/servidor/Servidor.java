@@ -138,7 +138,6 @@ public class Servidor implements Runnable{
                         saliente.writeUTF(nombre);
                         saliente.writeUTF(tipo);
                         historial.add(nombre+" se ha conectado");
-                        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
             }else{
                 saliente.writeInt(-1);
             }
@@ -154,7 +153,6 @@ public class Servidor implements Runnable{
                         }
                     }
             historial.add(nombre+" se ha desconectado");
-            ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
             this.ventana.setConectados();
            
             
@@ -168,16 +166,13 @@ public class Servidor implements Runnable{
         
         temp.setEstado("En atencion");
         historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
         }else{
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
-            ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
-            temp.setID_EMPLEADO(this.getName(tipo));
         }
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
         
@@ -191,16 +186,13 @@ public class Servidor implements Runnable{
         
         temp.setEstado("En atencion");
         historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
         }else{
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
-            ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
-            temp.setID_EMPLEADO(this.getName(tipo));
         }
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
         
@@ -214,17 +206,13 @@ public class Servidor implements Runnable{
         
         temp.setEstado("En atencion");
         historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
-        ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
         }else{
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
-            ManejadorDeListas.cargaListaActividadReciente((String)historial.get(historial.size()-1));
-//System.out.println(this.getOracion(tipo));
+            //System.out.println(this.getOracion(tipo));
             temp.setComentario(this.getOracion(tipo));
             temp.setTiempoSegundos(this.getTiempo(tipo));
-            temp.setID_EMPLEADO(this.getName(tipo));
-            //Manejado
         }
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
         
