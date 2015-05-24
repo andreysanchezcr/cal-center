@@ -44,6 +44,7 @@ public abstract class ManejadorDeListas {
         ListaActividadReciente.clear();
     }
     public static void setActividadReciente(ArrayList lista){
+        clearActividadReciente();
         for(int i=0;i<lista.size();i++){
           ListaActividadReciente.add((String)lista.get(i));
       

@@ -49,6 +49,9 @@ public class Servidor implements Runnable{
         listaEmpleados.add((Persona) amarillo);
 
     }
+    public ArrayList getHistorial(){
+        return historial;
+    }
     /**
      * Lista en la que se guaradara toda la conversacion
      */
