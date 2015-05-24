@@ -171,6 +171,7 @@ public class Servidor implements Runnable{
             System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
+            temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
         }
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
@@ -190,6 +191,7 @@ public class Servidor implements Runnable{
             System.out.println("ATEMDIDO");
             historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
+            temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
         }
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
@@ -210,6 +212,7 @@ public class Servidor implements Runnable{
             historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
             //System.out.println(this.getOracion(tipo));
             temp.setComentario(this.getOracion(tipo));
+            temp.setTiempoSegundos(this.getTiempo(tipo));
         }
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
         
@@ -312,6 +315,9 @@ public class Servidor implements Runnable{
                 temp="";
                 continue;
             }
+                 if(oracion.charAt(i)=='&'){
+                     return temp;
+                 }
         temp=temp+oracion.charAt(i);
     
         }
@@ -334,6 +340,17 @@ public class Servidor implements Runnable{
         }
         
         //System.out.println("Se ha retornado null");
+        return temp;
+    }
+    public String getTiempo(String oracion){
+        String temp="";
+        for(int i =0;i<oracion.length();i++){
+            if(oracion.charAt(i)=='&'){
+                temp="";
+                continue;
+            }
+            temp=temp+oracion.charAt(i);
+        }
         return temp;
     }
         

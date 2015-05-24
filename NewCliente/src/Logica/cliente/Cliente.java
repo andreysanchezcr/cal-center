@@ -168,13 +168,13 @@ implements Runnable{
         mandarListaAtencion(indice);
         
     }
-    public void modificarEstadoTicketAtendido(int indice,String comentario) throws IOException{
+    public void modificarEstadoTicketAtendido(int indice,String comentario,String tiempo) throws IOException{
         Tickets temp =(Tickets)listaTicketes.get(indice);
         temp.setEstado("Atendido");
         this.listaTicketes.set(indice, temp);
         modificarJList();
         
-        mandarListaAtendido(indice,comentario);
+        mandarListaAtendido(indice,comentario+"&"+tiempo);
       
     }
     public void liberarTicket(int indice,String comentario) throws IOException{

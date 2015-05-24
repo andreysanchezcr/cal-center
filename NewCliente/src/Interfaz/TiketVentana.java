@@ -241,7 +241,7 @@ public class TiketVentana extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         try {
-            parent.cliente.modificarEstadoTicketAtendido(indice,tcomentario.getText());
+            parent.cliente.modificarEstadoTicketAtendido(indice,tcomentario.getText(),this.lblTime.getText());
         } catch (IOException ex) {
             Logger.getLogger(TiketVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
