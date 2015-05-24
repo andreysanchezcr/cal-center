@@ -56,7 +56,10 @@ public class ClienteReporte extends javax.swing.JFrame {
         
     }
     public String getFecha(){
-        return jCalendar1.getDate().getDay()+"/"+jCalendar1.getDate().getMonth()+"/"+jCalendar1.getDate().getYear();
+        String fecha=jCalendar1.getDate().getDay()+"/"+jCalendar1.getDate().getMonth()+"/"+jCalendar1.getDate().getYear();
+    
+        System.out.println(fecha);
+        return fecha;
     }
     public boolean verificarUsuario(String nombre,String contrasena){
         if(nombre.equals(parent.cliente.getUsuario())&&contrasena.equals(parent.cliente.getContrasena())){

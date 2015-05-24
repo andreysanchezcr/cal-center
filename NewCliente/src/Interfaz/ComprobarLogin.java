@@ -103,6 +103,7 @@ public class ComprobarLogin extends javax.swing.JFrame {
             ////
             System.out.println("DATOS CORRECTORS");
             try {
+                System.out.println("La fecha enviada es: "+ this.parent.getFecha());
                 this.parent.parent.cliente.getReporte(this.parent.getFecha());
             } catch (IOException ex) {
                 System.out.println("eROR AL OBTENER LA FECHA");

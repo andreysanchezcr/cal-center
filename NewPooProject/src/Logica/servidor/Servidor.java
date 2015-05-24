@@ -509,7 +509,7 @@ public class Servidor implements Runnable{
                     System.out.println("Entro en obtenr reporte");
                     String tipo=this.dataInput.readUTF();
                     System.out.println("Nombre de la persona que lo solicito: "+this.getName(tipo));
-                    System.out.println("Esta es la fecha: "+this.getOracion(tipo));
+                    System.out.println("Esta es la fecha: "+this.getFecha(tipo));
                 
                 }
                 
@@ -527,5 +527,16 @@ public class Servidor implements Runnable{
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         } 
         } 
+    public String getFecha(String oracion){
+        String temp="";
+        for(int i=0;i<oracion.length();i++){
+            if(oracion.charAt(i)=='@'){
+                temp="";
+                continue;
+            }
+            temp=temp+oracion.charAt(i);
+        }
+        return temp;
+    }
     }    
 
