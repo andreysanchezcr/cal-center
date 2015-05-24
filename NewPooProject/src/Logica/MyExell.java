@@ -83,6 +83,7 @@ public abstract class MyExell {
             Cell celdaEstado =  hojaActual.getCell(4,fila+1);
             if (celdaEstado.getContents()==""){
             
+            
             ID_Secuencia ++;
                 
             Date fechaHoraActual = new Date();
@@ -98,6 +99,10 @@ public abstract class MyExell {
             
             strDisplayToLista += Integer.toString(ID_Secuencia);
             
+            
+            Cell celdaFechaHora = hojaActual.getCell(0,fila+1);
+            String strFechaHoraArchivo = celdaFechaHora.getContents();       
+            
            
             
             strDisplayToLista += "   Asunto: ";
@@ -108,7 +113,8 @@ public abstract class MyExell {
                     
             
             
-            Tickets ticket = new Tickets(strFechaHora, strIDcliente, strAsunto ,ID_Secuencia);
+            Tickets ticket = new Tickets(strFechaHora, strIDcliente, strAsunto ,ID_Secuencia);        
+            //Tickets ticket = new Tickets(strFechaHora, strIDcliente, strAsunto ,ID_Secuencia);
             listaTikets.add(ticket);
             Lista.add(strDisplayToLista); // Adding to JList Lista in Interfaz
             }

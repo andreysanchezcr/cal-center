@@ -29,7 +29,7 @@ public class Tickets implements Serializable{
         this.asunto = asunto;
         this.IDTicket = IDTicket;
         this.Comentario=Comentario;
-        this.estado="Sin atender";
+        this.estado="Pendiente";
     }
 
     public Tickets(String FechayHoraRecepcion, String ID_CLIENTE, String asunto, 

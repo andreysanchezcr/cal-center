@@ -14,6 +14,8 @@
         */
 package Logica;
 
+import Interfaz.VnServidorReportes;
+import static Interfaz.VnServidorReportes.dataset;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 
@@ -99,12 +101,51 @@ public abstract class Reporte {
     
     }*/
     
+    public static int tiketsCoincidenciasEnUnaLista(ArrayList<Tickets> ListaAConocer,String compadador ){ // comparador va a ser el parametro que buscamos (Atendido, Pendiente, sinCategorizar)
+        int numCoincidencias = 0;
+        
+        for(int i=0 ; i < ListaAConocer.size();i++){
+            if(ListaAConocer.get(i).getEstado().equals(compadador)){
+                numCoincidencias ++;
+            }
+        }
+        return numCoincidencias;
+    }
     
-    public static void llenarEmpleadoInfo(JLabel etiqueta,String ID_Empleado){
-        etiqueta = new JLabel ("<html> <font size=\"3\" color=\"red\">Hola<br>mundo</html>"); 
     
+    public static void actualizarReportesDeCantidades(){
+        
+        int cantTiketsAtendidos =          
+                (tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeVerdes(),"Atendido")+
+                tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeAmarillos(),"Atendido")+
+                tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeRojos(),"Atendido"));        
+        
+        int cantTiketsPendientes =
+                (tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeVerdes(),"Pendiente")+
+                tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeAmarillos(),"Pendiente")+
+                tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeRojos(),"Pendiente"));
+        
+        int cantTiketsEnAtencion =
+                (tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeVerdes(),"En Atencion")+
+                 tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeAmarillos(),"En Atencion")+
+                 tiketsCoincidenciasEnUnaLista(ManejadorDeListas.getListaDeRojos(),"En Atencion"));
+        
+        
+        VnServidorReportes.lblTiketsAtendidos.setText(      "Tickets Atendidos:              "+Integer.toString(cantTiketsAtendidos));
+        VnServidorReportes.lblTicketsPendientes.setText(    "Tickets Pendientes:             "+Integer.toString(cantTiketsPendientes));             
+        VnServidorReportes.lblTicketsEnAtencion.setText(    "Tickets Aun En Atención:        "+Integer.toString(cantTiketsEnAtencion));                
+        VnServidorReportes.lblTicketsSinCategorizar.setText("Tickets Sin Categorizar:        "+Integer.toString(ManejadorDeListas.getListaDePendientes().size()));
+        VnServidorReportes.lblTicketsEnSistema.setText(     "Total Tickets En El Sistema:    "+Integer.toString(ManejadorDeListas.getListaDePendientes().size()+
+                                                                                                                ManejadorDeListas.getListaDeVerdes().size()+
+                                                                                                                ManejadorDeListas.getListaDeAmarillos().size()+
+                                                                                                                ManejadorDeListas.getListaDeRojos().size()));
     
-        etiqueta.repaint();
+        dataset.setValue(cantTiketsAtendidos,"Atendidos","Reporte de Tickets");
+        dataset.setValue(cantTiketsEnAtencion,"Aun EN Atencion","Reporte de Tickets");
+        dataset.setValue(cantTiketsPendientes,"Pendientes","Reporte de Tickets");
+        dataset.setValue(ManejadorDeListas.getListaDePendientes().size(),"Sin Categorizar","Reporte de Tickets");
+        
+        
     }
     
     

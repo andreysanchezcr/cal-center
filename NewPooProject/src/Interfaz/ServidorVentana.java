@@ -55,7 +55,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     private void close(){
         JFileChooser jF1 = null;
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea guardar los cambios "+"\n"+" producidos en el Sstema?",
-            "Guardar Cambios", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            "Guardar Cambios", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             
             
             
@@ -77,12 +77,12 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             MyExell.save_All_Changes(ruta);
             
 
-        }
+        }else{System.exit(0);}  // Cerrar el sistema incondicionalmente
         }catch (Exception ex){
         ex.printStackTrace();
         }
-            
-            System.exit(0);
+        }
+        System.exit(0);
     }    
     public void setConectados(){
         if(((Persona)listaEmpleados.get(1)).getEstado()){
@@ -537,6 +537,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void btStatusMonitoreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStatusMonitoreoActionPerformed
         VnServidorReportes ventanaMonitoreo = new VnServidorReportes(this);
+        Reporte.actualizarReportesDeCantidades();
         ventanaMonitoreo.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btStatusMonitoreoActionPerformed
