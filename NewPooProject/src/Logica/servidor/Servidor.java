@@ -160,6 +160,7 @@ public class Servidor implements Runnable{
         }
         public void modificarEstadoTicketAmarillo(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeAmarillos.get(indice);
+        System.out.println(this.getOracion(tipo));
         if(this.getOracion(tipo).equals("")){
             
         
@@ -178,6 +179,7 @@ public class Servidor implements Runnable{
         
         public void modificarEstadoTicketRojo(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeRojos.get(indice);
+        System.out.println(this.getOracion(tipo));
         if(this.getOracion(tipo).equals("")){
             
         
@@ -196,6 +198,7 @@ public class Servidor implements Runnable{
         
     public void modificarEstadoTicketVerde(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeVerdes.get(indice);
+        System.out.println(this.getOracion(tipo));
         if(this.getOracion(tipo).equals("")){
             
         
@@ -230,6 +233,7 @@ public class Servidor implements Runnable{
         for(int i=0;i<oracion.length();i++){
                  if(oracion.charAt(i)=='%'){
                 temp="";
+                continue;
             }
         temp=temp+oracion.charAt(i);
     

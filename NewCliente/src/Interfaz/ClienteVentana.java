@@ -233,7 +233,7 @@ public class ClienteVentana extends javax.swing.JFrame {
             
            // System.out.println((Tickets)this.cliente.getListaTickets().get(ListaEmpleado.getSelectedIndex())) ;
             TiketVentana temp=new TiketVentana(this,indice);
-            ListaEmpleado.select(indice);
+          //  ListaEmpleado.select(indice);
         } catch (IOException ex) {
             System.out.println("Error al enviar lista");
             Logger.getLogger(ClienteVentana.class.getName()).log(Level.SEVERE, null, ex);

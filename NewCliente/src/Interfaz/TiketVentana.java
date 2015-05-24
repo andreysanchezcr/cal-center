@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import Logica.Tickets;
+
 /**
  *
  * @author Fernando
@@ -15,20 +17,21 @@ public class TiketVentana extends javax.swing.JFrame {
      * Creates new form TiketVentana
      */
     boolean botonRes = false;
+    Tickets actual;
     
-    public TiketVentana() {
+    public TiketVentana(ClienteVentana parent,int indice) {
         initComponents();
-<<<<<<< HEAD
-=======
+
 
         this.setVisible(true);
+        this.indice=indice;
         
         System.out.println(":::::::::::::::::::::::::::");
         this.actual=(Tickets)parent.cliente.getListaTickets().get(indice);
         System.out.println(actual.getAsunto());
         System.out.println("ESTE ES EL ASUNTO");
 
->>>>>>> origin/master
+
     }
     public void iniciarCrono(){
         btnPausa.setEnabled(true);
@@ -266,7 +269,7 @@ public class TiketVentana extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TiketVentana().setVisible(true);
+                new TiketVentana(null,0).setVisible(true);
             }
         });
     }
