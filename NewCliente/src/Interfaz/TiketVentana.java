@@ -18,6 +18,7 @@ public class TiketVentana extends javax.swing.JFrame {
      */
     boolean botonRes = false;
     Tickets actual;
+    int indice;
     
     public TiketVentana(ClienteVentana parent,int indice) {
         initComponents();
