@@ -101,9 +101,7 @@ public class Servidor implements Runnable {
     public void sendVerde() throws IOException {
        // System.out.println("ENTRO EN VERDEEEE");
         ManejadorDeListas.ListaDeVerdes.size();
-        for (int i = 0; i < ManejadorDeListas.ListaDeVerdes.size(); i++) {
-            System.out.println(ManejadorDeListas.ListaDeVerdes.get(i));
-        }
+        
         objetosaliente.writeObject(ManejadorDeListas.ListaDeVerdes);
        // System.out.println("SALIOS EN VERDEEEE");
     }
@@ -405,10 +403,12 @@ public class Servidor implements Runnable {
                     String login = dataInput.readUTF();
                     loggin(login);
                 } else if (instruccion.equals("ROJO")) {
+                    
                     this.sendRojo();
 
                 } else if (instruccion.equals("VERDE")) {
                     this.sendVerde();
+                    
 
                 } else if (instruccion.equals("AMARILLO")) {
                     this.sendAmarillo();
@@ -475,6 +475,8 @@ public class Servidor implements Runnable {
 
                 } else if (instruccion.equals("Reporte")) {
                     mandarReporteIndividual();
+                  //  System.out.println("terminno de ejecutar rteporte")
+                    //this.saliente.writeUTF("HOLIS");
 
                 }
 
@@ -485,17 +487,19 @@ public class Servidor implements Runnable {
     }
 
     public void mandarReporteIndividual() throws IOException {
-        System.out.println("Entro en obtenr reporte");
+        
         String tipo = this.dataInput.readUTF();
         System.out.println("Nombre de la persona que lo solicito: " + this.getName(tipo));
         System.out.println("Esta es la fecha: " + this.getFecha(tipo));
         int efectivos = contarEfectivos(this.getName(tipo), this.getFecha(tipo));
         int liberados = contarLiberados(this.getName(tipo), this.getFecha(tipo));
-        System.out.println("antes de mandar el reporte");
-       
+        System.out.println(efectivos+"@"+liberados);
+   //    this.objetosaliente.writeUTF(efectivos+"@"+liberados);
         this.saliente.writeUTF(efectivos+"@"+liberados);
         System.out.println("despues de terminar el reporte");
 
+        
+        
     }
 
     public int contarEfectivos(String nombre, String fecha) {

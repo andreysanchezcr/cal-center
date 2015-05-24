@@ -79,19 +79,19 @@ implements Runnable{
             flujoSaliente.writeUTF(correo+" "+contrasena);
             this.parent=parent;
             int indicador=flujoEntrante.readInt();
-            System.out.println(indicador);
+          //  System.out.println(indicador);
             if(indicador==0){
                 parent.dispose();
                 String nombre=flujoEntrante.readUTF();
                 String tipo=flujoEntrante.readUTF();
                 clienteventana = new ClienteVentana(nombre,socket,tipo,this);
-                System.out.println("EXito");
+               // System.out.println("EXito");
                 logueado=true;
                 socket.close();
                 
             }else{
                 socket.close();
-                System.out.println("Fallo");
+               // System.out.println("Fallo");
             }
                         
             
@@ -109,8 +109,8 @@ implements Runnable{
     }
     public void mandarListaAtencion(int indice) throws IOException{
         socket = new Socket("localhost", 5557);
-        System.out.println("Mandando lista");
-        System.out.println(this.getColor());
+      //  System.out.println("Mandando lista");
+      //  System.out.println(this.getColor());
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Lista"+this.getColor());
         
@@ -122,25 +122,28 @@ implements Runnable{
         
         
     }
-    public void getReporte(String fecha) throws IOException{
+    public String getReporte(String fecha) throws IOException{
         socket = new Socket("localhost", 5557);
         System.out.println("Obteniendo reporte");
         
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
         flujoEntrante=new DataInputStream(socket.getInputStream());
+      //   this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
         
         this.flujoSaliente.writeUTF("Reporte");
         
         
        // flujoSaliente.writeInt(indice);
          this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+fecha);
-         System.out.println("Finalizando de obtener el reporte");
-        // String resultadotemporal=this.flujoEntrante.readUTF();
-         System.out.println("Estos es lo que se ha obtenido en get reporte"
-                 + "");
-         String resultado=this.flujoEntrante.readUTF();
-         System.out.println("Este es el resultado de get reporte: "+resultado);
+         System.out.println(this.clienteventana.getNombre()+"@"+fecha);
+        // flujoEntrante.close();
+        
+        
+        String resultado=this.flujoEntrante.readUTF();
+        System.out.println(resultado);
+     
          
+         return "3@2";
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
     }
@@ -175,7 +178,7 @@ implements Runnable{
     public void mandarListaAtendido(int indice,String comentario) throws IOException{
         socket = new Socket("localhost", 5557);
         
-        System.out.println("Este es el comentario: "+comentario);
+       // System.out.println("Este es el comentario: "+comentario);
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Lista"+this.getColor());
         
@@ -187,7 +190,7 @@ implements Runnable{
      public void mandarListaLiberado(int indice,String comentario) throws IOException{
         socket = new Socket("localhost", 5557);
         
-        System.out.println("Este es el comentario de liberado: "+comentario);
+    //   System.out.println("Este es el comentario de liberado: "+comentario);
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("ListaLiberado"+this.getColor());
         
@@ -199,14 +202,7 @@ implements Runnable{
     
     
     
-    public void mandarMensaje() throws IOException{
-        socket = new Socket("localhost", 5557);
-       
-        flujoSaliente = new DataOutputStream(socket.getOutputStream());
-        flujoSaliente.writeUTF("PRUEBA");
-        socket.close();
-        
-    }
+    
     public ArrayList getListaTickets(){
         return this.listaTicketes;
     }
@@ -263,12 +259,12 @@ implements Runnable{
         
         
         socket = new Socket("localhost", 5557);
-        System.out.println("111111");
+      //  System.out.println("111111");
             flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Desconectar");
-        System.out.println("111111");
+     //   System.out.println("111111");
         this.flujoSaliente.writeUTF(this.clienteventana.getNombre());
-        System.out.println("111111");
+      //  System.out.println("111111");
         //socket.close();
     }
 
@@ -283,18 +279,16 @@ implements Runnable{
             this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
            flujoSaliente = new DataOutputStream(socket.getOutputStream());
             flujoEntrante = new DataInputStream(socket.getInputStream());
-            System.out.println("Entroo");
             flujoSaliente.writeUTF(this.parent.getColor());
+            
             this.listaTicketes=(ArrayList)this.objeto_entrante.readObject();
             
-            for(int i=0;i<this.listaTicketes.size();i++){
-                System.out.println(((Tickets)this.listaTicketes.get(i)).getAsunto());
-            }
+           
             cargarListaTikets();
             modificarJList();
             socket.close();
             solicitud=true;
-            Thread.sleep(10000);
+            Thread.sleep(30000);
             
             }
             
