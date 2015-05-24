@@ -21,33 +21,19 @@ public class Tickets implements Serializable{
     private String tiempoSegundos;
     private String Comentario;
     private String estado;
+    private String comentarioNoLiberado;
 
-    /**
-     * Contructor (Utilizado por Exell.java para cargar Tikets Pendientes)
-     * @param FechayHoraRecepcion Atributo seteado a la hora de la carga del archivo con la fecha y hora actuales
-     * @param ID_CLIENTE Atributo situado en la segunda columna del Exel
-     * @param asunto  Atributo ubicado en la tercera columna del Exel
-     */ 
+
     public Tickets(String FechayHoraRecepcion, String ID_CLIENTE, String asunto, int IDTicket){
         this.FechayHoraRecepcion = FechayHoraRecepcion;
         this.ID_CLIENTE = ID_CLIENTE;
         this.asunto = asunto;
         this.IDTicket = IDTicket;
-        this.estado="Sin atender";
+        this.Comentario=Comentario;
+        this.estado="Pendiente";
+        this.comentarioNoLiberado="";
     }
-    /**
-     * Contructor con todos los atributos (Exell.java creara objetos completos a partir de la carga del archivo"Tickets Rojos, Amarillos y Verdes")
-     * @param FechayHoraRecepcion Columna del Exell
-     * @param ID_CLIENTE Columna 0 del Exell
-     * @param asunto     Columna 1 del Exell
-     * @param IDTicket   Columna 2 del Exell
-     * @param categoria  Columna 3 del Exell
-     * @param ID_EMPLEADO Columna 4 del Exell
-     * @param fechayHoraAtencion Columna 5 del Exell
-     * @param tiempoSegundos Columna 6 del Exell
-     * @param Comentario Columna 7 del Exell
-     * @param estado     Columna 8 del Exell
-     */
+
     public Tickets(String FechayHoraRecepcion, String ID_CLIENTE, String asunto, 
                    int IDTicket, String categoria, String ID_EMPLEADO, 
                    String fechayHoraAtencion,String tiempoSegundos, 
@@ -62,7 +48,15 @@ public class Tickets implements Serializable{
         this.fechayHoraAtencion=fechayHoraAtencion;
         this.tiempoSegundos=tiempoSegundos;
         this.Comentario=Comentario;
+        
+        this.Comentario=Comentario;
         this.estado="Sin atender";
+    }
+    public String getComentarioLiberado(){
+        return this.comentarioNoLiberado;
+    }
+    public void setComentarioLiberado(String comentario){
+        this.comentarioNoLiberado=comentario;
     }
     
     public Tickets(String asunto, int IDTicket, String categoria, String estado){
@@ -70,6 +64,9 @@ public class Tickets implements Serializable{
         this.IDTicket = IDTicket;
         this.categoria = categoria;
         this.estado = estado;
+    }
+    public String getEstadoActual(){
+        return getAsunto()+" "+getEstado();
     }
     
     
@@ -156,10 +153,6 @@ public class Tickets implements Serializable{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public String getEstadoActual(){
-        return getAsunto()+" "+getEstado();
-    }
-    
     
     public String toString(){
         String datos = "Asunto: " + getAsunto() + "\n" +

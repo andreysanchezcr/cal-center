@@ -121,16 +121,24 @@ implements Runnable{
         
         //;
         flujoSaliente.writeInt(indice);
-        this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+((Tickets)this.listaTicketes.get(1)).getIDTicket()+"%"+comentario);
-        //this.flujoSaliente.writeUTF("PERROOO");
-       
-       // socket.close();
-        
-//this.flujoSaliente.writeUTF(this.parent.getNombre());
-        
-        
-        
+        this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+((Tickets)this.listaTicketes.get(indice)).getIDTicket()+"%"+comentario);
+      
     }
+     public void mandarListaLiberado(int indice,String comentario) throws IOException{
+        socket = new Socket("localhost", 5557);
+        
+        System.out.println("Este es el comentario de liberado: "+comentario);
+        flujoSaliente = new DataOutputStream(socket.getOutputStream());
+        this.flujoSaliente.writeUTF("ListaLiberado"+this.getColor());
+        
+        //;
+        flujoSaliente.writeInt(indice);
+        this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+((Tickets)this.listaTicketes.get(indice)).getIDTicket()+"%"+comentario);
+      
+    }
+    
+    
+    
     public void mandarMensaje() throws IOException{
         socket = new Socket("localhost", 5557);
        
@@ -167,6 +175,15 @@ implements Runnable{
         modificarJList();
         
         mandarListaAtendido(indice,comentario);
+      
+    }
+    public void liberarTicket(int indice,String comentario) throws IOException{
+        Tickets temp =(Tickets)listaTicketes.get(indice);
+        temp.setEstado("Pendiente");
+        this.listaTicketes.set(indice, temp);
+        modificarJList();
+        
+        mandarListaLiberado(indice,comentario);
       
     }
     public void modificarJList(){

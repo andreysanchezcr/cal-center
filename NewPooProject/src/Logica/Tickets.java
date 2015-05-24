@@ -21,6 +21,7 @@ public class Tickets implements Serializable{
     private String tiempoSegundos;
     private String Comentario;
     private String estado;
+    private String comentarioNoLiberado;
 
 
     public Tickets(String FechayHoraRecepcion, String ID_CLIENTE, String asunto, int IDTicket){
@@ -30,6 +31,7 @@ public class Tickets implements Serializable{
         this.IDTicket = IDTicket;
         this.Comentario=Comentario;
         this.estado="Pendiente";
+        this.comentarioNoLiberado="";
     }
 
     public Tickets(String FechayHoraRecepcion, String ID_CLIENTE, String asunto, 
@@ -49,6 +51,12 @@ public class Tickets implements Serializable{
         
         this.Comentario=Comentario;
         this.estado="Sin atender";
+    }
+    public String getComentarioLiberado(){
+        return this.comentarioNoLiberado;
+    }
+    public void setComentarioLiberado(String comentario){
+        this.comentarioNoLiberado=comentario;
     }
     
     public Tickets(String asunto, int IDTicket, String categoria, String estado){

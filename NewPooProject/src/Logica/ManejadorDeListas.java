@@ -25,28 +25,6 @@ public abstract class ManejadorDeListas {
         temp.add(ListaDeRojos);
         return temp;
     }
-    
-    public static int cantidadSegundos(ArrayList<Tickets> lista, String idEmpleado){
-        int largoLista = lista.size();
-        int cantRevisados = 0;
-        int tiempoTotal = 0;
-        while(cantRevisados < largoLista){
-            if(lista.get(cantRevisados).getID_EMPLEADO().equals(idEmpleado)){
-                tiempoTotal = tiempoTotal + Integer.parseInt(lista.get(cantRevisados).getTiempoSegundos());
-            }
-            cantRevisados = cantRevisados+1;
-        }
-        return tiempoTotal;
-        
-    }
-    
-    public static int cantidadSegEmpleados(String idEmpleado){
-        int totalTime = 0;
-        totalTime = totalTime + cantidadSegundos(ListaDeVerdes,idEmpleado);
-        totalTime = totalTime + cantidadSegundos(ListaDeAmarillos,idEmpleado);
-        totalTime = totalTime + cantidadSegundos(ListaDeRojos,idEmpleado);
-        return totalTime;
-    }
 
     public static void addNewTiketsToLocalListVerdes(ArrayList<Tickets> ListaDeVerdesInsert){
         for (int i = 0; i < ListaDeVerdesInsert.size();i++){
@@ -65,6 +43,52 @@ public abstract class ManejadorDeListas {
             ListaDeRojos.add(ListaDeRojosInsert.get(i));
         }
     }
+    public String getDia(String fecha){
+        String temp="";
+        for(int i=0;i<fecha.length();i++){
+        if(fecha.charAt(i)=='/'){
+            return temp;
+        }
+        temp=temp+fecha.charAt(i);
+        }
+        System.out.println("Error en la funcion get dia");
+        return "";
+    }
+    public String getMes(String fecha){
+        String temp="";
+        int contador=0;
+        for(int i=0;i<fecha.length();i++){
+        if((fecha.charAt(i)=='/')&&contador==0){
+            temp="";
+            contador++;
+            //continue;
+        }else if((fecha.charAt(i)=='/')&&contador==1){
+            return temp;
+            //continue;
+        }
+        else{
+            temp=temp+fecha.charAt(i);
+        }
+        
+        }
+        System.out.println("Error en la funcion get mes");
+        return "";
+    }
+    public String getAno(String fecha){
+        String temp="";
+        int contador=0;
+        for(int i=0;i<fecha.length();i++){
+        if((fecha.charAt(i)=='/')){
+            temp="";
+            contador++;
+            continue;
+        }
+        temp=temp+fecha.charAt(i);
+        
+        }
+        //System.out.println("Error en la funcion get mes");
+        return temp;
+    }        
     
   
     public static ArrayList<Tickets> getListaDePendientes() {

@@ -214,6 +214,83 @@ public class Servidor implements Runnable{
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
         
     }
+    public void modificarEstadoTicketLiberadoVerde(int indice, String tipo){
+     Tickets temp =(Tickets)ManejadorDeListas.ListaDeVerdes.get(indice);
+     if(this.getName(tipo).equals("Fernando")){
+        ManejadorDeListas.arrgloTiketsLiberados[0]=ManejadorDeListas.arrgloTiketsLiberados[0]+1;
+      
+     }
+     else if(this.getName(tipo).equals("Junior")){
+        ManejadorDeListas.arrgloTiketsLiberados[1]=ManejadorDeListas.arrgloTiketsLiberados[1]+1;
+      
+     }
+     else if(this.getName(tipo).equals("Luis")){
+        ManejadorDeListas.arrgloTiketsLiberados[2]=ManejadorDeListas.arrgloTiketsLiberados[2]+1;
+      
+     }
+        System.out.println(this.getOracion(tipo));
+        
+        temp.setEstado("Pendiente");
+        historial.add(this.getName(tipo)+" ha liberado el tickete numero: "+this.getTicketeActual(tipo));
+        
+        temp.setComentarioLiberado(this.getOracion(tipo));
+        
+        ManejadorDeListas.ListaDeVerdes.set(indice, temp);
+        
+    }
+    public void modificarEstadoLiberadoTicketAmarillo(int indice, String tipo){
+     Tickets temp =(Tickets)ManejadorDeListas.ListaDeAmarillos.get(indice);
+     if(this.getName(tipo).equals("Fernando")){
+        ManejadorDeListas.arrgloTiketsLiberados[0]=ManejadorDeListas.arrgloTiketsLiberados[0]+1;
+      
+     }
+     else if(this.getName(tipo).equals("Junior")){
+        ManejadorDeListas.arrgloTiketsLiberados[1]=ManejadorDeListas.arrgloTiketsLiberados[1]+1;
+      
+     }
+     else if(this.getName(tipo).equals("Luis")){
+        ManejadorDeListas.arrgloTiketsLiberados[2]=ManejadorDeListas.arrgloTiketsLiberados[2]+1;
+      
+     }
+        System.out.println(this.getOracion(tipo));
+        
+        temp.setEstado("Pendiente");
+        historial.add(this.getName(tipo)+" ha liberado el tickete numero: "+this.getTicketeActual(tipo));
+        
+        temp.setComentarioLiberado(this.getOracion(tipo));
+        
+        ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
+        
+    }
+    public void modificarEstadoTicketLiberadoRojo(int indice, String tipo){
+     Tickets temp =(Tickets)ManejadorDeListas.ListaDeRojos.get(indice);
+     if(this.getName(tipo).equals("Fernando")){
+        ManejadorDeListas.arrgloTiketsLiberados[0]=ManejadorDeListas.arrgloTiketsLiberados[0]+1;
+      
+     }
+     else if(this.getName(tipo).equals("Junior")){
+        ManejadorDeListas.arrgloTiketsLiberados[1]=ManejadorDeListas.arrgloTiketsLiberados[1]+1;
+      
+     }
+     else if(this.getName(tipo).equals("Luis")){
+        ManejadorDeListas.arrgloTiketsLiberados[2]=ManejadorDeListas.arrgloTiketsLiberados[2]+1;
+      
+     }
+        System.out.println(this.getOracion(tipo));
+        
+        temp.setEstado("Pendiente");
+        historial.add(this.getName(tipo)+" ha liberado el tickete numero: "+this.getTicketeActual(tipo));
+        
+        temp.setComentarioLiberado(this.getOracion(tipo));
+        
+        ManejadorDeListas.ListaDeRojos.set(indice, temp);
+        
+    }
+    
+    
+    
+    
+    
     public String getName(String oracion){
         String temp="";
         for(int i=0;i<oracion.length();i++){
@@ -341,6 +418,46 @@ public class Servidor implements Runnable{
                    
                     
                 }
+                else if(instruccion.equals("ListaLiberadoAMARILLO")){
+                    int indice=dataInput.readInt();
+                    
+                    String tipo=dataInput.readUTF();
+                    
+                     
+                    System.out.println(tipo+"Este es el tip");
+                    
+                    this.modificarEstadoLiberadoTicketAmarillo(indice,tipo);
+                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+                   
+                    
+                }
+                else if(instruccion.equals("ListaLiberadoROJO")){
+                    int indice=dataInput.readInt();
+                    
+                    String tipo=dataInput.readUTF();
+                    
+                     
+                    System.out.println(tipo+"Este es el tip");
+                    
+                    this.modificarEstadoTicketLiberadoRojo(indice,tipo);
+                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+                   
+                    
+                }else if(instruccion.equals("ListaLiberadoVERDE")){
+                    int indice=dataInput.readInt();
+                    
+                    String tipo=dataInput.readUTF();
+                    
+                     
+                    System.out.println(tipo+"Este es el tip");
+                    
+                    this.modificarEstadoTicketLiberadoVerde(indice,tipo);
+                    //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
+                   
+                    
+                }
+                
+                
                 
                 
                 
