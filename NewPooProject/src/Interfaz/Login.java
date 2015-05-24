@@ -15,7 +15,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         //this.getContentPane().setBackground(Color.gray);
-        this.getContentPane().setBackground(new Color(0,0,204)); 
+        this.getContentPane().setBackground(new Color(0,0,51)); 
         setLocationRelativeTo(null);
         registrarPersonas();
     }
@@ -194,8 +194,8 @@ public class Login extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 0, 204));
-        setPreferredSize(new java.awt.Dimension(480, 409));
+        setBackground(new java.awt.Color(0, 0, 51));
+        setPreferredSize(new java.awt.Dimension(480, 415));
         setResizable(false);
 
         jPasswordField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
