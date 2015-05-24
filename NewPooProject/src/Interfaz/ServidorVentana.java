@@ -128,6 +128,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         Lista = new java.awt.List();
         btnCargarTickets1 = new javax.swing.JButton();
         Lista4 = new java.awt.List();
@@ -193,21 +196,32 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
         pnEmpleadosConectados.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 0, 14))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri Light", 0, 12)); // NOI18N
         jLabel2.setText("NULL");
 
-        jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 12)); // NOI18N
         jLabel3.setText("NULL");
 
-        jLabel4.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri Light", 0, 12)); // NOI18N
         jLabel4.setText("NULL");
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/offlineResize.png"))); // NOI18N
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/offlineResize.png"))); // NOI18N
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/offlineResize.png"))); // NOI18N
 
         javax.swing.GroupLayout pnEmpleadosConectadosLayout = new javax.swing.GroupLayout(pnEmpleadosConectados);
         pnEmpleadosConectados.setLayout(pnEmpleadosConectadosLayout);
         pnEmpleadosConectadosLayout.setHorizontalGroup(
             pnEmpleadosConectadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnEmpleadosConectadosLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
+                .addGroup(pnEmpleadosConectadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnEmpleadosConectadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -218,11 +232,17 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             pnEmpleadosConectadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnEmpleadosConectadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addGroup(pnEmpleadosConectadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnEmpleadosConectadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnEmpleadosConectadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel13))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -444,6 +464,16 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             
         }
     }
+    public void setVerde(){
+        ImageIcon verde = new ImageIcon(getClass().getResource("/Images/onlineResize.png"));
+        jLabel8.setIcon(verde);
+       
+    }
+    public void setRojo(){
+        ImageIcon rojo = new ImageIcon(getClass().getResource("/Images/offlineResize.png"));
+        jLabel8.setIcon(rojo);
+       
+    }
     
     private void btnSetComoVERDEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoVERDEActionPerformed
         // TODO add your handling code here:
@@ -510,6 +540,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void btnCargarTickets1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTickets1ActionPerformed
         // TODO add your handling code here:
+        setVerde();
     }//GEN-LAST:event_btnCargarTickets1ActionPerformed
 
     private void Lista4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Lista4ItemStateChanged
@@ -577,12 +608,15 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTextArea jTextArea1;
