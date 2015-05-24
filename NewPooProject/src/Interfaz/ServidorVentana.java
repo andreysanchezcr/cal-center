@@ -42,7 +42,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         initComponents();
         setLocationRelativeTo(null);
         
-        
+        MyExell.MegaExellGet();
         Lista.setMultipleMode(true);
         
         ManejadorDeListas.addNewTiketsToLocalListPendientes(MyExell.Open_Load_And_ReturnListOfTickets("Libro1.xls"));
@@ -53,6 +53,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                 close();
             }
         });
+        
         
         
     }
@@ -79,13 +80,16 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                 
                 System.out.println("Guardo CAmbios");
 
-        }else{System.exit(0);}  // Cerrar el sistema incondicionalmente
+        }else{
+                System.out.println("FSSDFFSFSFSS");
+                MyExell.generateMegaExell();
+                System.exit(0);}  // Cerrar el sistema incondicionalmente
         }catch (Exception ex){
                 System.out.println("ex.getMessage()");
                
         }
         }
-        MyExell.generateMegaExell();
+        
         System.exit(0);
     }    
     public void setConectados(){
@@ -637,11 +641,8 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        ArrayList<Tickets> SuperLista = MyExell.MegaExellGet();
-        for(int i = 0; i < SuperLista.size();i++){
-            System.out.println(SuperLista.get(i).getAsunto());
-        }
-        
+       // ArrayList<Tickets> SuperLista = MyExell.MegaExellGet();
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

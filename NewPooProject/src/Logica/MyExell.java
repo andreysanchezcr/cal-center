@@ -239,8 +239,9 @@ public abstract class MyExell {
         }
         
     
-        public static ArrayList<Tickets> MegaExellGet(){
-        ArrayList<Tickets> SuperLista = new ArrayList();
+        public static void MegaExellGet(){
+            System.out.println("GUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        //ArrayList<Tickets> SuperLista = new ArrayList();
             
         try{
             File fileMegaExell = new File("MegaExell.xls");  /*Abrir MegaExell*/
@@ -290,7 +291,7 @@ public abstract class MyExell {
                 ticket.setFechayHoraRecepcion(strFechayHoraRecepcion);
                 ticket.setID_CLIENTE(strID_CLIENTE);
                 ticket.setAsunto(strAsunto); 
-                ticket.setIDTicket(Integer.parseInt(strAsunto));
+                ticket.setIDTicket(Integer.parseInt(strIDTicket));
                 ticket.setCategoria(strCategoria);
                 ticket.setID_EMPLEADO(strID_EMPLEADO);
                 ticket.setFechayHoraAtencion(strFechayHoraAtencion);
@@ -300,7 +301,11 @@ public abstract class MyExell {
              
                 
                 
-                SuperLista.add(ticket);
+                ManejadorDeListas.MegaLista.add(ticket);
+                System.out.println("Este es el tamaño de la lista"+ManejadorDeListas.MegaLista.size());
+                for(int i=0;i<ManejadorDeListas.MegaLista.size();i++){
+                    System.out.println(ManejadorDeListas.MegaLista.get(i));
+                }
                                 
             }
         MegaExell.close();    
@@ -309,18 +314,22 @@ public abstract class MyExell {
         //----------------------------------------------------------
         catch (IOException | NumberFormatException | BiffException ioex) {
             System.out.println("ERROR---->>"+ioex.getMessage());
+            generateMegaExell();
+            
         }
+        
         //----------------------------------------------------------
 
         //----------------------------------------------------------
         
-        return SuperLista;
+        
         }
         
         
         
         public static void generateMegaExell (){
             System.out.println("##############");
+            System.out.println("entro en el mega ezcel");
            
         try {
             WritableWorkbook MegaExell = Workbook.createWorkbook(new File("MegaExell.xls"));
