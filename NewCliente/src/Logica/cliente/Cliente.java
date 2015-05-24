@@ -188,9 +188,11 @@ implements Runnable{
     }
     public void modificarJList(){
         for(int i=0;i<listaTicketes.size();i++){
-            if((((Tickets)listaTicketes.get(i)).getEstado().equals("En atencion")||((Tickets)listaTicketes.get(i)).getEstado().equals("Atendido"))&&!ListaEmpleado.getItem(i).equals(((Tickets)listaTicketes.get(i)).getEstadoActual())){
+            if((((Tickets)listaTicketes.get(i)).getEstado().equals("Pendiente")||((Tickets)listaTicketes.get(i)).getEstado().equals("En atencion")||((Tickets)listaTicketes.get(i)).getEstado().equals("Atendido"))&&!ListaEmpleado.getItem(i).equals(((Tickets)listaTicketes.get(i)).getEstadoActual())){
                 ListaEmpleado.replaceItem(((Tickets)listaTicketes.get(i)).getEstadoActual(), i);
             }
+            
+            
         }
         
     }
