@@ -3,6 +3,7 @@ package Logica;
 
 import static Interfaz.VnServidorReportes.ListaActividadReciente;
 import Logica.Tickets;
+import com.toedter.calendar.JCalendar;
 import java.util.ArrayList;
 
 public abstract class ManejadorDeListas {
@@ -213,5 +214,9 @@ public abstract class ManejadorDeListas {
         }
         return listaFecha;
     }
+    public String getFecha(JCalendar calendario){
+        return calendario.getDate().getDay()+"/"+calendario.getDate().getMonth()+"/"+calendario.getDate().getYear();
+    }
+    
 
 }
