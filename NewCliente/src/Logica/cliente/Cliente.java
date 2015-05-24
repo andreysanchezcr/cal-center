@@ -106,7 +106,7 @@ implements Runnable{
         
         
         flujoSaliente.writeInt(indice);
-        this.flujoSaliente.writeUTF("");
+        this.flujoSaliente.writeUTF(this.nombre+"@");
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
         
@@ -114,17 +114,17 @@ implements Runnable{
     }
     public void mandarListaAtendido(int indice,String comentario) throws IOException{
         socket = new Socket("localhost", 5557);
-        System.out.println("Mandando lista");
-        System.out.println(this.getColor());
+        
+        System.out.println("Este es el comentario: "+comentario);
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Lista"+this.getColor());
         
         
         flujoSaliente.writeInt(indice);
-        this.flujoSaliente.writeUTF(comentario);
+        this.flujoSaliente.writeUTF(this.nombre+"@"+comentario);
         //this.flujoSaliente.writeUTF("PERROOO");
        
-        socket.close();
+       // socket.close();
         
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
@@ -207,6 +207,7 @@ implements Runnable{
             System.out.println("Entroo");
             flujoSaliente.writeUTF(this.parent.getColor());
             this.listaTicketes=(ArrayList)this.objeto_entrante.readObject();
+            
             for(int i=0;i<this.listaTicketes.size();i++){
                 System.out.println(((Tickets)this.listaTicketes.get(i)).getAsunto());
             }
