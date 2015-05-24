@@ -8,6 +8,7 @@ package Logica;
 import Interfaz.VnServidorReportes;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -21,94 +22,84 @@ public class Funciones {
         
         if(origenDeLosTiempos==true && (VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Fernando"))){
             ArrayList <Tickets> tiketsEncontrados;
+            DefaultListModel modelo = new DefaultListModel();
+            
             tiketsEncontrados = getTiketsAtendidosTodosUnEmpleado("Fernando");
             for(int i = 0; i < tiketsEncontrados.size() ; i++){
+                String strInfoParaReportes = Integer.toString(tiketsEncontrados.get(i).getIDTicket());
+                
+                
                 
                 VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados.get(i).getIDTicket()));
                 
                 
+            }  
             }   
-        }
+        
         
         if(origenDeLosTiempos==true && (VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Junior"))){
-            ArrayList <Tickets> tiketsEncontrados;
-            tiketsEncontrados = getTiketsAtendidosTodosUnEmpleado("Fernando");
-            for(int i = 0; i < tiketsEncontrados.size() ; i++){
+            ArrayList <Tickets> tiketsEncontrados2;
+            tiketsEncontrados2 = getTiketsAtendidosTodosUnEmpleado("Fernando");
+            for(int i = 0; i < tiketsEncontrados2.size() ; i++){
                 
-                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados.get(i).getIDTicket()));
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados2.get(i).getIDTicket()));
                 
                 
             }   
         }
         
         if(origenDeLosTiempos==true && (VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Luis"))){
-            ArrayList <Tickets> tiketsEncontrados;
-            tiketsEncontrados = getTiketsAtendidosTodosUnEmpleado("Fernando");
-            for(int i = 0; i < tiketsEncontrados.size() ; i++){
+            ArrayList <Tickets> tiketsEncontrados3;
+            tiketsEncontrados3 = getTiketsAtendidosTodosUnEmpleado("Fernando");
+            for(int i = 0; i < tiketsEncontrados3.size() ; i++){
                 
-                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados.get(i).getIDTicket()));
-                
-                
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados3.get(i).getIDTicket()));
             }   
         }
         
         if(origenDeLosTiempos==true && (VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Todos"))){
-            ArrayList <Tickets> tiketsEncontrados;
-            tiketsEncontrados = getTiketsAtendidosTodosUnEmpleado("Fernando");
-            for(int i = 0; i < tiketsEncontrados.size() ; i++){
+            ArrayList <Tickets> tiketsEncontrados4;
+            tiketsEncontrados4 = getTiketsAtendidosTodosUnEmpleado("Fernando");
+            for(int i = 0; i < tiketsEncontrados4.size() ; i++){
                 
-                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados.get(i).getIDTicket()));
-                
-            }
-            tiketsEncontrados = getTiketsAtendidosTodosUnEmpleado("Junior");
-            for(int i = 0; i < tiketsEncontrados.size() ; i++){
-                
-                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados.get(i).getIDTicket()));
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados4.get(i).getIDTicket()));
                 
             }
-            tiketsEncontrados = getTiketsAtendidosTodosUnEmpleado("Luis");
-            for(int i = 0; i < tiketsEncontrados.size() ; i++){
+            tiketsEncontrados4 = getTiketsAtendidosTodosUnEmpleado("Junior");
+            for(int i = 0; i < tiketsEncontrados4.size() ; i++){
                 
-                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados.get(i).getIDTicket()));
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados4.get(i).getIDTicket()));
                 
             }
-            
+            tiketsEncontrados4 = getTiketsAtendidosTodosUnEmpleado("Luis");
+            for(int i = 0; i < tiketsEncontrados4.size() ; i++){
+                
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados4.get(i).getIDTicket()));
+                
+            }
+        } 
         }
         
         
         
         
         
-        if(origenDeLosTiempos==false){
-            
         
-        }
         
         
 
-    }
     
     
     
     
-    public static ArrayList <Tickets> getTiketsAtendidosTodosUnEmpleado(String Empleado){
+    
+    public static ArrayList <Tickets> getTiketsAtendidosTodosUnEmpleado(String empleado){
         ArrayList <Tickets> tiketsEncontrados = new ArrayList();
-        for(int i = 0; i < ManejadorDeListas.ListaDeVerdes.size(); i++){
-            if (ManejadorDeListas.ListaDeVerdes.get(i).getID_EMPLEADO().equals(Empleado)){
-                tiketsEncontrados.add(ManejadorDeListas.ListaDeVerdes.get(i));
+        for(int i = 0; i < ManejadorDeListas.MegaLista.size(); i++){
+            if (ManejadorDeListas.MegaLista.get(i).getID_EMPLEADO().equals(empleado)){
+                tiketsEncontrados.add(ManejadorDeListas.MegaLista.get(i));
             }
-        }
-        for(int i = 0; i < ManejadorDeListas.ListaDeAmarillos.size(); i++){
-            if (ManejadorDeListas.ListaDeAmarillos.get(i).getID_EMPLEADO().equals(Empleado)){
-                tiketsEncontrados.add(ManejadorDeListas.ListaDeAmarillos.get(i));
-            }
-        }
-        for(int i = 0; i < ManejadorDeListas.ListaDeRojos.size(); i++){
-            if (ManejadorDeListas.ListaDeRojos.get(i).getID_EMPLEADO().equals(Empleado)){
-                tiketsEncontrados.add(ManejadorDeListas.ListaDeRojos.get(i));
-            }
-        }
-            
+        } 
         return tiketsEncontrados;
     }
     

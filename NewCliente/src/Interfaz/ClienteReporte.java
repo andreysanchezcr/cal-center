@@ -57,8 +57,8 @@ public class ClienteReporte extends javax.swing.JFrame {
     }
     public String getFecha(){
         
-        String año = Integer.toString(calendario.getCalendar().get(java.util.Calendar.YEAR));
-   String mes = Integer.toString(calendario.getCalendar().get(java.util.Calendar.MONTH) + 1);
+    String año = Integer.toString(calendario.getCalendar().get(java.util.Calendar.YEAR));
+    String mes = Integer.toString(calendario.getCalendar().get(java.util.Calendar.MONTH) + 1);
     String dia = Integer.toString(calendario.getCalendar().get(java.util.Calendar.DATE));
         
         
