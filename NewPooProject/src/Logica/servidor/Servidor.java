@@ -119,11 +119,16 @@ public class Servidor implements Runnable{
 
                     temp = (Persona) listaEmpleados.get(i);
                     if (login.equals(temp.correo + " " + temp.contraseña)) {
-                        sucess = true;
-                        listaEmpleados.set(i, temp);
+                        if(!temp.getEstado()){
+                            sucess = true;
+                        
+                            listaEmpleados.set(i, temp);
                         
                         
                         
+                        
+                        
+                        }
                         break;
                         
 
@@ -145,6 +150,7 @@ public class Servidor implements Runnable{
             }else{
                 saliente.writeInt(-1);
             }
+            sucess=false;
             
         }
         public void desconectarPersona(String nombre){
