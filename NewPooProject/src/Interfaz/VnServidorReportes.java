@@ -316,55 +316,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
                 new VnServidorReportes().setVisible(true);
             }
         });
-    }
-    
-    public static int tiempoSegundos(ArrayList<Tickets> lista, String idEmpleado){
-        int largoLista = lista.size();
-        int recorrido = 0;
-        int tiempoTotal = 0;
-        while(recorrido < largoLista){
-            if(lista.get(recorrido).getID_EMPLEADO().equals(idEmpleado)){
-                tiempoTotal = tiempoTotal + Integer.parseInt(lista.get(recorrido).getTiempoSegundos());
-            }
-            recorrido = recorrido +1;
-        }
-        return tiempoTotal;
-    }
-    
-    public static int tiempoSegEmpleado(String idEmpleado){
-        int tiempoTotalEmpleado = 0;
-        tiempoTotalEmpleado = tiempoSegundos(ListaDeVerdes, idEmpleado);
-        tiempoTotalEmpleado = tiempoSegundos(ListaDeAmarillos, idEmpleado);
-        tiempoTotalEmpleado = tiempoSegundos(ListaDeRojos, idEmpleado);
-        return tiempoTotalEmpleado;
-    }
-    
-    public static  ArrayList<Tickets> ticketEntreFecha(int dia1, int mes1, int ano1, int dia2, int mes2, int ano2, ArrayList<Tickets> lista){
-        int largoLista = lista.size();
-        int recorrido = 0;
-        ArrayList<Tickets> listaFecha = new ArrayList<Tickets>();
-        if(ano1 == ano2){
-            while(recorrido < largoLista){
-                if(Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) == ano1){
-                    listaFecha.add(lista.get(recorrido));
-                }
-                recorrido = recorrido +1;
-            }
-        }
-        else{
-            while(recorrido < largoLista){
-            if((Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) <= ano1) && (Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) >= ano2)){
-                if((Integer.parseInt(getMes(lista.get(recorrido).getFechayHoraRecepcion())) <= mes1) && (Integer.parseInt(getMes(lista.get(recorrido).getFechayHoraRecepcion())) >= mes2)){
-                    if((Integer.parseInt(getDia(lista.get(recorrido).getFechayHoraRecepcion())) <= dia1) && (Integer.parseInt(getDia(lista.get(recorrido).getFechayHoraRecepcion())) >= dia2)){
-                        listaFecha.add(lista.get(recorrido));
-                        }
-                    }
-                }
-            recorrido = recorrido+1;
-            }
-        }
-        return listaFecha;
-    }
+    }zz
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static java.awt.List ListaActividadReciente;
