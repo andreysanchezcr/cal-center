@@ -160,15 +160,17 @@ public class Servidor implements Runnable{
         }
         public void modificarEstadoTicketAmarillo(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeAmarillos.get(indice);
-        if(tipo.equals("")){
+        if(this.getOracion(tipo).equals("")){
             
-        historial.add("Un nuevo ticket esta en atencion");
+        
         temp.setEstado("En atencion");
+        historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
         }else{
             temp.setEstado("Atendido");
-            historial.add("Un nuevo ticket atendido");
-            System.out.println(tipo);
-            temp.setComentario(tipo);
+            System.out.println("ATEMDIDO");
+            historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
+            //System.out.println(this.getOracion(tipo));
+            temp.setComentario(this.getOracion(tipo));
         }
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
         
@@ -176,15 +178,17 @@ public class Servidor implements Runnable{
         
         public void modificarEstadoTicketRojo(int indice,String tipo) throws IOException{
         Tickets temp =(Tickets)ManejadorDeListas.ListaDeRojos.get(indice);
-        if(tipo.equals("")){
+        if(this.getOracion(tipo).equals("")){
             
-        historial.add("Un nuevo ticket esta en atencion");
+        
         temp.setEstado("En atencion");
+        historial.add(this.getName(tipo)+" esta atendiendo el tickete numero: "+this.getTicketeActual(tipo));
         }else{
-            historial.add("Un nuevo ticket atendido");
             temp.setEstado("Atendido");
-            System.out.println(tipo);
-            temp.setComentario(tipo);
+            System.out.println("ATEMDIDO");
+            historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
+            //System.out.println(this.getOracion(tipo));
+            temp.setComentario(this.getOracion(tipo));
         }
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
         
@@ -200,8 +204,8 @@ public class Servidor implements Runnable{
         }else{
             temp.setEstado("Atendido");
             System.out.println("ATEMDIDO");
-            historial.add(this.getName(tipo)+" esta atendido el tickete numero: "+this.getTicketeActual(tipo));
-            System.out.println(this.getOracion(tipo));
+            historial.add(this.getName(tipo)+" ha atendido el tickete numero: "+this.getTicketeActual(tipo));
+            //System.out.println(this.getOracion(tipo));
             temp.setComentario(this.getOracion(tipo));
         }
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
@@ -239,6 +243,7 @@ public class Servidor implements Runnable{
         for(int i=0;i<oracion.length();i++){
                  if(oracion.charAt(i)=='@'){
                 temp="";
+                continue;
             }
                  if(oracion.charAt(i)=='%'){
                      return temp;

@@ -106,7 +106,7 @@ implements Runnable{
         
         
         flujoSaliente.writeInt(indice);
-         this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+((Tickets)this.listaTicketes.get(1)).getIDTicket()+"%");
+         this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+((Tickets)this.listaTicketes.get(indice)).getIDTicket()+"%");
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
         
