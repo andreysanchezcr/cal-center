@@ -6,6 +6,9 @@
 package Interfaz;
 
 import Logica.Tickets;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +22,8 @@ public class TiketVentana extends javax.swing.JFrame {
     boolean botonRes = false;
     Tickets actual;
     int indice;
+    ClienteVentana parent;
+    
     
     public TiketVentana(ClienteVentana parent,int indice) {
         initComponents();
@@ -31,6 +36,7 @@ public class TiketVentana extends javax.swing.JFrame {
         this.actual=(Tickets)parent.cliente.getListaTickets().get(indice);
         System.out.println(actual.getAsunto());
         System.out.println("ESTE ES EL ASUNTO");
+        this.iniciarCrono();
 
 
     }
@@ -89,7 +95,7 @@ public class TiketVentana extends javax.swing.JFrame {
         btnPausa = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        tcomentario = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,9 +156,9 @@ public class TiketVentana extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel3.setText("Comentario");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        tcomentario.setColumns(20);
+        tcomentario.setRows(5);
+        jScrollPane2.setViewportView(tcomentario);
 
         jButton2.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jButton2.setText("Pendiente");
@@ -218,7 +224,15 @@ public class TiketVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
+        try {
+            parent.cliente.modificarEstadoTicketAtendido(indice,tcomentario.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(TiketVentana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPausaActionPerformed
@@ -285,7 +299,7 @@ public class TiketVentana extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lblTime;
+    private javax.swing.JTextArea tcomentario;
     // End of variables declaration//GEN-END:variables
 }
