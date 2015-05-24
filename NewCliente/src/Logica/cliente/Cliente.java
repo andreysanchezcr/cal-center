@@ -55,12 +55,21 @@ implements Runnable{
     /**
      * Crea la ventana, establece la conexi�n e instancia al controlador.
      */
-    
+    String correo;
+    String contrasena;
+    public String getUsuario(){
+        return correo;
+    }
+    public String getContrasena(){
+        return contrasena;
+    }
     public Cliente(String correo, String contrasena,Login parent)
     {
         try
         {
             this.nombre =nombre;
+            this.correo=correo;
+            this.contrasena=contrasena;
             socket = new Socket("localhost", 5557);
             this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
            flujoSaliente = new DataOutputStream(socket.getOutputStream());
