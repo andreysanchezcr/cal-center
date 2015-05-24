@@ -18,6 +18,17 @@ public class TiketVentana extends javax.swing.JFrame {
     
     public TiketVentana() {
         initComponents();
+<<<<<<< HEAD
+=======
+
+        this.setVisible(true);
+        
+        System.out.println(":::::::::::::::::::::::::::");
+        this.actual=(Tickets)parent.cliente.getListaTickets().get(indice);
+        System.out.println(actual.getAsunto());
+        System.out.println("ESTE ES EL ASUNTO");
+
+>>>>>>> origin/master
     }
     public void iniciarCrono(){
         btnPausa.setEnabled(true);

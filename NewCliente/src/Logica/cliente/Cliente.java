@@ -106,7 +106,7 @@ implements Runnable{
         
         
         flujoSaliente.writeInt(indice);
-        this.flujoSaliente.writeUTF(this.nombre+"@");
+         this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+((Tickets)this.listaTicketes.get(1)).getIDTicket()+"%");
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
         
@@ -119,9 +119,9 @@ implements Runnable{
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Lista"+this.getColor());
         
-        
+        //;
         flujoSaliente.writeInt(indice);
-        this.flujoSaliente.writeUTF(this.nombre+"@"+comentario);
+        this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+((Tickets)this.listaTicketes.get(1)).getIDTicket()+"%"+comentario);
         //this.flujoSaliente.writeUTF("PERROOO");
        
        // socket.close();

@@ -581,10 +581,5 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
    
     
-    public static void main(String args[]) {
-    
-      
-                new ServidorVentana().setVisible(true);
-        
-    }
+   
 }
