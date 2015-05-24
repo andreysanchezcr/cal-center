@@ -19,6 +19,10 @@ public class TiketVentana extends javax.swing.JFrame {
     public TiketVentana() {
         initComponents();
     }
+
+    TiketVentana(ClienteVentana aThis, int indice) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public void iniciarCrono(){
         btnPausa.setEnabled(true);
         hilo.start();
