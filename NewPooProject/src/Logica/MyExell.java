@@ -381,8 +381,8 @@ public abstract class MyExell {
         } catch (IOException ex) {
             Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+        for (int i = 0; i>ManejadorDeListas.MegaLista.size();i++){System.out.println(ManejadorDeListas.MegaLista.get(i).getIDTicket());}
+        for (int i = 0; i>ManejadorDeListas.MegaLiberados.size();i++){System.out.println(ManejadorDeListas.MegaLiberados.get(i).getIDTicket());}
         }
         
         
