@@ -41,7 +41,8 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
        //this.servidor=servidor;
         initComponents();
         setLocationRelativeTo(null);
-        MyExell.Open_Load_And_ReturnListOfTickets("Libro1.xls");
+        
+        ManejadorDeListas.addNewTiketsToLocalListPendientes(MyExell.Open_Load_And_ReturnListOfTickets("Libro1.xls"));
         this.setVisible(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
