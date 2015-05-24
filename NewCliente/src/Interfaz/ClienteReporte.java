@@ -9,6 +9,7 @@ package Interfaz;
 import static Interfaz.VnReporteCliente.chart;
 import static Interfaz.VnReporteCliente.chartPanel;
 import static Interfaz.VnReporteCliente.defaultpiedataset;
+import com.toedter.calendar.JCalendar;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -50,8 +51,12 @@ public class ClienteReporte extends javax.swing.JFrame {
         chartPanel = new ChartPanel(chart);
         chartPanel.setBounds(0, 0, 314, 270);
         jpGrafico.add(chartPanel);
+        this.setVisible(true);
 
         
+    }
+    public String getFecha(){
+        return jCalendar1.getDate().getDay()+"/"+jCalendar1.getDate().getMonth()+"/"+jCalendar1.getDate().getYear();
     }
     public boolean verificarUsuario(String nombre,String contrasena){
         if(nombre.equals(parent.cliente.getUsuario())&&contrasena.equals(parent.cliente.getContrasena())){

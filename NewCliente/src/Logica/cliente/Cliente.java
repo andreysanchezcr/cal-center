@@ -63,6 +63,7 @@ implements Runnable{
     public String getContrasena(){
         return contrasena;
     }
+    
     public Cliente(String correo, String contrasena,Login parent)
     {
         try
@@ -119,6 +120,20 @@ implements Runnable{
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
         
+        
+    }
+    public void getReporte(String fecha) throws IOException{
+        socket = new Socket("localhost", 5557);
+        System.out.println("Obteniendo reporte");
+        
+        flujoSaliente = new DataOutputStream(socket.getOutputStream());
+        
+        this.flujoSaliente.writeUTF("Reporte");
+        
+        
+       // flujoSaliente.writeInt(indice);
+         this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+fecha);
+//this.flujoSaliente.writeUTF(this.parent.getNombre());
         
     }
     public void mandarListaAtendido(int indice,String comentario) throws IOException{

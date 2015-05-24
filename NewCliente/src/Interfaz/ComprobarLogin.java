@@ -99,6 +99,7 @@ public class ComprobarLogin extends javax.swing.JFrame {
         if(parent.verificarUsuario(tusuario.getText(), tcontrasena.getText())){
             ////
             System.out.println("DATOS CORRECTORS");
+            this.parent.parent.cliente.getReporte(this.parent.getFecha());
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Datos no validos");
