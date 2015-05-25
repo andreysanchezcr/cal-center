@@ -314,7 +314,7 @@ public class Login extends javax.swing.JFrame {
             
             ServidorVentana vServidor=new ServidorVentana();
             Thread hiloVentana =new Thread(vServidor);
-            Servidor servidor=new Servidor(vServidor);
+            Servidor servidor=new Servidor(vServidor,this);
             Thread hilo=new Thread(servidor);
             hilo.start();
             hiloVentana.start();
@@ -327,6 +327,16 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public int getPuerto(){
+        try{
+            return Integer.parseInt(this.jTextField6.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Digite un puerto valido");
+        }
+        return -1;
+        
+    }
+    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         AcercaDe acercaDeFrame = new AcercaDe();        

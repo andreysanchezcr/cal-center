@@ -1,5 +1,6 @@
 package Logica.servidor;
 
+import Interfaz.Login;
 import Interfaz.ServidorVentana;
 import Logica.ManejadorDeListas;
 
@@ -38,6 +39,7 @@ public class Servidor implements Runnable {
     ArrayList listaConexiones = new ArrayList();
     HiloDeCliente_1 cli;
     ArrayList historial;
+    int puerto;
 
     private void registrarPersonas() {
         historial = new ArrayList();
@@ -71,12 +73,13 @@ public class Servidor implements Runnable {
      * Se mete en un bucle infinito para ateder clientes, lanzando un hilo para
      * cada uno de ellos.
      */
-    public Servidor(ServidorVentana ventana) {
+    public Servidor(ServidorVentana ventana,Login parent) {
         registrarPersonas();
         this.ventana = ventana;
         ventana.setServidor(this);
         ventana.setListaEmpleados(listaEmpleados);
         ventana.setConectados();
+        puerto=parent.getPuerto();
 
     }
 
@@ -391,7 +394,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
     public void run() {
 
         try {
-            ServerSocket socketServidor = new ServerSocket(5557);
+            ServerSocket socketServidor = new ServerSocket(puerto);
 
             while (true) {
 

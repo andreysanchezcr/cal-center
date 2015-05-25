@@ -46,6 +46,8 @@ implements Runnable{
     boolean solicitud=false;
     String nombre;
     ClienteVentana clienteventana;
+    String host;
+    int puerto;
     
     /**
      * Arranca el Cliente de chat.
@@ -68,6 +70,8 @@ implements Runnable{
     {
         try
         {
+            host=parent.getHost();
+            puerto=parent.getPuerto();
             this.nombre =nombre;
             this.correo=correo;
             this.contrasena=contrasena;
@@ -174,7 +178,7 @@ implements Runnable{
     
     
     public void mandarListaAtendido(int indice,String comentario) throws IOException{
-        socket = new Socket("localhost", 5557);
+        socket = new Socket(host, puerto);
         
        // System.out.println("Este es el comentario: "+comentario);
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
