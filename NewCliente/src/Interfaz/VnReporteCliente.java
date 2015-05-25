@@ -5,6 +5,13 @@
  */
 package Interfaz;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.util.Rotation;
+
 /**
  *
  * @author root
@@ -16,6 +23,33 @@ public class VnReporteCliente extends javax.swing.JFrame {
      */
     public VnReporteCliente() {
         initComponents();
+        
+                
+        // Fuente de Datos
+        DefaultPieDataset defaultpiedataset = new DefaultPieDataset();
+        defaultpiedataset.setValue("Total de Tickets Liberados", (Integer.parseInt(lblNumTicketsResividos.getText())-Integer.parseInt(lblNumTicketsSatisfactorios.getText())));
+        defaultpiedataset.setValue("Tickets Atendidos Satisfactoriamente", Integer.parseInt(lblNumTicketsSatisfactorios.getText()));
+        //defaultpiedataset.setValue("Hacking", new Double(19.5D));
+        //defaultpiedataset.setValue("SEO", new Double(30.5D));
+        //defaultpiedataset.setValue("Redes", new Double(2.0D));
+ 
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createPieChart3D("Mi Proporción", defaultpiedataset, true, true, false);
+        PiePlot3D pieplot3d = (PiePlot3D)chart.getPlot();
+        pieplot3d.setDepthFactor(0.5);
+        pieplot3d.setStartAngle(290D);
+        pieplot3d.setDirection(Rotation.CLOCKWISE);
+        pieplot3d.setForegroundAlpha(0.5F);
+        
+        // Mostrar Grafico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setBounds(0, 0, 314, 270);
+        jpGrafico.add(chartPanel);
+
+
+
+        
+        
     }
 
     /**
@@ -37,8 +71,8 @@ public class VnReporteCliente extends javax.swing.JFrame {
         lblUsuarioTitulo3 = new javax.swing.JLabel();
         lblUsuarioTitulo4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblNumTicketsResividos = new javax.swing.JLabel();
+        lblNumTicketsSatisfactorios = new javax.swing.JLabel();
         lblUsuarioTitulo5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
@@ -80,9 +114,9 @@ public class VnReporteCliente extends javax.swing.JFrame {
 
         jButton1.setText("Volver");
 
-        jLabel2.setText("num Tikets Resividos");
+        lblNumTicketsResividos.setText("15");
 
-        jLabel3.setText("num Satisfactorios");
+        lblNumTicketsSatisfactorios.setText("7");
 
         lblUsuarioTitulo5.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         lblUsuarioTitulo5.setText("Tanto por Ciento");
@@ -109,7 +143,7 @@ public class VnReporteCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblUsuarioTitulo2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblNumTicketsSatisfactorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblUsuarioTitulo1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
@@ -118,14 +152,14 @@ public class VnReporteCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblNumTicketsResividos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jpGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,11 +178,11 @@ public class VnReporteCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUsuarioTitulo3)
-                            .addComponent(jLabel2))
+                            .addComponent(lblNumTicketsResividos))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUsuarioTitulo2)
-                            .addComponent(jLabel3))
+                            .addComponent(lblNumTicketsSatisfactorios))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUsuarioTitulo4)
@@ -200,10 +234,10 @@ public class VnReporteCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jpGrafico;
     private javax.swing.JLabel lblNombreUsuario;
+    private javax.swing.JLabel lblNumTicketsResividos;
+    private javax.swing.JLabel lblNumTicketsSatisfactorios;
     private javax.swing.JLabel lblTituloReporteAtencion;
     private javax.swing.JLabel lblUsuarioTitulo;
     private javax.swing.JLabel lblUsuarioTitulo1;
