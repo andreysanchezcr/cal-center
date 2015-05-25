@@ -12,6 +12,7 @@ public abstract class ManejadorDeListas {
     public static ArrayList<Tickets> ListaDeVerdes = new ArrayList();
     public static ArrayList<Tickets> ListaDeAmarillos = new ArrayList();
     public static ArrayList<Tickets> ListaDeRojos = new ArrayList();
+    public static ArrayList<Tickets> MegaLista = new ArrayList();
     public static int arrgloTiketsLiberados[]={0,0,0};
     
     public static void addNewTiketsToLocalListPendientes(ArrayList<Tickets> ListaDePendientesInsert){
@@ -44,6 +45,15 @@ public abstract class ManejadorDeListas {
         }
     }
 
+    
+    public static ArrayList<Tickets> getMegaLista() {
+        return MegaLista;
+    }
+
+    public static void setMegaLista(ArrayList<Tickets> MegaLista) {
+        ManejadorDeListas.MegaLista = MegaLista;
+    }
+    
     public static void addNewTiketsToLocalListAmarillos(ArrayList<Tickets> ListaDeAmarillosInsert){
         for (int i = 0; i < ListaDeAmarillosInsert.size();i++){
             ListaDeAmarillos.add(ListaDeAmarillosInsert.get(i));

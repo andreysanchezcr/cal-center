@@ -42,7 +42,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         initComponents();
         setLocationRelativeTo(null);
         
-        
+        ManejadorDeListas.setMegaLista(MyExell.MegaExellGet());
         Lista.setMultipleMode(true);
         
         ManejadorDeListas.addNewTiketsToLocalListPendientes(MyExell.Open_Load_And_ReturnListOfTickets("Libro1.xls"));

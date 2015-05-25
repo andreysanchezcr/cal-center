@@ -290,7 +290,7 @@ public abstract class MyExell {
                 ticket.setFechayHoraRecepcion(strFechayHoraRecepcion);
                 ticket.setID_CLIENTE(strID_CLIENTE);
                 ticket.setAsunto(strAsunto); 
-                ticket.setIDTicket(Integer.parseInt(strAsunto));
+                ticket.setIDTicket(Integer.parseInt(strIDTicket));
                 ticket.setCategoria(strCategoria);
                 ticket.setID_EMPLEADO(strID_EMPLEADO);
                 ticket.setFechayHoraAtencion(strFechayHoraAtencion);
