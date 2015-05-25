@@ -8,6 +8,7 @@ package Interfaz;
 
 
 import com.toedter.calendar.JCalendar;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -79,9 +80,15 @@ public class ClienteReporte extends javax.swing.JFrame {
     String mes = Integer.toString(calendario.getCalendar().get(java.util.Calendar.MONTH) + 1);
     String dia = Integer.toString(calendario.getCalendar().get(java.util.Calendar.DATE));
     String resultado="";
-    if(Integer.parseInt(mes)<10){
+    if(Integer.parseInt(mes)<10&&Integer.parseInt(dia)<10){
+        resultado="0"+dia+"/"+"0"+mes+"/"+año;
+    }
+    else if(Integer.parseInt(mes)<10){
         resultado=dia+"/"+"0"+mes+"/"+año;
-    }else{
+    }else if(Integer.parseInt(dia)<10){
+        resultado="0"+dia+"/"+mes+"/"+año;
+    }
+    else{
         resultado=dia+"/"+mes+"/"+año;
     }
         
@@ -102,6 +109,9 @@ public class ClienteReporte extends javax.swing.JFrame {
                 continue;
             }
             temp=temp+variables.charAt(i);
+        }
+        if(this.efectivos==0&&this.liberados==0){
+            JOptionPane.showMessageDialog(this, "La fecha seleccionada no se trabajo");
         }
         this.liberados=Integer.parseInt(temp);
         this.lrecibidos.setText(this.efectivos+this.liberados+"");

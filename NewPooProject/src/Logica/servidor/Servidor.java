@@ -505,6 +505,8 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
         int liberados = contarLiberados(this.getName(tipo), this.getFecha(tipo));
         System.out.println(efectivos+"@"+liberados);
        this.objetosaliente.writeObject(efectivos+"@"+liberados);
+       historial.add(this.getName(tipo) + " ha solicitado su reporte para la fecha : " + this.getHora(this.getFecha(tipo)));
+        
         //this.saliente.writeUTF(efectivos+"@"+liberados);
         System.out.println("despues de terminar el reporte");
 
