@@ -98,21 +98,16 @@ public abstract class MyExell {
             String strIDcliente = celdaIDcliente.getContents();       
             
             strDisplayToLista += Integer.toString(ID_Secuencia);
-            
-            
+     
             Cell celdaFechaHora = hojaActual.getCell(0,fila+1);
             String strFechaHoraArchivo = celdaFechaHora.getContents();       
-            
-           
-            
+         
             strDisplayToLista += "   Asunto: ";
             
             Cell celdaAsunto = hojaActual.getCell(2,fila+1);
             String strAsunto = celdaAsunto.getContents();
             strDisplayToLista += strAsunto;
                     
-            
-            
             Tickets ticket = new Tickets(strFechaHora, strIDcliente, strAsunto ,ID_Secuencia);        
             //Tickets ticket = new Tickets(strFechaHora, strIDcliente, strAsunto ,ID_Secuencia);
             listaTikets.add(ticket);
@@ -123,12 +118,7 @@ public abstract class MyExell {
         return listaTikets;
         
     }
-    
-    
-    
-    
-    
-    
+
         public static void save_All_Changes(String path) {
         
             //Fecha y Hora para el Nombre del Archivo Final
@@ -137,7 +127,6 @@ public abstract class MyExell {
 
             //Abrir archivo .xls para clonarlo
             //open(path);
-
 
             try {
                 copiaDeLibro = Workbook.createWorkbook(new File(path+"/TICKETS_"+strFechaHoraParaFile+".xls")); 
@@ -207,9 +196,6 @@ public abstract class MyExell {
         }
         }
 
-        
-    
-
         /**
          * Metodo para extraer  el path del archivo que se clonara para generar un nuevo archivo en ese lugar
          * @param direccion del archivo original que sera clonado
@@ -238,24 +224,22 @@ public abstract class MyExell {
             return cutString;
         }
         
-    
         public static void MegaExellGet(int CASE){
             
-        
-           
         try{
             File fileMegaExell = new File("MegaExell.xls");  /*Abrir MegaExell*/
             Workbook MegaExell = Workbook.getWorkbook(fileMegaExell);
             
+            
+            if(MegaExell.getNumberOfSheets()>1){
+            
             Sheet hojaMaster = MegaExell.getSheet(CASE);
+            
             
             int numFilas = hojaMaster.getRows();
             System.out.println("NUMERO ROWS"+numFilas);
             for( int fila = 0; fila+1 < numFilas; fila++ ){
         
-                
-            
-            
                 Cell celdaFechayHoraRecepcion =  hojaMaster.getCell(0,fila+1);
                 Cell celdaID_CLIENTE =  hojaMaster.getCell(1,fila+1);    
                 Cell celdaasunto =  hojaMaster.getCell(2,fila+1);
@@ -274,15 +258,15 @@ public abstract class MyExell {
                
                 
                 String strFechayHoraRecepcion = celdaFechayHoraRecepcion.getContents();
-                String strID_CLIENTE = celdaID_CLIENTE          .getContents();
-                String strAsunto = celdaasunto             .getContents();
-                String strIDTicket = celdaIDTicket           .getContents();
-                String strCategoria = celdacategoria          .getContents();
-                String strID_EMPLEADO = celdaID_EMPLEADO        .getContents();
+                String strID_CLIENTE = celdaID_CLIENTE.getContents();
+                String strAsunto = celdaasunto.getContents();
+                String strIDTicket = celdaIDTicket.getContents();
+                String strCategoria = celdacategoria.getContents();
+                String strID_EMPLEADO = celdaID_EMPLEADO.getContents();
                 String strFechayHoraAtencion = celdafechayHoraAtencion .getContents();
-                String strTiempoSegundos = celdatiempoSegundos     .getContents();
-                String strComentario = celdaComentario         .getContents();
-                String strEstado = celdaestado             .getContents();
+                String strTiempoSegundos = celdatiempoSegundos.getContents();
+                String strComentario = celdaComentario.getContents();
+                String strEstado = celdaestado.getContents();
                 
                        
                 Tickets ticket = new Tickets();
@@ -306,7 +290,9 @@ public abstract class MyExell {
 
                                 
             }
-        MegaExell.close();    
+        }
+        MegaExell.close();
+        
         }
         
         //----------------------------------------------------------
@@ -365,10 +351,11 @@ public abstract class MyExell {
                     } catch (WriteException ex) {
                         System.out.println("Error EN GUARDAR "+ex.getMessage());
                     }
-                }   
+                } 
+                MegaExell.write();
             }
         
-            MegaExell.write();
+            
             try {
                 MegaExell.close();
             } catch (WriteException ex) {
