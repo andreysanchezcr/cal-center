@@ -240,8 +240,8 @@ public abstract class MyExell {
         
     
         public static void MegaExellGet(int CASE){
-            System.out.println("GUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        //ArrayList<Tickets> SuperLista = new ArrayList();
+            
+        
            
         try{
             File fileMegaExell = new File("MegaExell.xls");  /*Abrir MegaExell*/
@@ -303,10 +303,7 @@ public abstract class MyExell {
                 else{ManejadorDeListas.MegaLiberados.add(ticket);}
                 
                 
-                System.out.println("Este es el tamaño de la lista"+ManejadorDeListas.MegaLista.size());
-                for(int i=0;i<ManejadorDeListas.MegaLista.size();i++){
-                    System.out.println(ManejadorDeListas.MegaLista.get(i));
-                }
+
                                 
             }
         MegaExell.close();    
@@ -329,8 +326,7 @@ public abstract class MyExell {
         
         
         public static void generateMegaExell (int pagina,ArrayList<Tickets> lista){
-            System.out.println("##############");
-            System.out.println("entro en el mega ezcel");
+            System.out.println("GENERATEEE");
            
         try {
             WritableWorkbook MegaExell = Workbook.createWorkbook(new File("MegaExell.xls"));
@@ -365,6 +361,7 @@ public abstract class MyExell {
                         hojaTikets.addCell(lblestado);
                         
                         
+                        
                     } catch (WriteException ex) {
                         System.out.println("Error EN GUARDAR "+ex.getMessage());
                     }
@@ -381,8 +378,8 @@ public abstract class MyExell {
         } catch (IOException ex) {
             Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i = 0; i>ManejadorDeListas.MegaLista.size();i++){System.out.println(ManejadorDeListas.MegaLista.get(i).getIDTicket());}
-        for (int i = 0; i>ManejadorDeListas.MegaLiberados.size();i++){System.out.println(ManejadorDeListas.MegaLiberados.get(i).getIDTicket());}
+        
+        
         }
         
         

@@ -61,9 +61,15 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     }
    
     private void close(){
+         MyExell.generateMegaExell(0,ManejadorDeListas.MegaLista);
+         MyExell.generateMegaExell(1,ManejadorDeListas.MegaLiberados);
+        
         JFileChooser jF1 = null;
+        
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea guardar los cambios "+"\n"+" producidos en el Sstema?",
             "Guardar Cambios", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            
+            
             
             jF1= new JFileChooser();
             jF1.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -79,7 +85,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                 MyExell.save_All_Changes(ruta);
                 
                 
-                
+               
                 System.out.println("Guardo CAmbios");
 
         }else{
