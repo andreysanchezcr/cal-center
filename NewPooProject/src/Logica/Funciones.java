@@ -16,8 +16,7 @@ import javax.swing.DefaultListModel;
  */
 public class Funciones {
     
-<<<<<<< HEAD
-=======
+
     public static void busquedaTiketsReportes(){
         
         
@@ -89,7 +88,6 @@ public class Funciones {
         
         
 
->>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
     
     public static void busquedaTiketsReportes(){
         if(VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Todos")){}
@@ -97,8 +95,7 @@ public class Funciones {
     }
     
     
-<<<<<<< HEAD
-=======
+
     
     public static ArrayList <Tickets> getTiketsAtendidosTodosUnEmpleado(String empleado){
         ArrayList <Tickets> tiketsEncontrados = new ArrayList();
@@ -109,7 +106,7 @@ public class Funciones {
         } 
         return tiketsEncontrados;
     }
->>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
+
     
     
     /*

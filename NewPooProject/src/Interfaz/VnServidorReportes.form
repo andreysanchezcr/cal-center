@@ -261,12 +261,8 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel2" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
-<<<<<<< HEAD
                               <Component id="cbTipoBusqueda" alignment="0" max="32767" attributes="0"/>
                               <Component id="jCheckBox1" alignment="0" pref="311" max="32767" attributes="0"/>
-=======
-                              <Component id="cbTipoBusqueda" alignment="0" pref="342" max="32767" attributes="0"/>
->>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
                           </Group>
                           <Component id="jLabel1" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="rbOrigenTiempos" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -284,11 +280,8 @@
                       <Component id="jLabel1" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
-=======
->>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rbOrigenTiempos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -331,14 +324,11 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-<<<<<<< HEAD
             <Component class="javax.swing.JCheckBox" name="jCheckBox1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar Desde el Origen de los tiempos"/>
               </Properties>
             </Component>
-=======
->>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
@@ -347,7 +337,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
               </Events>
             </Component>
-<<<<<<< HEAD
             <Container class="javax.swing.JScrollPane" name="jScrollPane4">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -370,7 +359,6 @@
                 </Component>
               </SubComponents>
             </Container>
-=======
             <Component class="javax.swing.JRadioButton" name="rbOrigenTiempos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Origen DE los Tiempos"/>
@@ -391,7 +379,6 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
->>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
           </SubComponents>
         </Container>
       </SubComponents>
