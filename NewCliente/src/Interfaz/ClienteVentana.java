@@ -4,6 +4,7 @@ import static Logica.Funciones.cargarLista;
 import Logica.Persona;
 import Logica.Tickets;
 import Logica.cliente.Cliente;
+import Logica.cliente.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -276,11 +277,14 @@ public class ClienteVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ListaEmpleadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListaEmpleadoItemStateChanged
-        jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");
+        //jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");
+        
         //String pID = getIDTiket(Lista.getSelectedItem().toString());
         //String pInfo = cargaInfoTiket(pID);
-        //jTextArea1.append(pInfo);
-        jTextArea1.append("\n___________________________________________");
+        String asunto;
+        asunto = ListaEmpleado.getSelectedItem();
+        jTextArea1.setText("             **INFORMACIÓN DEL TIKET**\n" + asunto + "\n___________________________________________");
+       // jTextArea1.append("\n___________________________________________");
     }//GEN-LAST:event_ListaEmpleadoItemStateChanged
 
     private void ListaEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaEmpleadoActionPerformed

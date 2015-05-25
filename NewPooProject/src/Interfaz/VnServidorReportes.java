@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import Logica.Funciones;
 import static Logica.ManejadorDeListas.cargaListaActividadReciente;
 import com.toedter.calendar.JCalendar;
 import org.jfree.chart.ChartFactory;
@@ -71,10 +72,16 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         cbTipoBusqueda = new javax.swing.JComboBox();
+<<<<<<< HEAD
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton2 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList4 = new javax.swing.JList();
+=======
+        jButton2 = new javax.swing.JButton();
+        rbOrigenTiempos = new javax.swing.JRadioButton();
+        jlReportes = new java.awt.List();
+>>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -200,16 +207,44 @@ public class VnServidorReportes extends javax.swing.JFrame {
 
         cbTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Fernando", "Junior", "Luis" }));
 
+<<<<<<< HEAD
         jCheckBox1.setText("Buscar Desde el Origen de los tiempos");
 
+=======
+>>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
+<<<<<<< HEAD
         jList4.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane4.setViewportView(jList4);
+=======
+        rbOrigenTiempos.setText("Origen DE los Tiempos");
+        rbOrigenTiempos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbOrigenTiemposActionPerformed(evt);
+            }
+        });
+
+        jlReportes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jlReportesItemStateChanged(evt);
+            }
+        });
+        jlReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jlReportesActionPerformed(evt);
+            }
+        });
+>>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -221,12 +256,21 @@ public class VnServidorReportes extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                         .addComponent(cbTipoBusqueda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(357, Short.MAX_VALUE))
+=======
+                        .addComponent(cbTipoBusqueda, 0, 342, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbOrigenTiempos))
+                .addGap(21, 21, 21)
+                .addComponent(jlReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(184, Short.MAX_VALUE))
+>>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,16 +279,21 @@ public class VnServidorReportes extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
+<<<<<<< HEAD
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox1)
+=======
+>>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbOrigenTiempos)
+                .addGap(8, 8, 8)
                 .addComponent(cbTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .addComponent(jlReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -261,7 +310,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                .addGap(178, 178, 178))
+                .addContainerGap())
         );
 
         pack();
@@ -280,6 +329,27 @@ public class VnServidorReportes extends javax.swing.JFrame {
     private void ListaActividadRecienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListaActividadRecienteItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_ListaActividadRecienteItemStateChanged
+
+    private void rbOrigenTiemposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbOrigenTiemposActionPerformed
+       if( Funciones.origenDeLosTiempos){
+       Funciones.origenDeLosTiempos=false;
+       }else{Funciones.origenDeLosTiempos=true;}
+    }//GEN-LAST:event_rbOrigenTiemposActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jlReportes.removeAll();
+        Funciones.busquedaTiketsReportes();
+        System.out.println("sdjfvklbandlvasd");
+        jlReportes.repaint();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jlReportesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jlReportesItemStateChanged
+        
+    }//GEN-LAST:event_jlReportesItemStateChanged
+
+    private void jlReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlReportesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jlReportesActionPerformed
 
     
     
@@ -331,8 +401,11 @@ public class VnServidorReportes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
+<<<<<<< HEAD
+=======
+    public static java.awt.List jlReportes;
+>>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
     public static javax.swing.JLabel lblTicketsEnAtencion;
     public static javax.swing.JLabel lblTicketsEnSistema;
     public static javax.swing.JLabel lblTicketsPendientes;

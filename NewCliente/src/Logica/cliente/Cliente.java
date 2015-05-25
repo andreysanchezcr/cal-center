@@ -122,28 +122,26 @@ implements Runnable{
         
         
     }
-    public String getReporte(String fecha) throws IOException{
+    public String getReporte(String fecha) throws IOException, ClassNotFoundException{
         socket = new Socket("localhost", 5557);
         System.out.println("Obteniendo reporte");
         
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
         flujoEntrante=new DataInputStream(socket.getInputStream());
-      //   this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
-        
+        objeto_entrante=new ObjectInputStream(socket.getInputStream());
         this.flujoSaliente.writeUTF("Reporte");
         
-        
-       // flujoSaliente.writeInt(indice);
-         this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+fecha);
+        this.flujoSaliente.writeUTF(this.clienteventana.getNombre()+"@"+fecha);
          System.out.println(this.clienteventana.getNombre()+"@"+fecha);
         // flujoEntrante.close();
         
-        
-        String resultado=this.flujoEntrante.readUTF();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!");
+        String resultado=(String)this.objeto_entrante.readObject();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(resultado);
      
          
-         return "3@2";
+         return resultado;
 //this.flujoSaliente.writeUTF(this.parent.getNombre());
         
     }
@@ -282,13 +280,13 @@ implements Runnable{
             flujoSaliente.writeUTF(this.parent.getColor());
             
             this.listaTicketes=(ArrayList)this.objeto_entrante.readObject();
-            
-           
+            String prueba=(String)this.objeto_entrante.readObject();
+                System.out.println(prueba);
             cargarListaTikets();
             modificarJList();
             socket.close();
             solicitud=true;
-            Thread.sleep(30000);
+            Thread.sleep(10000);
             
             }
             
@@ -296,9 +294,11 @@ implements Runnable{
             
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } /*catch (ClassNotFoundException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
+        } */catch (InterruptedException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         

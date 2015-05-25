@@ -8,6 +8,7 @@ package Logica;
 import Interfaz.VnServidorReportes;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -15,6 +16,80 @@ import java.util.ArrayList;
  */
 public class Funciones {
     
+<<<<<<< HEAD
+=======
+    public static void busquedaTiketsReportes(){
+        
+        
+        if(origenDeLosTiempos==true && (VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Fernando"))){
+            ArrayList <Tickets> tiketsEncontrados;
+            DefaultListModel modelo = new DefaultListModel();
+            
+            tiketsEncontrados = getTiketsAtendidosTodosUnEmpleado("Fernando");
+            for(int i = 0; i < tiketsEncontrados.size() ; i++){
+                String strInfoParaReportes = Integer.toString(tiketsEncontrados.get(i).getIDTicket());
+                
+                
+                
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados.get(i).getIDTicket()));
+                
+                
+            }  
+            }   
+        
+        
+        if(origenDeLosTiempos==true && (VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Junior"))){
+            ArrayList <Tickets> tiketsEncontrados2;
+            tiketsEncontrados2 = getTiketsAtendidosTodosUnEmpleado("Fernando");
+            for(int i = 0; i < tiketsEncontrados2.size() ; i++){
+                
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados2.get(i).getIDTicket()));
+                
+                
+            }   
+        }
+        
+        if(origenDeLosTiempos==true && (VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Luis"))){
+            ArrayList <Tickets> tiketsEncontrados3;
+            tiketsEncontrados3 = getTiketsAtendidosTodosUnEmpleado("Fernando");
+            for(int i = 0; i < tiketsEncontrados3.size() ; i++){
+                
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados3.get(i).getIDTicket()));
+            }   
+        }
+        
+        if(origenDeLosTiempos==true && (VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Todos"))){
+            ArrayList <Tickets> tiketsEncontrados4;
+            tiketsEncontrados4 = getTiketsAtendidosTodosUnEmpleado("Fernando");
+            for(int i = 0; i < tiketsEncontrados4.size() ; i++){
+                
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados4.get(i).getIDTicket()));
+                
+            }
+            tiketsEncontrados4 = getTiketsAtendidosTodosUnEmpleado("Junior");
+            for(int i = 0; i < tiketsEncontrados4.size() ; i++){
+                
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados4.get(i).getIDTicket()));
+                
+            }
+            tiketsEncontrados4 = getTiketsAtendidosTodosUnEmpleado("Luis");
+            for(int i = 0; i < tiketsEncontrados4.size() ; i++){
+                
+                VnServidorReportes.jlReportes.add(Integer.toString(tiketsEncontrados4.get(i).getIDTicket()));
+                
+            }
+        } 
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+>>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
     
     public static void busquedaTiketsReportes(){
         if(VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Todos")){}
@@ -22,6 +97,19 @@ public class Funciones {
     }
     
     
+<<<<<<< HEAD
+=======
+    
+    public static ArrayList <Tickets> getTiketsAtendidosTodosUnEmpleado(String empleado){
+        ArrayList <Tickets> tiketsEncontrados = new ArrayList();
+        for(int i = 0; i < ManejadorDeListas.MegaLista.size(); i++){
+            if (ManejadorDeListas.MegaLista.get(i).getID_EMPLEADO().equals(empleado)){
+                tiketsEncontrados.add(ManejadorDeListas.MegaLista.get(i));
+            }
+        } 
+        return tiketsEncontrados;
+    }
+>>>>>>> ee8576a2b5bb54d433ba7cbf4ead6d484c43c093
     
     
     /*

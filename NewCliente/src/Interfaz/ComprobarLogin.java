@@ -103,10 +103,14 @@ public class ComprobarLogin extends javax.swing.JFrame {
             ////
             System.out.println("DATOS CORRECTORS");
             try {
-                System.out.println("La fecha enviada es: "+ this.parent.getFecha());
-                parent.setVariables(this.parent.parent.cliente.getReporte(this.parent.getFecha()));
+                String temp=this.parent.parent.cliente.getReporte(this.parent.getFecha());
+                System.out.println(temp);
+              //  System.out.println("La fecha enviada es: "+ this.parent.getFecha());
+                parent.setVariables(temp);
             } catch (IOException ex) {
                 System.out.println("eROR AL OBTENER LA FECHA");
+                Logger.getLogger(ComprobarLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
                 Logger.getLogger(ComprobarLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.dispose();
