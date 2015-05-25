@@ -42,7 +42,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         initComponents();
         setLocationRelativeTo(null);
         
-        MyExell.MegaExellGet();
+        MyExell.MegaExellGet(0);
+        MyExell.MegaExellGet(1);
+        
         Lista.setMultipleMode(true);
         
         ManejadorDeListas.addNewTiketsToLocalListPendientes(MyExell.Open_Load_And_ReturnListOfTickets("TICKETS.xls"));
@@ -82,7 +84,8 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
         }else{
                 System.out.println("FSSDFFSFSFSS");
-                MyExell.generateMegaExell();
+                MyExell.generateMegaExell(0,ManejadorDeListas.MegaLista);
+                MyExell.generateMegaExell(1,ManejadorDeListas.MegaLiberados);
                 System.exit(0);}  // Cerrar el sistema incondicionalmente
         }catch (Exception ex){
                 System.out.println("ex.getMessage()");

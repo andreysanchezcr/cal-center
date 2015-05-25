@@ -239,15 +239,15 @@ public abstract class MyExell {
         }
         
     
-        public static void MegaExellGet(){
+        public static void MegaExellGet(int CASE){
             System.out.println("GUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         //ArrayList<Tickets> SuperLista = new ArrayList();
-            
+           
         try{
             File fileMegaExell = new File("MegaExell.xls");  /*Abrir MegaExell*/
             Workbook MegaExell = Workbook.getWorkbook(fileMegaExell);
             
-            Sheet hojaMaster = MegaExell.getSheet(0);
+            Sheet hojaMaster = MegaExell.getSheet(CASE);
             
             int numFilas = hojaMaster.getRows();
             System.out.println("NUMERO ROWS"+numFilas);
@@ -255,35 +255,34 @@ public abstract class MyExell {
         
                 
             
-            /*
-                Cell celdaFechayHoraRecepcion =  hojaMaster.getCell();
-                Cell celdaID_CLIENTE =  hojaMaster.getCell();    
-                Cell celdaasunto =  hojaMaster.getCell();
-                Cell celdaIDTicket =  hojaMaster.getCell();
-                Cell celdacategoria =  hojaMaster.getCell();
-                Cell celdaID_EMPLEADO =  hojaMaster.getCell();
-                Cell celdafechayHoraAtencion =  hojaMaster.getCell();
-                Cell celdatiempoSegundos =  hojaMaster.getCell();
-                Cell celdaComentario =  hojaMaster.getCell();
-                Cell celdaestado =  hojaMaster.getCell();            
-            */
+            
+                Cell celdaFechayHoraRecepcion =  hojaMaster.getCell(0,fila+1);
+                Cell celdaID_CLIENTE =  hojaMaster.getCell(1,fila+1);    
+                Cell celdaasunto =  hojaMaster.getCell(2,fila+1);
+                Cell celdaIDTicket =  hojaMaster.getCell(3,fila+1);
+                Cell celdacategoria =  hojaMaster.getCell(4,fila+1);
+                Cell celdaID_EMPLEADO =  hojaMaster.getCell(5,fila+1);
+                Cell celdafechayHoraAtencion =  hojaMaster.getCell(6,fila+1);
+                Cell celdatiempoSegundos =  hojaMaster.getCell(7,fila+1);
+                Cell celdaComentario =  hojaMaster.getCell(8,fila+1);
+                Cell celdaestado =  hojaMaster.getCell(9,fila+1);            
+            
             
             
                 
                 
                
                 
-                String strFechayHoraRecepcion = hojaMaster.getCell(0,fila+1).getContents();
-                
-                String strID_CLIENTE = hojaMaster         .getCell(1,fila+1).getContents();
-                String strAsunto = hojaMaster             .getCell(2,fila+1).getContents();
-                String strIDTicket = hojaMaster           .getCell(3,fila+1).getContents();
-                String strCategoria = hojaMaster          .getCell(4,fila+1).getContents();
-                String strID_EMPLEADO = hojaMaster        .getCell(5,fila+1).getContents();
-                String strFechayHoraAtencion = hojaMaster .getCell(6,fila+1).getContents();
-                String strTiempoSegundos = hojaMaster     .getCell(7,fila+1).getContents();
-                String strComentario = hojaMaster         .getCell(8,fila+1).getContents();
-                String strEstado = hojaMaster             .getCell(9,fila+1).getContents();
+                String strFechayHoraRecepcion = celdaFechayHoraRecepcion.getContents();
+                String strID_CLIENTE = celdaID_CLIENTE          .getContents();
+                String strAsunto = celdaasunto             .getContents();
+                String strIDTicket = celdaIDTicket           .getContents();
+                String strCategoria = celdacategoria          .getContents();
+                String strID_EMPLEADO = celdaID_EMPLEADO        .getContents();
+                String strFechayHoraAtencion = celdafechayHoraAtencion .getContents();
+                String strTiempoSegundos = celdatiempoSegundos     .getContents();
+                String strComentario = celdaComentario         .getContents();
+                String strEstado = celdaestado             .getContents();
                 
                        
                 Tickets ticket = new Tickets();
@@ -300,8 +299,10 @@ public abstract class MyExell {
                 ticket.setEstado(strEstado);
              
                 
+                if (CASE == 0){ManejadorDeListas.MegaLista.add(ticket);}
+                else{ManejadorDeListas.MegaLiberados.add(ticket);}
                 
-                ManejadorDeListas.MegaLista.add(ticket);
+                
                 System.out.println("Este es el tamaño de la lista"+ManejadorDeListas.MegaLista.size());
                 for(int i=0;i<ManejadorDeListas.MegaLista.size();i++){
                     System.out.println(ManejadorDeListas.MegaLista.get(i));
@@ -314,7 +315,7 @@ public abstract class MyExell {
         //----------------------------------------------------------
         catch (IOException | NumberFormatException | BiffException ioex) {
             System.out.println("ERROR---->>"+ioex.getMessage());
-            generateMegaExell();
+            
             
         }
         
@@ -327,7 +328,7 @@ public abstract class MyExell {
         
         
         
-        public static void generateMegaExell (){
+        public static void generateMegaExell (int pagina,ArrayList<Tickets> lista){
             System.out.println("##############");
             System.out.println("entro en el mega ezcel");
            
@@ -335,12 +336,12 @@ public abstract class MyExell {
             WritableWorkbook MegaExell = Workbook.createWorkbook(new File("MegaExell.xls"));
             
             WritableSheet hojaTikets;
-            hojaTikets = MegaExell.createSheet("Todos los Tickets", 0);
-            if (ManejadorDeListas.MegaLista.size()>0){
-                for(int i =0; i<ManejadorDeListas.MegaLista.size(); i++){
+            hojaTikets = MegaExell.createSheet("Todos los Tickets", pagina);
+            if (lista.size()>0){
+                for(int i =0; i<lista.size(); i++){
                             
                     try {
-                        Tickets tempTiket = ManejadorDeListas.MegaLista.get(i);
+                        Tickets tempTiket = lista.get(i);
                         
                         Label lblFechayHoraRecepcion = new Label(0,i+1,tempTiket.getFechayHoraRecepcion());
                         hojaTikets.addCell(lblFechayHoraRecepcion);

@@ -14,7 +14,9 @@ public abstract class ManejadorDeListas {
     public static ArrayList<Tickets> ListaDeAmarillos = new ArrayList();
     public static ArrayList<Tickets> ListaDeRojos = new ArrayList();
     public static int arrgloTiketsLiberados[]={0,0,0};
-     public static ArrayList<Tickets> MegaLista = new ArrayList();
+    public static ArrayList<Tickets> MegaLista = new ArrayList();
+    public static ArrayList<Tickets> MegaLiberados = new ArrayList();
+     
     public static void addNewTiketsToLocalListPendientes(ArrayList<Tickets> ListaDePendientesInsert){
         for (int i = 0; i < ListaDePendientesInsert.size();i++){
             ListaDePendientes.add(ListaDePendientesInsert.get(i));
