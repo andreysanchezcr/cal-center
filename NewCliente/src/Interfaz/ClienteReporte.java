@@ -48,20 +48,14 @@ public class ClienteReporte extends javax.swing.JFrame {
              
         // Fuente de Datos
         defaultpiedataset = new DefaultPieDataset();
-<<<<<<< HEAD
-        defaultpiedataset.setValue("Total de Tickets Liberados", (Integer.parseInt(lblNumTicketsResividos.getText())-Integer.parseInt(lblNumTicketsSatisfactorios.getText())));
-        defaultpiedataset.setValue("Tickets Atendidos Satisfactoriamente", Integer.parseInt(lblNumTicketsSatisfactorios.getText()));
-        
-        
-       
-                
-=======
+
+
         defaultpiedataset.setValue("Total de Tickets Liberados", (Integer.parseInt(lrecibidos.getText())-Integer.parseInt(lefectivos.getText())));
         defaultpiedataset.setValue("Tickets Atendidos Satisfactoriamente", Integer.parseInt(lefectivos.getText()));
         //defaultpiedataset.setValue("Hacking", new Double(19.5D));
         //defaultpiedataset.setValue("SEO", new Double(30.5D));
         //defaultpiedataset.setValue("Redes", new Double(2.0D));
->>>>>>> 7857e5346671bbb6a451b0fc124160d3c22b2e2e
+
 
         // Creando el Grafico
         chart = ChartFactory.createPieChart3D("Mi Proporción", defaultpiedataset, true, true, false);
@@ -84,7 +78,12 @@ public class ClienteReporte extends javax.swing.JFrame {
     String año = Integer.toString(calendario.getCalendar().get(java.util.Calendar.YEAR));
     String mes = Integer.toString(calendario.getCalendar().get(java.util.Calendar.MONTH) + 1);
     String dia = Integer.toString(calendario.getCalendar().get(java.util.Calendar.DATE));
-        
+    String resultado="";
+    if(Integer.parseInt(mes)<10){
+        resultado=dia+"/"+"0"+mes+"/"+año;
+    }else{
+        resultado=dia+"/"+mes+"/"+año;
+    }
         
         
         
@@ -92,7 +91,7 @@ public class ClienteReporte extends javax.swing.JFrame {
         
 //        date.getCalendar().getTime().getDay()
         
-        return dia+"/"+mes+"/"+año;
+        return resultado;
     }
     public void setVariables(String variables){
         String temp="";
@@ -107,7 +106,7 @@ public class ClienteReporte extends javax.swing.JFrame {
         this.liberados=Integer.parseInt(temp);
         this.lrecibidos.setText(this.efectivos+this.liberados+"");
         this.lefectivos.setText(this.efectivos+"");
-        this.razon.setText(((this.efectivos+this.liberados)/this.efectivos)*100+"");
+   //     this.razon.setText(((this.efectivos+this.liberados)/this.efectivos)*100+"");
         this.refreshGrafico();
         
     }
@@ -142,12 +141,8 @@ public class ClienteReporte extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-<<<<<<< HEAD
-        jLabel8 = new javax.swing.JLabel();
-=======
         razon = new javax.swing.JLabel();
         calendario = new com.toedter.calendar.JDateChooser();
->>>>>>> 7857e5346671bbb6a451b0fc124160d3c22b2e2e
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -219,7 +214,8 @@ public class ClienteReporte extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +234,9 @@ public class ClienteReporte extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lrecibidos)
                             .addComponent(jLabel4))
@@ -270,6 +268,7 @@ public class ClienteReporte extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

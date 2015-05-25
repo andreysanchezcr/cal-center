@@ -161,6 +161,7 @@ public class Servidor implements Runnable {
     public String getTiempoActual(){
         Date fechaHoraActual = new Date();
         String strFechaHora = new SimpleDateFormat("dd/MM/yyyy hh:mm aaa").format(fechaHoraActual);
+        
         return strFechaHora;
             
     }
@@ -185,6 +186,7 @@ public class Servidor implements Runnable {
             temp.setComentario(this.getOracion(tipo));
             temp.setID_EMPLEADO(this.getName(tipo));
             ManejadorDeListas.MegaLista.add(temp);
+            
         }
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
 
@@ -261,7 +263,9 @@ public class Servidor implements Runnable {
         historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
         ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         temp.setComentarioLiberado(this.getOracion(tipo));
-
+temp.setID_EMPLEADO(this.getName(tipo));
+temp.setFechayHoraAtencion(this.getTiempoActual());
+        ManejadorDeListas.MegaLiberados.add(temp);
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
 
     }
@@ -284,7 +288,9 @@ public class Servidor implements Runnable {
         historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
         ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         temp.setComentarioLiberado(this.getOracion(tipo));
-
+        temp.setID_EMPLEADO(this.getName(tipo));
+        temp.setFechayHoraAtencion(this.getTiempoActual());
+        ManejadorDeListas.MegaLiberados.add(temp);
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
 
     }
@@ -307,7 +313,9 @@ public class Servidor implements Runnable {
         historial.add(this.getName(tipo) + " ha liberado el tickete numero: " + this.getTicketeActual(tipo));
         ManejadorDeListas.cargaListaActividadReciente((String) historial.get(historial.size() - 1));
         temp.setComentarioLiberado(this.getOracion(tipo));
-
+temp.setID_EMPLEADO(this.getName(tipo));
+temp.setFechayHoraAtencion(this.getTiempoActual());
+        ManejadorDeListas.MegaLiberados.add(temp);
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
 
     }
@@ -520,17 +528,21 @@ public class Servidor implements Runnable {
         ArrayList temp = ManejadorDeListas.MegaLista;
         System.out.println("nombre::::"+nombre);
         System.out.println("fecha:::::"+fecha);
+        System.out.println(temp.size());
+        System.out.println("tañañoo de la lista");
+                
         for (int i = 0; i < temp.size(); i++) {
             
             Tickets tictemp = (Tickets) temp.get(i);
-            System.out.println(tictemp.getID_EMPLEADO());
-            System.out.println(tictemp.getFechayHoraAtencion());
+            System.out.println("Comparacion: "+tictemp.getID_EMPLEADO()+" "+nombre);
+            System.out.println("Comparacion: "+this.getHora(tictemp.getFechayHoraAtencion())+" "+fecha);
             
             if (tictemp.getID_EMPLEADO().equals(nombre) && this.getHora(tictemp.getFechayHoraAtencion()).equals(fecha)) {
                 resultado++;
             }
 
         }
+        System.out.println("total de efectivos: "+resultado);
         return resultado;
 
     }
@@ -538,15 +550,20 @@ public class Servidor implements Runnable {
     public int contarLiberados(String nombre, String fecha) {
         int resultado = 0;
         ArrayList temp = ManejadorDeListas.MegaLiberados;
-
+        System.out.println(temp.size());
+        System.out.println("tañañoo de la lista");
+                
         for (int i = 0; i < temp.size(); i++) {
             Tickets tictemp = (Tickets) temp.get(i);
+            System.out.println("Comparacion: "+tictemp.getID_EMPLEADO()+" "+nombre);
+            System.out.println("Comparacion: "+this.getHora(tictemp.getFechayHoraAtencion())+" "+fecha);
+            
             if (tictemp.getID_EMPLEADO().equals(nombre) && this.getHora(tictemp.getFechayHoraAtencion()).equals(fecha)) {
                 resultado++;
             }
 
         }
-        System.out.println("Termino contar liberados00");
+        System.out.println("total de efectivos: "+resultado);
         return resultado;
 
     }
