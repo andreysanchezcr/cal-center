@@ -236,5 +236,86 @@ public abstract class MyExell {
                     cutString = cutString+direccion.charAt(i);
             }
             return cutString;
-        }    
+        }
+        
+    
+        public static ArrayList<Tickets> MegaExellGet(){
+        ArrayList<Tickets> SuperLista = new ArrayList();
+            
+        try{
+            File fileMegaExell = new File("MegaExell.xls");  /*Abrir MegaExell*/
+            Workbook MegaExell = Workbook.getWorkbook(fileMegaExell);
+            
+            Sheet hojaMaster = MegaExell.getSheet(0);
+            
+            int numFilas = hojaMaster.getRows();
+            System.out.println("NUMERO ROWS"+numFilas);
+            for( int fila = 0; fila+1 < numFilas; fila++ ){
+        
+                
+            
+            /*
+                Cell celdaFechayHoraRecepcion =  hojaMaster.getCell();
+                Cell celdaID_CLIENTE =  hojaMaster.getCell();    
+                Cell celdaasunto =  hojaMaster.getCell();
+                Cell celdaIDTicket =  hojaMaster.getCell();
+                Cell celdacategoria =  hojaMaster.getCell();
+                Cell celdaID_EMPLEADO =  hojaMaster.getCell();
+                Cell celdafechayHoraAtencion =  hojaMaster.getCell();
+                Cell celdatiempoSegundos =  hojaMaster.getCell();
+                Cell celdaComentario =  hojaMaster.getCell();
+                Cell celdaestado =  hojaMaster.getCell();            
+            */
+            
+            
+                
+                
+               
+                
+                String strFechayHoraRecepcion = hojaMaster.getCell(0,fila+1).getContents();
+                
+                String strID_CLIENTE = hojaMaster         .getCell(1,fila+1).getContents();
+                String strAsunto = hojaMaster             .getCell(2,fila+1).getContents();
+                String strIDTicket = hojaMaster           .getCell(3,fila+1).getContents();
+                String strCategoria = hojaMaster          .getCell(4,fila+1).getContents();
+                String strID_EMPLEADO = hojaMaster        .getCell(5,fila+1).getContents();
+                String strFechayHoraAtencion = hojaMaster .getCell(6,fila+1).getContents();
+                String strTiempoSegundos = hojaMaster     .getCell(7,fila+1).getContents();
+                String strComentario = hojaMaster         .getCell(8,fila+1).getContents();
+                String strEstado = hojaMaster             .getCell(9,fila+1).getContents();
+                
+                       
+                Tickets ticket = new Tickets();
+                
+                ticket.setFechayHoraRecepcion(strFechayHoraRecepcion);
+                ticket.setID_CLIENTE(strID_CLIENTE);
+                ticket.setAsunto(strAsunto); 
+                ticket.setIDTicket(Integer.parseInt(strAsunto));
+                ticket.setCategoria(strCategoria);
+                ticket.setID_EMPLEADO(strID_EMPLEADO);
+                ticket.setFechayHoraAtencion(strFechayHoraAtencion);
+                ticket.setTiempoSegundos(strTiempoSegundos);
+                ticket.setComentario(strComentario);
+                ticket.setEstado(strEstado);
+             
+                
+                
+                SuperLista.add(ticket);
+                                
+            }
+        MegaExell.close();    
+        }
+        
+        //----------------------------------------------------------
+        catch (IOException | NumberFormatException | BiffException ioex) {
+            System.out.println("ERROR---->>"+ioex.getMessage());
+        }
+        //----------------------------------------------------------
+
+        //----------------------------------------------------------
+        
+        return SuperLista;
+        }
+        
+        
 }
