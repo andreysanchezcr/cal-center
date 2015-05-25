@@ -15,8 +15,8 @@ import javax.swing.DefaultListModel;
  * @author Fernando
  */
 public class Funciones {
-    public static boolean origenDeLosTiempos = false;
     
+
     public static void busquedaTiketsReportes(){
         
         
@@ -89,9 +89,13 @@ public class Funciones {
         
 
     
+    public static void busquedaTiketsReportes(){
+        if(VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Todos")){}
+    
+    }
     
     
-    
+
     
     public static ArrayList <Tickets> getTiketsAtendidosTodosUnEmpleado(String empleado){
         ArrayList <Tickets> tiketsEncontrados = new ArrayList();
@@ -102,6 +106,7 @@ public class Funciones {
         } 
         return tiketsEncontrados;
     }
+
     
     
     /*

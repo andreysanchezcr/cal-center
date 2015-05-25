@@ -101,9 +101,7 @@ public class Servidor implements Runnable {
     public void sendVerde() throws IOException {
        // System.out.println("ENTRO EN VERDEEEE");
         ManejadorDeListas.ListaDeVerdes.size();
-        for (int i = 0; i < ManejadorDeListas.ListaDeVerdes.size(); i++) {
-            System.out.println(ManejadorDeListas.ListaDeVerdes.get(i));
-        }
+        
         objetosaliente.writeObject(ManejadorDeListas.ListaDeVerdes);
        // System.out.println("SALIOS EN VERDEEEE");
     }
@@ -405,10 +403,14 @@ public class Servidor implements Runnable {
                     String login = dataInput.readUTF();
                     loggin(login);
                 } else if (instruccion.equals("ROJO")) {
+                    
                     this.sendRojo();
 
                 } else if (instruccion.equals("VERDE")) {
                     this.sendVerde();
+                    
+                    this.objetosaliente.writeObject("GSFGDSGSDSGSDFGSDFGSAFFGSDGSADGSDGSDF");
+                    
 
                 } else if (instruccion.equals("AMARILLO")) {
                     this.sendAmarillo();
@@ -475,6 +477,8 @@ public class Servidor implements Runnable {
 
                 } else if (instruccion.equals("Reporte")) {
                     mandarReporteIndividual();
+                  //  System.out.println("terminno de ejecutar rteporte")
+                    //this.saliente.writeUTF("HOLIS");
 
                 }
 
@@ -485,18 +489,31 @@ public class Servidor implements Runnable {
     }
 
     public void mandarReporteIndividual() throws IOException {
-        System.out.println("Entro en obtenr reporte");
+        
         String tipo = this.dataInput.readUTF();
         System.out.println("Nombre de la persona que lo solicito: " + this.getName(tipo));
         System.out.println("Esta es la fecha: " + this.getFecha(tipo));
         int efectivos = contarEfectivos(this.getName(tipo), this.getFecha(tipo));
         int liberados = contarLiberados(this.getName(tipo), this.getFecha(tipo));
-        System.out.println("antes de mandar el reporte");
-       
-        this.saliente.writeUTF(efectivos+"@"+liberados);
+        System.out.println(efectivos+"@"+liberados);
+       this.objetosaliente.writeObject(efectivos+"@"+liberados);
+        //this.saliente.writeUTF(efectivos+"@"+liberados);
         System.out.println("despues de terminar el reporte");
 
+        
+        
     }
+    public String getHora(String oracion){
+        String temp="";
+        for(int i=0;i<oracion.length();i++){
+            if(oracion.charAt(i)==' '){
+                return temp;
+            }
+            temp=temp+oracion.charAt(i);
+        }
+        return "";
+    }
+            
 
     public int contarEfectivos(String nombre, String fecha) {
         int resultado = 0;
@@ -509,12 +526,12 @@ public class Servidor implements Runnable {
             System.out.println(tictemp.getID_EMPLEADO());
             System.out.println(tictemp.getFechayHoraAtencion());
             
-            if (tictemp.getID_EMPLEADO().equals(nombre) && tictemp.getFechayHoraAtencion().equals(fecha)) {
+            if (tictemp.getID_EMPLEADO().equals(nombre) && this.getHora(tictemp.getFechayHoraAtencion()).equals(fecha)) {
                 resultado++;
             }
 
         }
-        return 4;
+        return resultado;
 
     }
 
@@ -524,13 +541,13 @@ public class Servidor implements Runnable {
 
         for (int i = 0; i < temp.size(); i++) {
             Tickets tictemp = (Tickets) temp.get(i);
-            if (tictemp.getID_EMPLEADO().equals(nombre) && tictemp.getFechayHoraAtencion().equals(fecha)) {
+            if (tictemp.getID_EMPLEADO().equals(nombre) && this.getHora(tictemp.getFechayHoraAtencion()).equals(fecha)) {
                 resultado++;
             }
 
         }
         System.out.println("Termino contar liberados00");
-        return 3;
+        return resultado;
 
     }
 

@@ -34,9 +34,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel8" max="32767" attributes="0"/>
-                          <Component id="lblNumTicketsSatisfactorios" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblNumTicketsResividos" alignment="0" max="32767" attributes="0"/>
+                          <Component id="razon" max="32767" attributes="0"/>
+                          <Component id="lefectivos" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lrecibidos" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -74,18 +74,18 @@
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="180" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNumTicketsResividos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lrecibidos" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNumTicketsSatisfactorios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lefectivos" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="razon" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jpGrafico" max="32767" attributes="0"/>
@@ -129,12 +129,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblNumTicketsResividos">
+    <Component class="javax.swing.JLabel" name="lrecibidos">
       <Properties>
         <Property name="text" type="java.lang.String" value="15"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblNumTicketsSatisfactorios">
+    <Component class="javax.swing.JLabel" name="lefectivos">
       <Properties>
         <Property name="text" type="java.lang.String" value="7"/>
       </Properties>
@@ -174,7 +174,7 @@
         <Property name="text" type="java.lang.String" value="Reporte perteneciente a la fecha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="razon">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tanto por ciento"/>
       </Properties>

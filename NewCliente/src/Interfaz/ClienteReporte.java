@@ -6,9 +6,7 @@
 package Interfaz;
 
 
-import static Interfaz.VnReporteCliente.chart;
-import static Interfaz.VnReporteCliente.chartPanel;
-import static Interfaz.VnReporteCliente.defaultpiedataset;
+
 import com.toedter.calendar.JCalendar;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -25,7 +23,24 @@ public class ClienteReporte extends javax.swing.JFrame {
     /**
      * Creates new form ClienteReporte
      */
+    public DefaultPieDataset defaultpiedataset;
+    public JFreeChart chart;
+    public  ChartPanel chartPanel;
     ClienteVentana parent;
+    int efectivos;
+    int liberados;
+   
+    
+    
+    
+    public void refreshGrafico(){
+     //   defaultpiedataset = new DefaultPieDataset();
+        defaultpiedataset.remove("Total de Tickets Liberados");
+        defaultpiedataset.remove("Tickets Atendidos Satisfactoriamente");
+        defaultpiedataset.setValue("Total de Tickets Liberados", (Integer.parseInt(lrecibidos.getText())-Integer.parseInt(lefectivos.getText())));
+        defaultpiedataset.setValue("Tickets Atendidos Satisfactoriamente", Integer.parseInt(lefectivos.getText()));
+        this.chartPanel.repaint();
+    }
     public ClienteReporte(ClienteVentana parent) {
         this.parent=parent;
         initComponents();
@@ -33,12 +48,20 @@ public class ClienteReporte extends javax.swing.JFrame {
              
         // Fuente de Datos
         defaultpiedataset = new DefaultPieDataset();
+<<<<<<< HEAD
         defaultpiedataset.setValue("Total de Tickets Liberados", (Integer.parseInt(lblNumTicketsResividos.getText())-Integer.parseInt(lblNumTicketsSatisfactorios.getText())));
         defaultpiedataset.setValue("Tickets Atendidos Satisfactoriamente", Integer.parseInt(lblNumTicketsSatisfactorios.getText()));
         
         
        
                 
+=======
+        defaultpiedataset.setValue("Total de Tickets Liberados", (Integer.parseInt(lrecibidos.getText())-Integer.parseInt(lefectivos.getText())));
+        defaultpiedataset.setValue("Tickets Atendidos Satisfactoriamente", Integer.parseInt(lefectivos.getText()));
+        //defaultpiedataset.setValue("Hacking", new Double(19.5D));
+        //defaultpiedataset.setValue("SEO", new Double(30.5D));
+        //defaultpiedataset.setValue("Redes", new Double(2.0D));
+>>>>>>> 7857e5346671bbb6a451b0fc124160d3c22b2e2e
 
         // Creando el Grafico
         chart = ChartFactory.createPieChart3D("Mi Proporción", defaultpiedataset, true, true, false);
@@ -71,6 +94,26 @@ public class ClienteReporte extends javax.swing.JFrame {
         
         return dia+"/"+mes+"/"+año;
     }
+    public void setVariables(String variables){
+        String temp="";
+        for(int i=0;i<variables.length();i++){
+            if(variables.charAt(i)=='@'){
+                this.efectivos=Integer.parseInt(temp);
+                temp="";
+                continue;
+            }
+            temp=temp+variables.charAt(i);
+        }
+        this.liberados=Integer.parseInt(temp);
+        this.lrecibidos.setText(this.efectivos+this.liberados+"");
+        this.lefectivos.setText(this.efectivos+"");
+        this.razon.setText(((this.efectivos+this.liberados)/this.efectivos)*100+"");
+        this.refreshGrafico();
+        
+    }
+    
+    
+    
     public boolean verificarUsuario(String nombre,String contrasena){
         if(nombre.equals(parent.cliente.getUsuario())&&contrasena.equals(parent.cliente.getContrasena())){
             return true;
@@ -90,8 +133,8 @@ public class ClienteReporte extends javax.swing.JFrame {
 
         jpGrafico = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        lblNumTicketsResividos = new javax.swing.JLabel();
-        lblNumTicketsSatisfactorios = new javax.swing.JLabel();
+        lrecibidos = new javax.swing.JLabel();
+        lefectivos = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -99,7 +142,12 @@ public class ClienteReporte extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+<<<<<<< HEAD
         jLabel8 = new javax.swing.JLabel();
+=======
+        razon = new javax.swing.JLabel();
+        calendario = new com.toedter.calendar.JDateChooser();
+>>>>>>> 7857e5346671bbb6a451b0fc124160d3c22b2e2e
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,9 +175,9 @@ public class ClienteReporte extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lblNumTicketsResividos.setText("15");
+        lrecibidos.setText("15");
 
-        lblNumTicketsSatisfactorios.setText("7");
+        lefectivos.setText("7");
 
         jLabel1.setText("REPORTE DE ATENCION");
 
@@ -145,7 +193,7 @@ public class ClienteReporte extends javax.swing.JFrame {
 
         jLabel7.setText("Reporte perteneciente a la fecha:");
 
-        jLabel8.setText("Tanto por ciento");
+        razon.setText("Tanto por ciento");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,9 +209,9 @@ public class ClienteReporte extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNumTicketsSatisfactorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNumTicketsResividos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(razon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lefectivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lrecibidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -192,16 +240,16 @@ public class ClienteReporte extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNumTicketsResividos)
+                            .addComponent(lrecibidos)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(lblNumTicketsSatisfactorios))
+                            .addComponent(lefectivos))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel8)))
+                            .addComponent(razon)))
                     .addComponent(jpGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -211,7 +259,7 @@ public class ClienteReporte extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ComprobarLogin ventanaLogin =new ComprobarLogin(this);
-        this.getFecha();
+      //  this.getFecha();
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -230,9 +278,9 @@ public class ClienteReporte extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jpGrafico;
-    private javax.swing.JLabel lblNumTicketsResividos;
-    private javax.swing.JLabel lblNumTicketsSatisfactorios;
+    private javax.swing.JLabel lefectivos;
+    private javax.swing.JLabel lrecibidos;
+    private javax.swing.JLabel razon;
     // End of variables declaration//GEN-END:variables
 }
