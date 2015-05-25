@@ -42,6 +42,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         initComponents();
         setLocationRelativeTo(null);
         
+        
+        Lista.setMultipleMode(true);
+        
         ManejadorDeListas.addNewTiketsToLocalListPendientes(MyExell.Open_Load_And_ReturnListOfTickets("Libro1.xls"));
         this.setVisible(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -433,47 +436,61 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     }
     
     private void btnSetComoVERDEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoVERDEActionPerformed
-        // TODO add your handling code here:
-        jTextArea1.setText("");
-        String pTiket = Lista.getSelectedItem();
-        Lista.remove(pTiket);
-        Lista4.add(pTiket);
+          jTextArea1.setText("");
+        
+        
+        String ArregloDeSelecciones [ ] = Lista.getSelectedItems();//getSelectedValues();
+        for(int i = 0; i < ArregloDeSelecciones.length; i++) {
+        Lista.remove(ArregloDeSelecciones[i]);  
+        Lista4.add(ArregloDeSelecciones[i]);
+        ManejadorDeListas.finderThenInsert(ArregloDeSelecciones[i], ListaDeVerdes);
+        }
+        
+        
         btnSetComoVERDE.setEnabled(false);
         btnSetComoAmarillo.setEnabled(false);
         btnSetComoRojo.setEnabled(false);
         
-        ManejadorDeListas.finderThenInsert(pTiket, ListaDeVerdes);
-        actualizarCliente();
         
     }//GEN-LAST:event_btnSetComoVERDEActionPerformed
 
     private void btnSetComoAmarilloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoAmarilloActionPerformed
-        // TODO add your handling code here:
-        jTextArea1.setText("");
-        String pTiket = Lista.getSelectedItem();
-        Lista.remove(pTiket);
-        Lista6.add(pTiket);
+     jTextArea1.setText("");
+        //String pTiket = Lista.getSelectedItem();
+        //Lista.remove(pTiket);
+        //Lista6.add(pTiket);
+        
+        String ArregloDeSelecciones [ ] = Lista.getSelectedItems();//getSelectedValues();
+        for(int i = 0; i < ArregloDeSelecciones.length; i++) {
+        Lista.remove(ArregloDeSelecciones[i]);  
+        Lista6.add(ArregloDeSelecciones[i]);
+        ManejadorDeListas.finderThenInsert(ArregloDeSelecciones[i], ListaDeAmarillos);
+        }
+        
         btnSetComoVERDE.setEnabled(false);
         btnSetComoAmarillo.setEnabled(false);
         btnSetComoRojo.setEnabled(false);
         
-        ManejadorDeListas.finderThenInsert(pTiket, ListaDeAmarillos);
-        actualizarCliente();
+      
         
     }//GEN-LAST:event_btnSetComoAmarilloActionPerformed
 
     private void btnSetComoRojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetComoRojoActionPerformed
-        // TODO add your handling code here:
-        jTextArea1.setText("");
-        String pTiket = Lista.getSelectedItem();
-        Lista.remove(pTiket);
-        Lista5.add(pTiket);
+ jTextArea1.setText("");
+        
+        
+        
+        String ArregloDeSelecciones [ ] = Lista.getSelectedItems();//getSelectedValues();
+        for(int i = 0; i < ArregloDeSelecciones.length; i++) {
+        Lista.remove(ArregloDeSelecciones[i]);  
+        Lista5.add(ArregloDeSelecciones[i]);
+        ManejadorDeListas.finderThenInsert(ArregloDeSelecciones[i], ListaDeRojos);
+        }
+        
+        
         btnSetComoVERDE.setEnabled(false);
         btnSetComoAmarillo.setEnabled(false);
         btnSetComoRojo.setEnabled(false);
-        
-        ManejadorDeListas.finderThenInsert(pTiket, ListaDeRojos);
-        actualizarCliente();
         
     }//GEN-LAST:event_btnSetComoRojoActionPerformed
 
@@ -481,14 +498,31 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
        
     }
     private void ListaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListaItemStateChanged
-        btnSetComoVERDE.setEnabled(true);
+    btnSetComoVERDE.setEnabled(true);
         btnSetComoAmarillo.setEnabled(true);
         btnSetComoRojo.setEnabled(true);
-        jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");        
-        String pID = getIDTiket(Lista.getSelectedItem().toString());
-        String pInfo = cargaInfoTiket(pID);
-        jTextArea1.append(pInfo);        
-        jTextArea1.append("\n___________________________________________");
+        
+        /*Validasiones Producto de la multiple seleccion*/
+        String ArregloDeSelecciones [ ] = Lista.getSelectedItems();//getSelectedValues();
+        if(ArregloDeSelecciones.length<2 && ArregloDeSelecciones.length>0){
+        
+            
+            /*============================================================================*/    
+            jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");        
+            String pID = getIDTiket(Lista.getSelectedItem().toString());
+            String pInfo = cargaInfoTiket(pID);
+            jTextArea1.append(pInfo);        
+            jTextArea1.append("\n___________________________________________");
+            /*============================================================================*/    
+            
+        
+        }
+        else{
+            jTextArea1.setText("\n          TICKETS SELECCIONADOS: "+ArregloDeSelecciones.length);        
+            
+            
+            jTextArea1.append("\n\n___________________________________________");
+        }
     }//GEN-LAST:event_ListaItemStateChanged
 
     private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
