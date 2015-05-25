@@ -5,6 +5,7 @@
  */
 package Logica;
 
+import Interfaz.VnServidorReportes;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -13,6 +14,12 @@ import java.util.ArrayList;
  * @author Fernando
  */
 public class Funciones {
+    
+    
+    public static void busquedaTiketsReportes(){
+        if(VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Todos")){}
+    
+    }
     
     
     
