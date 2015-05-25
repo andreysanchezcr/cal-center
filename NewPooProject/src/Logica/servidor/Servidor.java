@@ -173,6 +173,7 @@ public class Servidor implements Runnable{
             //System.out.println(this.getOracion(tipo));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
+            temp.setID_EMPLEADO(this.getName(tipo));
         }
         ManejadorDeListas.ListaDeAmarillos.set(indice, temp);
         
@@ -193,6 +194,7 @@ public class Servidor implements Runnable{
             //System.out.println(this.getOracion(tipo));
             temp.setTiempoSegundos(this.getTiempo(tipo));
             temp.setComentario(this.getOracion(tipo));
+            temp.setID_EMPLEADO(this.getName(tipo));
         }
         ManejadorDeListas.ListaDeRojos.set(indice, temp);
         
@@ -213,6 +215,8 @@ public class Servidor implements Runnable{
             //System.out.println(this.getOracion(tipo));
             temp.setComentario(this.getOracion(tipo));
             temp.setTiempoSegundos(this.getTiempo(tipo));
+            temp.setID_EMPLEADO(this.getName(tipo));
+            ManejadorDeListas.MegaLISTA.add(temp);
         }
         ManejadorDeListas.ListaDeVerdes.set(indice, temp);
         
