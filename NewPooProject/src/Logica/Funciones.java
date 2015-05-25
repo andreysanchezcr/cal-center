@@ -15,7 +15,7 @@ import javax.swing.DefaultListModel;
  * @author Fernando
  */
 public class Funciones {
-    
+    public static boolean origenDeLosTiempos=false;
 
     public static void busquedaTiketsReportes(){
         
@@ -88,12 +88,6 @@ public class Funciones {
         
         
 
-    
-    public static void busquedaTiketsReportes(){
-        if(VnServidorReportes.cbTipoBusqueda.getSelectedItem().toString().equals("Todos")){}
-    
-    }
-    
     
 
     
