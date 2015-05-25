@@ -269,15 +269,25 @@ public abstract class MyExell {
             */
             
             
+                Cell celdaFechayHoraRecepcion =  hojaMaster.getCell(1,fila+1)
+                Cell celdaID_CLIENTE =  hojaMaster.getCell(2,fila+1) 
+                Cell celdaasunto =  .getCell(3,fila+1)
+                Cell celdaIDTicket =  .getCell(4,fila+1)
+                Cell celdacategoria =  .getCell(5,fila+1)
+                Cell celdaID_EMPLEADO =  .getCell(6,fila+1)
+                Cell celdafechayHoraAtencion =  hojaMaster.getCell();
+                Cell celdatiempoSegundos =  hojaMaster.getCell();
+                Cell celdaComentario =  hojaMaster.getCell();
+                Cell celdaestado =  hojaMaster.getCell(); 
                 
                 
                
                 
                 String strFechayHoraRecepcion = hojaMaster.getCell(0,fila+1).getContents();
                 
-                String strID_CLIENTE = hojaMaster         .getCell(1,fila+1).getContents();
-                String strAsunto = hojaMaster             .getCell(2,fila+1).getContents();
-                String strIDTicket = hojaMaster           .getCell(3,fila+1).getContents();
+                String strID_CLIENTE = hojaMaster         .getContents();
+                String strAsunto = hojaMaster             .getContents();
+                String strIDTicket = hojaMaster           .getContents();
                 String strCategoria = hojaMaster          .getCell(4,fila+1).getContents();
                 String strID_EMPLEADO = hojaMaster        .getCell(5,fila+1).getContents();
                 String strFechayHoraAtencion = hojaMaster .getCell(6,fila+1).getContents();
