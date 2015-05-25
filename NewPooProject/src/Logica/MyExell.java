@@ -318,4 +318,61 @@ public abstract class MyExell {
         }
         
         
+        
+        public static void generateMegaExell (){
+        
+        try {
+            WritableWorkbook MegaExell = Workbook.createWorkbook(new File("MegaExell.xls"));
+            
+            WritableSheet hojaTikets;
+            hojaTikets = MegaExell.createSheet("Todos los Tickets", 0);
+            if (ManejadorDeListas.MegaLista.size()>0){
+                for(int i =0; i<ManejadorDeListas.MegaLista.size(); i++){
+                            
+                    try {
+                        Tickets tempTiket = ManejadorDeListas.MegaLista.get(i);
+                        
+                        Label lblFechayHoraRecepcion = new Label(0,i+1,tempTiket.getFechayHoraRecepcion());
+                        hojaTikets.addCell(lblFechayHoraRecepcion);
+                        Label lblID_CLIENTE = new Label(1,i+1,tempTiket.getID_CLIENTE());
+                        hojaTikets.addCell(lblID_CLIENTE);
+                        Label lblasunto = new Label(2,i+1,tempTiket.getAsunto());
+                        hojaTikets.addCell(lblasunto);
+                        Label lblIDTicket = new Label(3,i+1,Integer.toString(tempTiket.getIDTicket()));
+                        hojaTikets.addCell(lblIDTicket);
+                        Label lblcategoria= new Label(4,i+1,tempTiket.getCategoria());
+                        hojaTikets.addCell(lblcategoria);
+                        Label lblID_EMPLEADO = new Label(5,i+1,tempTiket.getID_EMPLEADO());
+                        hojaTikets.addCell(lblID_EMPLEADO);
+                        Label lblfechayHoraAtencion = new Label(6,i+1,tempTiket.getFechayHoraAtencion());
+                        hojaTikets.addCell(lblfechayHoraAtencion);
+                        Label lbltiempoSegundos = new Label(7,i+1,tempTiket.getTiempoSegundos());
+                        hojaTikets.addCell(lbltiempoSegundos);
+                        Label lblComentario = new Label(8,i+1,tempTiket.getComentario());
+                        hojaTikets.addCell(lblComentario);
+                        Label lblestado = new Label(9,i+1,tempTiket.getEstado());
+                        hojaTikets.addCell(lblestado);
+                        
+                        
+                    } catch (WriteException ex) {
+                        System.out.println("Error EN GUARDAR "+ex.getMessage());
+                    }
+                }   
+            }
+        
+            MegaExell.write();
+            try {
+                MegaExell.close();
+            } catch (WriteException ex) {
+                Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        }
+        
+        
 }

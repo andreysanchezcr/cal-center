@@ -74,6 +74,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                 //System.out.println("ESTEEE ES EL PAAAATH->"+ruta+"<-");
             
                 MyExell.save_All_Changes(ruta);
+                
+                
+                
                 System.out.println("Guardo CAmbios");
 
         }else{System.exit(0);}  // Cerrar el sistema incondicionalmente
@@ -82,6 +85,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                
         }
         }
+        MyExell.generateMegaExell();
         System.exit(0);
     }    
     public void setConectados(){
