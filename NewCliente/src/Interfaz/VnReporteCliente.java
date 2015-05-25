@@ -17,7 +17,9 @@ import org.jfree.util.Rotation;
  * @author root
  */
 public class VnReporteCliente extends javax.swing.JFrame {
-
+    public static DefaultPieDataset defaultpiedataset;
+    public static JFreeChart chart;
+    public static ChartPanel chartPanel;
     /**
      * Creates new form VnReporteCliente
      */
@@ -26,15 +28,15 @@ public class VnReporteCliente extends javax.swing.JFrame {
         
                 
         // Fuente de Datos
-        DefaultPieDataset defaultpiedataset = new DefaultPieDataset();
+        defaultpiedataset = new DefaultPieDataset();
         defaultpiedataset.setValue("Total de Tickets Liberados", (Integer.parseInt(lblNumTicketsResividos.getText())-Integer.parseInt(lblNumTicketsSatisfactorios.getText())));
         defaultpiedataset.setValue("Tickets Atendidos Satisfactoriamente", Integer.parseInt(lblNumTicketsSatisfactorios.getText()));
         //defaultpiedataset.setValue("Hacking", new Double(19.5D));
         //defaultpiedataset.setValue("SEO", new Double(30.5D));
         //defaultpiedataset.setValue("Redes", new Double(2.0D));
- 
+
         // Creando el Grafico
-        JFreeChart chart = ChartFactory.createPieChart3D("Mi Proporción", defaultpiedataset, true, true, false);
+        chart = ChartFactory.createPieChart3D("Mi Proporción", defaultpiedataset, true, true, false);
         PiePlot3D pieplot3d = (PiePlot3D)chart.getPlot();
         pieplot3d.setDepthFactor(0.5);
         pieplot3d.setStartAngle(290D);
@@ -42,7 +44,7 @@ public class VnReporteCliente extends javax.swing.JFrame {
         pieplot3d.setForegroundAlpha(0.5F);
         
         // Mostrar Grafico
-        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel = new ChartPanel(chart);
         chartPanel.setBounds(0, 0, 314, 270);
         jpGrafico.add(chartPanel);
 
