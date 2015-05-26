@@ -1,7 +1,11 @@
 
 package Logica;
 
-
+/**
+ *
+ * @author root
+ * Interface para el correcto manejo de la clase Exell
+ */
     public abstract interface  ExcellInterface{
     
         public void cargarTikets();

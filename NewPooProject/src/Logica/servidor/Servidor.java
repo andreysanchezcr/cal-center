@@ -1,6 +1,5 @@
 package Logica.servidor;
 
-import Interfaz.Login;
 import Interfaz.ServidorVentana;
 import Logica.ManejadorDeListas;
 
@@ -39,7 +38,6 @@ public class Servidor implements Runnable {
     ArrayList listaConexiones = new ArrayList();
     HiloDeCliente_1 cli;
     ArrayList historial;
-    int puerto;
 
     private void registrarPersonas() {
         historial = new ArrayList();
@@ -73,13 +71,12 @@ public class Servidor implements Runnable {
      * Se mete en un bucle infinito para ateder clientes, lanzando un hilo para
      * cada uno de ellos.
      */
-    public Servidor(ServidorVentana ventana,Login parent) {
+    public Servidor(ServidorVentana ventana) {
         registrarPersonas();
         this.ventana = ventana;
         ventana.setServidor(this);
         ventana.setListaEmpleados(listaEmpleados);
         ventana.setConectados();
-        puerto=parent.getPuerto();
 
     }
 
@@ -394,7 +391,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
     public void run() {
 
         try {
-            ServerSocket socketServidor = new ServerSocket(puerto);
+            ServerSocket socketServidor = new ServerSocket(5557);
 
             while (true) {
 
@@ -508,6 +505,8 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
         int liberados = contarLiberados(this.getName(tipo), this.getFecha(tipo));
         System.out.println(efectivos+"@"+liberados);
        this.objetosaliente.writeObject(efectivos+"@"+liberados);
+       historial.add(this.getName(tipo) + " ha solicitado su reporte para la fecha : " + this.getHora(this.getFecha(tipo)));
+        
         //this.saliente.writeUTF(efectivos+"@"+liberados);
         System.out.println("despues de terminar el reporte");
 

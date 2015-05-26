@@ -1,10 +1,17 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Logica;
 
 import static Interfaz.ClienteVentana.ListaEmpleado;
 import java.util.ArrayList;
 
-
+/**
+ *
+ * @author Fernando
+ */
 public class Funciones {
     public static ArrayList <String> listaTiketPrueba = new ArrayList();//Array falso de tikets solo para pruebas
     

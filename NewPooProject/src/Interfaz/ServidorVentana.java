@@ -16,9 +16,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+
+/**
+ *
+ * @author Fernando
+ */
 public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
+    /**
+     * Creates new form Servidor
+     */
     Servidor servidor;
     ArrayList listaEmpleados;
     boolean luis;
@@ -579,14 +592,16 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_ListaItemStateChanged
 
     private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_ListaActionPerformed
 
     private void btnCargarTickets1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTickets1ActionPerformed
-       
+        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCargarTickets1ActionPerformed
 
     private void Lista4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Lista4ItemStateChanged
+        // TODO add your handling code here:
         jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");        
         String pID = getIDTiket(Lista4.getSelectedItem().toString());
         String pInfo = cargaInfoTiketVerde(pID);
@@ -638,6 +653,11 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
        // ArrayList<Tickets> SuperLista = MyExell.MegaExellGet();
     
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static java.awt.List Lista;

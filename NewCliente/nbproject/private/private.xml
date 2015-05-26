@@ -3,10 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/root/Y/cal-center/NewCliente/src/Interfaz/ClienteReporte.java</file>
+            <file>file:/root/Y/cal-center/NewCliente/src/Interfaz/ClienteVentana.java</file>
+=======
+<<<<<<< HEAD
             <file>file:/C:/Users/Andrey/Desktop/cal-center/NewCliente/src/Logica/cliente/Cliente.java</file>
-            <file>file:/C:/Users/Andrey/Desktop/cal-center/NewCliente/src/Interfaz/ClienteReporte.java</file>
-            <file>file:/C:/Users/Andrey/Desktop/cal-center/NewCliente/src/Interfaz/Login.java</file>
-            <file>file:/C:/Users/Andrey/Desktop/cal-center/NewCliente/src/Interfaz/ComprobarLogin.java</file>
+=======
+            <file>file:/C:/Users/Junior/Documents/GitHub/cal-center/NewCliente/src/Interfaz/TiketVentana.java</file>
+            <file>file:/C:/Users/Junior/Documents/GitHub/cal-center/NewCliente/src/Logica/cliente/Cliente.java</file>
+            <file>file:/C:/Users/Junior/Documents/GitHub/cal-center/NewCliente/src/Interfaz/ClienteVentana.java</file>
+            <file>file:/C:/Users/Junior/Documents/GitHub/cal-center/NewCliente/src/Interfaz/Login.java</file>
+>>>>>>> 63051d85f9b0c2b481e055752f0a17ae0b0a80cb
+>>>>>>> 7857e5346671bbb6a451b0fc124160d3c22b2e2e
         </group>
     </open-files>
 </project-private>
