@@ -8,6 +8,7 @@ package Interfaz;
 import Logica.Funciones;
 import Logica.ManejadorDeListas;
 import static Logica.ManejadorDeListas.cargaListaActividadReciente;
+import Logica.Tickets;
 import com.toedter.calendar.JCalendar;
 import java.util.ArrayList;
 import org.jfree.chart.ChartFactory;
@@ -205,8 +206,18 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jLabel1.setText("Buscar Tickets desde:");
 
         cbTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Fernando", "Junior", "Luis" }));
+        cbTipoBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTipoBusquedaActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("Buscar Desde el Origen de los tiempos");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -391,8 +402,17 @@ public class VnServidorReportes extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jlReportes.removeAll();
-        ArrayList temp=ManejadorDeListas.ticketEntreFecha(this.getFechadesde(), this.getFechahasta(), ManejadorDeListas.MegaLista);
+        ArrayList temp;
+        String busqueda=(String)cbTipoBusqueda.getSelectedItem();
+        if(this.jCheckBox1.isSelected()){
+            temp=ManejadorDeListas.MegaLista;
+        }else{
+            temp=this.filtroNombre(ManejadorDeListas.ticketEntreFecha(this.getFechadesde(), this.getFechahasta(), ManejadorDeListas.MegaLista));
+        
+        }
+        llenarJList(temp);
         System.out.println(temp.size()+" este es el tama;o de lalista");
+        
         jlReportes.repaint();
         
         
@@ -403,6 +423,34 @@ public class VnServidorReportes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public ArrayList filtroNombre(ArrayList lista){
+        String nombre=(String)cbTipoBusqueda.getSelectedItem();
+        System.out.println(nombre);
+        ArrayList temp=new ArrayList();
+        if(nombre.equals("Todos")){
+            return lista;
+        }
+        Tickets tickete;
+        for(int i=0;i<lista.size();i++){
+            tickete=(Tickets)lista.get(i);
+            if(tickete.getID_EMPLEADO().equals(nombre)){
+                temp.add(tickete);
+            }
+        }
+        return temp;
+        
+        
+    }
+    
+    
+    
+    public void llenarJList(ArrayList lista){
+        for(int i=0;i<lista.size();i++){
+            Tickets temp=(Tickets)lista.get(i);
+            jlReportes.add(temp.getAsunto());
+        }
+        
+    }
     private void jlReportesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jlReportesItemStateChanged
 
     }//GEN-LAST:event_jlReportesItemStateChanged
@@ -410,6 +458,14 @@ public class VnServidorReportes extends javax.swing.JFrame {
     private void jlReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlReportesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jlReportesActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+       
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void cbTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTipoBusquedaActionPerformed
 
 
 

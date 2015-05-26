@@ -205,13 +205,7 @@ public abstract class ManejadorDeListas {
         int dia2=getDia(fecha2);
         int mes2=getMes(fecha2);
         int ano2=getAno(fecha2);
-        
-        
-        
-        
-        
-        
-        
+     
         int largoLista = lista.size();
         int recorrido = 0;
         ArrayList<Tickets> listaFecha = new ArrayList<Tickets>();
