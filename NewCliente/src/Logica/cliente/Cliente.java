@@ -46,6 +46,8 @@ implements Runnable{
     boolean solicitud=false;
     String nombre;
     ClienteVentana clienteventana;
+    int puerto;
+    String host;
     
     /**
      * Arranca el Cliente de chat.
@@ -69,6 +71,8 @@ implements Runnable{
         try
         {
             this.nombre =nombre;
+            this.puerto=parent.getPuerto();
+            this.host=parent.getHost();
             this.correo=correo;
             this.contrasena=contrasena;
             socket = new Socket("localhost", 5557);
@@ -256,7 +260,7 @@ implements Runnable{
         
         
         
-        socket = new Socket("localhost", 5557);
+        socket = new Socket(host, puerto);
       //  System.out.println("111111");
             flujoSaliente = new DataOutputStream(socket.getOutputStream());
         this.flujoSaliente.writeUTF("Desconectar");

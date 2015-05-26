@@ -1,8 +1,8 @@
 package Logica.servidor;
 
+import Interfaz.Login;
 import Interfaz.ServidorVentana;
 import Logica.ManejadorDeListas;
-
 import Logica.Persona;
 import Logica.Tickets;
 import java.io.DataInputStream;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.DefaultListModel;
 
 /**
@@ -66,18 +65,18 @@ public class Servidor implements Runnable {
      * @param args
      */
     private ServidorVentana ventana;
-
+    int puerto;
     /**
      * Se mete en un bucle infinito para ateder clientes, lanzando un hilo para
      * cada uno de ellos.
      */
-    public Servidor(ServidorVentana ventana) {
+    public Servidor(ServidorVentana ventana,Login parent) {
         registrarPersonas();
         this.ventana = ventana;
         ventana.setServidor(this);
         ventana.setListaEmpleados(listaEmpleados);
         ventana.setConectados();
-
+        puerto=parent.getPuerto();
     }
 
     public ArrayList getListaConexiones() {

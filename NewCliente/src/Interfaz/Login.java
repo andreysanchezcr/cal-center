@@ -108,7 +108,7 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         jLabel9.setText("HOST:");
 
         jTextField5.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jTextField5.setText("LocalHost");
+        jTextField5.setText("localhost");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TuCalllCenterLogoResize.png"))); // NOI18N
 
@@ -218,6 +218,18 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public int getPuerto(){
+        try{
+          return Integer.parseInt(this.jTextField6.getText());
+      
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "El puerto no es valido");
+        }
+        return 0;
+        }
+    public String getHost(){
+        return this.jTextField5.getText();
+    }
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         AcercaDe acercaDeFrame = new AcercaDe();        
