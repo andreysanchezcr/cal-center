@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/root/Y/cal-center/NewPooProject/src/Logica/Funciones.java</file>
-            <file>file:/root/Y/cal-center/NewPooProject/src/Logica/MyExell.java</file>
-            <file>file:/root/Y/cal-center/NewPooProject/src/Interfaz/VnServidorReportes.java</file>
-            <file>file:/root/Y/cal-center/NewPooProject/src/Interfaz/ServidorVentana.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/Andrey/Desktop/cal-center/NewPooProject/src/Logica/servidor/Servidor.java</file>
-=======
-            <file>file:/C:/Users/Junior/Documents/GitHub/cal-center/NewPooProject/src/Interfaz/Login.java</file>
-            <file>file:/C:/Users/Junior/Documents/GitHub/cal-center/NewPooProject/src/Logica/MyExell.java</file>
->>>>>>> 63051d85f9b0c2b481e055752f0a17ae0b0a80cb
->>>>>>> 7857e5346671bbb6a451b0fc124160d3c22b2e2e
+            <file>file:/C:/Users/Fernando/Desktop/cal-center/NewPooProject/src/Interfaz/ServidorVentana.java</file>
         </group>
     </open-files>
 </project-private>

@@ -2,6 +2,9 @@ package Logica.servidor;
 
 import Interfaz.Login;
 import Interfaz.ServidorVentana;
+import static Interfaz.ServidorVentana.Lista4;
+import static Interfaz.ServidorVentana.Lista5;
+import static Interfaz.ServidorVentana.Lista6;
 import Logica.ManejadorDeListas;
 import Logica.Persona;
 import Logica.Tickets;
@@ -37,7 +40,6 @@ public class Servidor implements Runnable {
     ArrayList listaConexiones = new ArrayList();
     HiloDeCliente_1 cli;
     ArrayList historial;
-    //int puerto;
 
     private void registrarPersonas() {
         historial = new ArrayList();
@@ -391,7 +393,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
     public void run() {
 
         try {
-            ServerSocket socketServidor = new ServerSocket(puerto);
+            ServerSocket socketServidor = new ServerSocket(5557);
 
             while (true) {
 
@@ -434,6 +436,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
                     String tipo = dataInput.readUTF();
 
                     this.modificarEstadoTicketRojo(indice, tipo);
+                    actualizarjList();
 
                     //ManejadorDeListas.ListaDeRojos=(ArrayList)this.objetoentrante.readObject();
                 } else if (instruccion.equals("ListaVERDE")) {
@@ -445,21 +448,21 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
 
                     this.modificarEstadoTicketVerde(indice, tipo);
                     // ManejadorDeListas.ListaDeVerdes=(ArrayList)this.objetoentrante.readObject();
-
+                    actualizarjList();
                 } else if (instruccion.equals("ListaAMARILLO")) {
                     int indice = dataInput.readInt();
                     String tipo = dataInput.readUTF();
 
                     this.modificarEstadoTicketAmarillo(indice, tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-
+                    actualizarjList();
                 } else if (instruccion.equals("ListaLiberadoAMARILLO")) {
                     int indice = dataInput.readInt();
 
                     String tipo = dataInput.readUTF();
 
                  //   System.out.println(tipo + "Este es el tip");
-
+                    actualizarjList();
                     this.modificarEstadoLiberadoTicketAmarillo(indice, tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
 
@@ -472,7 +475,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
 
                     this.modificarEstadoTicketLiberadoRojo(indice, tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-
+                    actualizarjList();
                 } else if (instruccion.equals("ListaLiberadoVERDE")) {
                     int indice = dataInput.readInt();
 
@@ -482,7 +485,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
 
                     this.modificarEstadoTicketLiberadoVerde(indice, tipo);
                     //ManejadorDeListas.ListaDeAmarillos=(ArrayList)this.objetoentrante.readObject();
-
+                    actualizarjList();
                 } else if (instruccion.equals("Reporte")) {
                     mandarReporteIndividual();
                   //  System.out.println("terminno de ejecutar rteporte")
@@ -494,6 +497,31 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void actualizarjList(){
+        for(int i=0;i<Lista6.getItemCount();i++){
+            if((((Tickets)ManejadorDeListas.ListaDeAmarillos.get(i)).getEstado().equals("Pendiente")||((Tickets)ManejadorDeListas.ListaDeAmarillos.get(i)).getEstado().equals("En atencion")||((Tickets)ManejadorDeListas.ListaDeAmarillos.get(i)).getEstado().equals("Atendido"))&&!Lista6.getItem(i).equals(((Tickets)ManejadorDeListas.ListaDeAmarillos.get(i)).getEstadoActual())){
+                Lista6.replaceItem(((Tickets)ManejadorDeListas.ListaDeAmarillos.get(i)).getEstadoActual(), i);
+            }
+            
+            
+        }
+        for(int i=0;i<Lista4.getItemCount();i++){
+            if((((Tickets)ManejadorDeListas.ListaDeVerdes.get(i)).getEstado().equals("Pendiente")||((Tickets)ManejadorDeListas.ListaDeVerdes.get(i)).getEstado().equals("En atencion")||((Tickets)ManejadorDeListas.ListaDeVerdes.get(i)).getEstado().equals("Atendido"))&&!Lista4.getItem(i).equals(((Tickets)ManejadorDeListas.ListaDeVerdes.get(i)).getEstadoActual())){
+                Lista4.replaceItem(((Tickets)ManejadorDeListas.ListaDeVerdes.get(i)).getEstadoActual(), i);
+            }
+            
+            
+        }
+        for(int i=0;i<Lista5.getItemCount();i++){
+            if((((Tickets)ManejadorDeListas.ListaDeRojos.get(i)).getEstado().equals("Pendiente")||((Tickets)ManejadorDeListas.ListaDeRojos.get(i)).getEstado().equals("En atencion")||((Tickets)ManejadorDeListas.ListaDeRojos.get(i)).getEstado().equals("Atendido"))&&!Lista5.getItem(i).equals(((Tickets)ManejadorDeListas.ListaDeRojos.get(i)).getEstadoActual())){
+                Lista5.replaceItem(((Tickets)ManejadorDeListas.ListaDeRojos.get(i)).getEstadoActual(), i);
+            }
+            
+            
+        }
+        
     }
 
     public void mandarReporteIndividual() throws IOException {
