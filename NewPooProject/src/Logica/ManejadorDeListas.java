@@ -71,18 +71,18 @@ public abstract class ManejadorDeListas {
             ListaDeRojos.add(ListaDeRojosInsert.get(i));
         }
     }
-    public static String getDia(String fecha){
+    public static int getDia(String fecha){
         String temp="";
         for(int i=0;i<fecha.length();i++){
         if(fecha.charAt(i)=='/'){
-            return temp;
+            return Integer.parseInt(temp);
         }
         temp=temp+fecha.charAt(i);
         }
         System.out.println("Error en la funcion get dia");
-        return "";
+        return -1;
     }
-    public static String getMes(String fecha){
+    public static int getMes(String fecha){
         String temp="";
         int contador=0;
         for(int i=0;i<fecha.length();i++){
@@ -91,7 +91,7 @@ public abstract class ManejadorDeListas {
             contador++;
             //continue;
         }else if((fecha.charAt(i)=='/')&&contador==1){
-            return temp;
+            return Integer.parseInt(temp);
             //continue;
         }
         else{
@@ -100,9 +100,9 @@ public abstract class ManejadorDeListas {
         
         }
         System.out.println("Error en la funcion get mes");
-        return "";
+        return -1;
     }
-    public static String getAno(String fecha){
+    public static int getAno(String fecha){
         String temp="";
         int contador=0;
         for(int i=0;i<fecha.length();i++){
@@ -111,11 +111,16 @@ public abstract class ManejadorDeListas {
             contador++;
             continue;
         }
+        
+        if(fecha.charAt(i)==' '){
+            return Integer.parseInt(temp);
+        }
+        
         temp=temp+fecha.charAt(i);
         
         }
         //System.out.println("Error en la funcion get mes");
-        return temp;
+        return Integer.parseInt(temp);
     }        
     
   
@@ -189,14 +194,30 @@ public abstract class ManejadorDeListas {
         tiempoTotalEmpleado = tiempoSegundos(ListaDeRojos, idEmpleado);
         return tiempoTotalEmpleado;
     }
+  
     
-    public static  ArrayList<Tickets> ticketEntreFecha(int dia1, int mes1, int ano1, int dia2, int mes2, int ano2, ArrayList<Tickets> lista){
+    public static  ArrayList<Tickets> ticketEntreFecha(String fecha1,String fecha2, ArrayList<Tickets> lista){
+        System.out.println(fecha1);
+        System.out.println(fecha2);
+        int dia1=getDia(fecha1);
+        int mes1=getMes(fecha1);
+        int ano1=getAno(fecha1);
+        int dia2=getDia(fecha2);
+        int mes2=getMes(fecha2);
+        int ano2=getAno(fecha2);
+        
+        
+        
+        
+        
+        
+        
         int largoLista = lista.size();
         int recorrido = 0;
         ArrayList<Tickets> listaFecha = new ArrayList<Tickets>();
         if(ano1 == ano2){
             while(recorrido < largoLista){
-                if(Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) == ano1){
+                if(getAno(lista.get(recorrido).getFechayHoraRecepcion()) == ano1){
                     listaFecha.add(lista.get(recorrido));
                 }
                 recorrido = recorrido +1;
@@ -204,9 +225,9 @@ public abstract class ManejadorDeListas {
         }
         else{
             while(recorrido < largoLista){
-            if((Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) <= ano1) && (Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) >= ano2)){
-                if((Integer.parseInt(getMes(lista.get(recorrido).getFechayHoraRecepcion())) <= mes1) && (Integer.parseInt(getMes(lista.get(recorrido).getFechayHoraRecepcion())) >= mes2)){
-                    if((Integer.parseInt(getDia(lista.get(recorrido).getFechayHoraRecepcion())) <= dia1) && (Integer.parseInt(getDia(lista.get(recorrido).getFechayHoraRecepcion())) >= dia2)){
+            if((getAno(lista.get(recorrido).getFechayHoraRecepcion()) <= ano1) && (getAno(lista.get(recorrido).getFechayHoraRecepcion()) >= ano2)){
+                if((getMes(lista.get(recorrido).getFechayHoraRecepcion()) <= mes1) && (getMes(lista.get(recorrido).getFechayHoraRecepcion()) >= mes2)){
+                    if((getDia(lista.get(recorrido).getFechayHoraRecepcion()) <= dia1) && (getDia(lista.get(recorrido).getFechayHoraRecepcion()) >= dia2)){
                         listaFecha.add(lista.get(recorrido));
                         }
                     }
@@ -215,6 +236,7 @@ public abstract class ManejadorDeListas {
             }
         }
         return listaFecha;
+        
     }
     public String getFecha(JCalendar calendario){
         return calendario.getDate().getDay()+"/"+calendario.getDate().getMonth()+"/"+calendario.getDate().getYear();
