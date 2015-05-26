@@ -280,8 +280,7 @@ implements Runnable{
             flujoSaliente.writeUTF(this.parent.getColor());
             
             this.listaTicketes=(ArrayList)this.objeto_entrante.readObject();
-            String prueba=(String)this.objeto_entrante.readObject();
-                System.out.println(prueba);
+           
             cargarListaTikets();
             modificarJList();
             socket.close();

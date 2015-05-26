@@ -417,7 +417,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
                 } else if (instruccion.equals("VERDE")) {
                     this.sendVerde();
                     
-                    this.objetosaliente.writeObject("GSFGDSGSDSGSDFGSDFGSAFFGSDGSADGSDGSDF");
+                   
                     
 
                 } else if (instruccion.equals("AMARILLO")) {
