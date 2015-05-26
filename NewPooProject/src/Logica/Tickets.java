@@ -66,7 +66,7 @@ public class Tickets implements Serializable{
         this.estado = estado;
     }
     public String getEstadoActual(){
-        return "❧ ID:  " + getIDTicket()+"   Asunto: "+getAsunto()+" "+getEstado();
+        return getAsunto()+" "+getEstado();
     }
     
     

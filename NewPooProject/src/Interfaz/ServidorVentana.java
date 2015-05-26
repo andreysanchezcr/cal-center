@@ -2,7 +2,6 @@ package Interfaz;
 import javax.swing.*;
 import java.io.File;
 import Logica.*;//<---------------------------------------------------------------------Despues le borro
-import static Logica.Funciones.cargaEstadoTiket;
 import static Logica.Funciones.cargaInfoTiket;
 import static Logica.Funciones.cargaInfoTiketAmarillo;
 import static Logica.Funciones.cargaInfoTiketRojo;
@@ -67,7 +66,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         
         JFileChooser jF1 = null;
         
-        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea guardar los cambios producidos en el Sistema?",
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea guardar los cambios "+"\n"+" producidos en el Sstema?",
             "Guardar Cambios", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             
             
@@ -169,6 +168,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jTextArea1 = new javax.swing.JTextArea();
         btStatusMonitoreo = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel5.setText("jLabel5");
 
@@ -356,6 +356,13 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TuCalllCenterLogoSinFondoResize.png"))); // NOI18N
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -374,9 +381,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Lista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(104, 104, 104)
                                         .addComponent(btnCargarTickets)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -435,7 +442,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Lista, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCargarTickets)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCargarTickets)
+                            .addComponent(jButton1))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -498,11 +507,8 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         
         String ArregloDeSelecciones [ ] = Lista.getSelectedItems();//getSelectedValues();
         for(int i = 0; i < ArregloDeSelecciones.length; i++) {
-        Lista.remove(ArregloDeSelecciones[i]);
-        //Para q ponga el estado
-        String pID = getIDTiket(ArregloDeSelecciones[i]);
-        String pInfo = cargaEstadoTiket(pID);
-        Lista4.add(ArregloDeSelecciones[i]+pInfo);        
+        Lista.remove(ArregloDeSelecciones[i]);  
+        Lista4.add(ArregloDeSelecciones[i]);
         ManejadorDeListas.finderThenInsert(ArregloDeSelecciones[i], ListaDeVerdes);
         }
         
@@ -523,10 +529,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         String ArregloDeSelecciones [ ] = Lista.getSelectedItems();//getSelectedValues();
         for(int i = 0; i < ArregloDeSelecciones.length; i++) {
         Lista.remove(ArregloDeSelecciones[i]);  
-        //Para q ponga el estado
-        String pID = getIDTiket(ArregloDeSelecciones[i]);
-        String pInfo = cargaEstadoTiket(pID);
-        Lista6.add(ArregloDeSelecciones[i]+pInfo);
+        Lista6.add(ArregloDeSelecciones[i]);
         ManejadorDeListas.finderThenInsert(ArregloDeSelecciones[i], ListaDeAmarillos);
         }
         
@@ -545,11 +548,8 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         
         String ArregloDeSelecciones [ ] = Lista.getSelectedItems();//getSelectedValues();
         for(int i = 0; i < ArregloDeSelecciones.length; i++) {
-        Lista.remove(ArregloDeSelecciones[i]); 
-        //Para q ponga el estado
-        String pID = getIDTiket(ArregloDeSelecciones[i]);
-        String pInfo = cargaEstadoTiket(pID);
-        Lista5.add(ArregloDeSelecciones[i]+pInfo);         
+        Lista.remove(ArregloDeSelecciones[i]);  
+        Lista5.add(ArregloDeSelecciones[i]);
         ManejadorDeListas.finderThenInsert(ArregloDeSelecciones[i], ListaDeRojos);
         }
         
@@ -648,6 +648,12 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         
     }//GEN-LAST:event_btStatusMonitoreoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+       // ArrayList<Tickets> SuperLista = MyExell.MegaExellGet();
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -664,6 +670,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnSetComoAmarillo;
     private javax.swing.JButton btnSetComoRojo;
     private javax.swing.JButton btnSetComoVERDE;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

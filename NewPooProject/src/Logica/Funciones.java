@@ -5,7 +5,6 @@
  */
 package Logica;
 
-import static Interfaz.ServidorVentana.Lista4;
 import Interfaz.VnServidorReportes;
 import java.io.File;
 import java.util.ArrayList;
@@ -79,8 +78,19 @@ public class Funciones {
                 
             }
         } 
-    }
+        }
         
+        
+        
+        
+        
+        
+        
+        
+
+    
+
+    
     public static ArrayList <Tickets> getTiketsAtendidosTodosUnEmpleado(String empleado){
         ArrayList <Tickets> tiketsEncontrados = new ArrayList();
         for(int i = 0; i < ManejadorDeListas.MegaLista.size(); i++){
@@ -126,7 +136,6 @@ public class Funciones {
                 result += Integer.toString(ticket.getIDTicket());
                 result += "\nAsunto: ";
                 result += ticket.getAsunto();
-                result += "\nCategoría: Sin categoría";
             }
         }
     return result;
@@ -141,10 +150,8 @@ public class Funciones {
                 result += Integer.toString(ticket.getIDTicket());
                 result += "\nAsunto: ";
                 result += ticket.getAsunto();
-                result += "\nCategoría: Verde";
-                //result += ticket.getCategoria();
-                result += "\nEstado: ";
-                result += ticket.getEstado();
+                result += "\nCategoría: ";
+                result += ticket.getCategoria();
             }
         }
     return result;
@@ -160,10 +167,8 @@ public class Funciones {
                 result += Integer.toString(ticket.getIDTicket());
                 result += "\nAsunto: ";
                 result += ticket.getAsunto();
-                result += "\nCategoría: Amarillo";
-                //result += ticket.getCategoria();
-                result += "\nEstado: ";
-                result += ticket.getEstado();
+                result += "\nCategoría: ";
+                result += ticket.getCategoria();
             }
         }
     return result;
@@ -178,74 +183,12 @@ public class Funciones {
                 result += Integer.toString(ticket.getIDTicket());
                 result += "\nAsunto: ";
                 result += ticket.getAsunto();
-                result += "\nCategoría: Rojo";
-                //result += ticket.getCategoria();
-                result += "\nEstado: ";
-                result += ticket.getEstado();
+                result += "\nCategoría: ";
+                result += ticket.getCategoria();
             }
         }
     return result;
     }
-    
-    public static String cargaEstadoTiket(String pID){
-            String result = null;
-            //revisa en pendientes
-            ArrayList <Tickets> ArrayListTicket =  ManejadorDeListas.getListaDePendientes();//Array de los tickets
-            for (Tickets ticket: ArrayListTicket) {   
-                if (Integer.toString(ticket.getIDTicket()).equals(pID)) {
-                    result = " Estado: -> ";
-                    result += ticket.getEstado();
-                    break;
-                }
-            }
-            //revisa en verdes
-            ArrayList <Tickets> ArrayListTicketVerde =  ManejadorDeListas.getListaDeVerdes();//Array de los tickets verdes
-            for (Tickets ticket: ArrayListTicketVerde){   
-                if (Integer.toString(ticket.getIDTicket()).equals(pID)) {
-                    result = " Estado: -> ";
-                    result += ticket.getEstado();
-                    break;
-                }
-            }
-            //revisa en amarillos
-            ArrayList <Tickets> ArrayListTicketAmarillo =  ManejadorDeListas.getListaDeAmarillos();//Array de los tickets
-            for (Tickets ticket: ArrayListTicketAmarillo){   
-                if (Integer.toString(ticket.getIDTicket()).equals(pID)) {
-                    result = " Estado: -> ";
-                    result += ticket.getEstado();
-                    break;
-                }
-            }
-            //revisa en rojos
-            ArrayList <Tickets> ArrayListTicketRojos =  ManejadorDeListas.getListaDeRojos();//Array de los tickets
-            for (Tickets ticket: ArrayListTicketRojos){   
-                if (Integer.toString(ticket.getIDTicket()).equals(pID)) {
-                    result = " Estado: -> ";
-                    result += ticket.getEstado();
-                    break;
-                }
-            }
-    return result;
-    }
-    
-    
-    
-    /*public static void actualizaListaTiketsVerdes(int indice){            
-            ArrayList <Tickets> ArrayListTicketVerde =  ManejadorDeListas.getListaDeVerdes();//Array de los tickets
-            
-            
-            for (Tickets ticket: ArrayListTicketVerde) {
-                String pID = "❧ ID:  ";
-                pID += ticket.getIDTicket();
-                pID += "   Asunto: ";
-                pID += ticket.getAsunto();
-                pID += " Estado: -> ";
-                pID += ticket.getEstado();
-                Lista4.add(pID);
-            }
-        }*/
-    
-    
     
     
     

@@ -75,7 +75,7 @@ implements Runnable{
             this.host=parent.getHost();
             this.correo=correo;
             this.contrasena=contrasena;
-            socket = new Socket("localhost", 5557);
+            socket = new Socket(host, puerto);
             this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
            flujoSaliente = new DataOutputStream(socket.getOutputStream());
             flujoEntrante = new DataInputStream(socket.getInputStream());
@@ -112,7 +112,7 @@ implements Runnable{
         return parent.getColor();
     }
     public void mandarListaAtencion(int indice) throws IOException{
-        socket = new Socket("localhost", 5557);
+        socket = new Socket(host, puerto);
       //  System.out.println("Mandando lista");
       //  System.out.println(this.getColor());
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
@@ -127,7 +127,7 @@ implements Runnable{
         
     }
     public String getReporte(String fecha) throws IOException, ClassNotFoundException{
-        socket = new Socket("localhost", 5557);
+        socket = new Socket(host, puerto);
         System.out.println("Obteniendo reporte");
         
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
@@ -178,7 +178,7 @@ implements Runnable{
     
     
     public void mandarListaAtendido(int indice,String comentario) throws IOException{
-        socket = new Socket("localhost", 5557);
+        socket = new Socket(host, puerto);
         
        // System.out.println("Este es el comentario: "+comentario);
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
@@ -190,7 +190,7 @@ implements Runnable{
       
     }
      public void mandarListaLiberado(int indice,String comentario) throws IOException{
-        socket = new Socket("localhost", 5557);
+        socket = new Socket(host, puerto);
         
     //   System.out.println("Este es el comentario de liberado: "+comentario);
         flujoSaliente = new DataOutputStream(socket.getOutputStream());
@@ -277,7 +277,7 @@ implements Runnable{
                 solicitud=false;
                 
             
-            socket = new Socket("localhost", 5557);
+           socket = new Socket(host, puerto);
             this.objeto_entrante=new ObjectInputStream(socket.getInputStream());
            flujoSaliente = new DataOutputStream(socket.getOutputStream());
             flujoEntrante = new DataInputStream(socket.getInputStream());
