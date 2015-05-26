@@ -299,8 +299,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String pUserName=jTextField1.getText();
+       String pUserName=jTextField1.getText();
         String pPassword=jPasswordField1.getText();
         String pPassword2=jPasswordField1.getSelectedText();
         if(pUserName.equals("") || pPassword.equals("")){
@@ -338,14 +337,12 @@ public class Login extends javax.swing.JFrame {
     }
     
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
         AcercaDe acercaDeFrame = new AcercaDe();        
         acercaDeFrame.setVisible(true);        
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         String pUserName=jTextField1.getText();
         String pPassword=jPasswordField1.getText();
         //String pPassword2=jPasswordField1.getSelectedText();
@@ -363,7 +360,6 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
         AcercaDe acercaDeFrame = new AcercaDe();
         acercaDeFrame.setVisible(true);
         this.setVisible(false);
