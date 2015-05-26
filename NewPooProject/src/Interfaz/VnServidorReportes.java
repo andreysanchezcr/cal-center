@@ -6,11 +6,8 @@
 package Interfaz;
 
 import Logica.Funciones;
-import Logica.ManejadorDeListas;
 import static Logica.ManejadorDeListas.cargaListaActividadReciente;
-import Logica.Tickets;
 import com.toedter.calendar.JCalendar;
-import java.util.ArrayList;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -82,8 +79,6 @@ public class VnServidorReportes extends javax.swing.JFrame {
         rbOrigenTiempos = new javax.swing.JRadioButton();
         jlReportes = new java.awt.List();
         jButton1 = new javax.swing.JButton();
-        calendariodesde = new com.toedter.calendar.JDateChooser();
-        calendariohasta = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -206,18 +201,8 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jLabel1.setText("Buscar Tickets desde:");
 
         cbTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Fernando", "Junior", "Luis" }));
-        cbTipoBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbTipoBusquedaActionPerformed(evt);
-            }
-        });
 
         jCheckBox1.setText("Buscar Desde el Origen de los tiempos");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -261,34 +246,24 @@ public class VnServidorReportes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(calendariohasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cbTipoBusqueda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(calendariodesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbOrigenTiempos)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlReportes, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                .addComponent(jlReportes, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(calendariodesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(calendariohasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -331,61 +306,6 @@ public class VnServidorReportes extends javax.swing.JFrame {
         //  cargaListaActividadReciente();
     }//GEN-LAST:event_btnVolverPrincipalActionPerformed
 
-        public String getFechahasta(){
-        
-    String año = Integer.toString(calendariohasta.getCalendar().get(java.util.Calendar.YEAR));
-    String mes = Integer.toString(calendariohasta.getCalendar().get(java.util.Calendar.MONTH) + 1);
-    String dia = Integer.toString(calendariohasta.getCalendar().get(java.util.Calendar.DATE));
-    String resultado="";
-    if(Integer.parseInt(mes)<10&&Integer.parseInt(dia)<10){
-        resultado="0"+dia+"/"+"0"+mes+"/"+año;
-    }
-    else if(Integer.parseInt(mes)<10){
-        resultado=dia+"/"+"0"+mes+"/"+año;
-    }else if(Integer.parseInt(dia)<10){
-        resultado="0"+dia+"/"+mes+"/"+año;
-    }
-    else{
-        resultado=dia+"/"+mes+"/"+año;
-    }
-        
-        
-        
-        
-        
-//        date.getCalendar().getTime().getDay()
-        
-        return resultado;
-    }
-    public String getFechadesde(){
-        
-    String año = Integer.toString(calendariodesde.getCalendar().get(java.util.Calendar.YEAR));
-    String mes = Integer.toString(calendariodesde.getCalendar().get(java.util.Calendar.MONTH) + 1);
-    String dia = Integer.toString(calendariodesde.getCalendar().get(java.util.Calendar.DATE));
-    String resultado="";
-    if(Integer.parseInt(mes)<10&&Integer.parseInt(dia)<10){
-        resultado="0"+dia+"/"+"0"+mes+"/"+año;
-    }
-    else if(Integer.parseInt(mes)<10){
-        resultado=dia+"/"+"0"+mes+"/"+año;
-    }else if(Integer.parseInt(dia)<10){
-        resultado="0"+dia+"/"+mes+"/"+año;
-    }
-    else{
-        resultado=dia+"/"+mes+"/"+año;
-    }
-        
-        
-        
-        
-        
-//        date.getCalendar().getTime().getDay()
-        
-        return resultado;
-    }
-    
-    
-    
     private void ListaActividadRecienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActividadRecienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ListaActividadRecienteActionPerformed
@@ -402,55 +322,11 @@ public class VnServidorReportes extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jlReportes.removeAll();
-        ArrayList temp;
-        String busqueda=(String)cbTipoBusqueda.getSelectedItem();
-        if(this.jCheckBox1.isSelected()){
-            temp=this.filtroNombre(ManejadorDeListas.MegaLista);
-        }else{
-            temp=this.filtroNombre(ManejadorDeListas.ticketEntreFecha(this.getFechadesde(), this.getFechahasta(), ManejadorDeListas.MegaLista));
-        
-        }
-        llenarJList(temp);
-        System.out.println(temp.size()+" este es el tama;o de lalista");
-        
+        Funciones.busquedaTiketsReportes();
+        System.out.println("sdjfvklbandlvasd");
         jlReportes.repaint();
-        
-        
-        
-        
-        
-        
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public ArrayList filtroNombre(ArrayList lista){
-        String nombre=(String)cbTipoBusqueda.getSelectedItem();
-        System.out.println(nombre);
-        ArrayList temp=new ArrayList();
-        if(nombre.equals("Todos")){
-            return lista;
-        }
-        Tickets tickete;
-        for(int i=0;i<lista.size();i++){
-            tickete=(Tickets)lista.get(i);
-            if(tickete.getID_EMPLEADO().equals(nombre)){
-                temp.add(tickete);
-            }
-        }
-        return temp;
-        
-        
-    }
-    
-    
-    
-    public void llenarJList(ArrayList lista){
-        for(int i=0;i<lista.size();i++){
-            Tickets temp=(Tickets)lista.get(i);
-            jlReportes.add(temp.getAsunto());
-        }
-        
-    }
     private void jlReportesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jlReportesItemStateChanged
 
     }//GEN-LAST:event_jlReportesItemStateChanged
@@ -458,14 +334,6 @@ public class VnServidorReportes extends javax.swing.JFrame {
     private void jlReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlReportesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jlReportesActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-       
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void cbTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbTipoBusquedaActionPerformed
 
 
 
@@ -507,8 +375,6 @@ public class VnServidorReportes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static java.awt.List ListaActividadReciente;
     private javax.swing.JButton btnVolverPrincipal;
-    private com.toedter.calendar.JDateChooser calendariodesde;
-    private com.toedter.calendar.JDateChooser calendariohasta;
     public static javax.swing.JComboBox cbTipoBusqueda;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
