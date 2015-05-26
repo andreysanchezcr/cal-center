@@ -10,3 +10,5 @@
 /Servidor_1/dist/
 /Cliente_1/build/
 /NewPooProject/dist/
+*.class
+NewPooProject/build/classes/Logica/servidor/Servidor.class
