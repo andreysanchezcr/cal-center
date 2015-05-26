@@ -5,6 +5,8 @@ import static Interfaz.VnServidorReportes.ListaActividadReciente;
 import Logica.Tickets;
 import com.toedter.calendar.JCalendar;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public abstract class ManejadorDeListas {
 
@@ -195,31 +197,42 @@ public abstract class ManejadorDeListas {
         return tiempoTotalEmpleado;
     }
     
-    public static  ArrayList<Tickets> ticketEntreFecha(int dia1, int mes1, int ano1, int dia2, int mes2, int ano2, ArrayList<Tickets> lista){
-        int largoLista = lista.size();
-        int recorrido = 0;
+    public static  ArrayList<Tickets> ticketEntreFecha(String fecha1,String fecha2, ArrayList<Tickets> lista){
+        System.out.println(fecha1);
+        System.out.println(fecha2);
+        
+        int dia1=getDia(fecha1);
+        int mes1=getMes(fecha1);
+        int annio1=getAno(fecha1);
+        
+        int dia2=getDia(fecha2);
+        int mes2=getMes(fecha2);
+        int annio2=getAno(fecha2);
+        
         ArrayList<Tickets> listaFecha = new ArrayList<Tickets>();
-        if(ano1 == ano2){
-            while(recorrido < largoLista){
-                if(Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) == ano1){
-                    listaFecha.add(lista.get(recorrido));
-                }
-                recorrido = recorrido +1;
-            }
+        
+        Calendar calendarDesde = new GregorianCalendar(annio1, mes1, dia1);
+	Calendar calendarHasta = new GregorianCalendar(annio2, mes2, dia2);
+        
+        if(calendarDesde.after(calendarHasta)){return listaFecha;} //Botar el metodo si la fecha de haste es mayor que la fecha desde
+        
+        
+        for(int i = 0; i < lista.size();i++){
+
+            Calendar calendarMiTicket = new GregorianCalendar(getAno(lista.get(i).getFechayHoraAtencion()), 
+                                                              getMes(lista.get(i).getFechayHoraAtencion()),
+                                                              getDia(lista.get(i).getFechayHoraAtencion()));
+            
+            if(calendarMiTicket.after(calendarDesde) && calendarMiTicket.before(calendarHasta)){
+                System.out.println("ESTE ITEM SI ENTREO>"+i+"<");
+                        
+                listaFecha.add(lista.get(i));
+            } 
+        
         }
-        else{
-            while(recorrido < largoLista){
-            if((Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) <= ano1) && (Integer.parseInt(getAno(lista.get(recorrido).getFechayHoraRecepcion())) >= ano2)){
-                if((Integer.parseInt(getMes(lista.get(recorrido).getFechayHoraRecepcion())) <= mes1) && (Integer.parseInt(getMes(lista.get(recorrido).getFechayHoraRecepcion())) >= mes2)){
-                    if((Integer.parseInt(getDia(lista.get(recorrido).getFechayHoraRecepcion())) <= dia1) && (Integer.parseInt(getDia(lista.get(recorrido).getFechayHoraRecepcion())) >= dia2)){
-                        listaFecha.add(lista.get(recorrido));
-                        }
-                    }
-                }
-            recorrido = recorrido+1;
-            }
-        }
+        
         return listaFecha;
+        
     }
     public String getFecha(JCalendar calendario){
         return calendario.getDate().getDay()+"/"+calendario.getDate().getMonth()+"/"+calendario.getDate().getYear();
