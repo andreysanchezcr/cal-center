@@ -9,6 +9,7 @@ import Logica.Tickets;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -105,6 +106,8 @@ public class TiketVentana extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Atención al tiket");
+        setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 102, 0));
@@ -223,10 +226,10 @@ public class TiketVentana extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -249,14 +252,19 @@ public class TiketVentana extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        try {
-            parent.cliente.modificarEstadoTicketAtendido(indice,tcomentario.getText(),this.lblTime.getText());
-        } catch (IOException ex) {
-            Logger.getLogger(TiketVentana.class.getName()).log(Level.SEVERE, null, ex);
+        if(tcomentario.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "¡Debe de colocar un comentario para poder continuar!");
         }
-            
+        else{            
+            try {
+                parent.cliente.modificarEstadoTicketAtendido(indice, tcomentario.getText(), this.lblTime.getText());
+            } catch (IOException ex) {
+                Logger.getLogger(TiketVentana.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             this.dispose();
-        
+
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPausaActionPerformed

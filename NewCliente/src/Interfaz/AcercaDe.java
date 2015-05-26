@@ -38,13 +38,13 @@ public class AcercaDe extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 102, 0));
-        jLabel1.setText("Simulador de Atención a Tickets");
+        jLabel1.setText("Simulador de Atención a Tickets v1.0");
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("La aplicación \"Simulador para creación de Tickets\" \nfue desarrollada por Luis Aguilar, Fernando \nUgarte, Andrey y Junior para el curso de \nprogramación orientada a objetos profesora \nEricka Marin de la  universidad Instituto \nTecnológico de Costa Rica en Cartago, Costa Rica\nIer semestre del 2015.\n_________________________________________\nDATOS TECNICOS:\nLenguaje utilizado: Java\nEntorno utilizado: NetBeans IDE 8.0.2\nParadigma utilizado: Orientado a Objetos\nTipo del Socket: Servidor-Cliente");
+        jTextArea1.setText("_________________________________________\nACERCA DE...\nLa aplicación \"Simulador para creación de Tickets\" \nfue desarrollada por Luis Aguilar, Fernando \nUgarte, Andrey Sanchez y Junior Herrera para el \ncurso de programación orientada a objetos \nprofesora Ericka Marin de la  universidad Instituto \nTecnológico de Costa Rica en Cartago, Costa Rica\nIer semestre del 2015.\n_________________________________________\nDATOS TECNICOS:\nLenguaje utilizado: Java\nEntorno utilizado: NetBeans IDE 8.0.2\nParadigma utilizado: Orientado a Objetos\nTipo del Socket: Servidor-Cliente\nOtro Software Usado: GitHub for Windows,\nPaint.Net V4.0.5, PhotoShop, Dropbox\n_________________________________________\nCONTACTOS:\nFernando: frug54@gmail.com\nLuis: luiscosconta@gmail.com\nAndrey: andreysanchezcr@gmail.com\nJunior: jetx959@gmail.com");
         jTextArea1.setOpaque(false);
         jScrollPane1.setViewportView(jTextArea1);
 

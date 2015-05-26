@@ -597,6 +597,9 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
 
     private void btnCargarTickets1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTickets1ActionPerformed
         // TODO add your handling code here:
+        Login logInFrame = new Login();        
+        logInFrame.setVisible(true);        
+        this.setVisible(false);
         
     }//GEN-LAST:event_btnCargarTickets1ActionPerformed
 

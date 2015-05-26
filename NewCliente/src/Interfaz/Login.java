@@ -66,6 +66,7 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         setResizable(false);
 
         jPasswordField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
+        jPasswordField1.setText("12345");
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
@@ -76,6 +77,7 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         jLabel2.setText("Nombre de Usuario:");
 
         jTextField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
+        jTextField1.setText("luis@tec.ac.cr");
 
         jLabel4.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,18 +205,16 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         String pPassword=jPasswordField1.getText();
         //String pPassword2=jPasswordField1.getSelectedText();        
         if(pUserName.equals("") || pPassword.equals("")){
-            JOptionPane.showMessageDialog(this, "¡Complete todos los espacios solicitados\npara poder continuar!");
+            JOptionPane.showMessageDialog(this, "¡Complete todos los espacios solicitados para poder continuar!");
         }
         else{
-            System.out.println("ACA llama a la funcion para poder hacer el login del cliente");
+            
+            this.nombre=pUserName;
+            this.color =(String)this.jComboBox1.getSelectedItem();
+            Cliente cliente = new Cliente(pUserName,pPassword,this);
+            
         }
-        this.nombre=pUserName;
-        this.color =(String)this.jComboBox1.getSelectedItem();
-        Cliente cliente = new Cliente(pUserName,pPassword,this);
-        
-        System.out.println("entro");
-        
-        
+                
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

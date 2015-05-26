@@ -194,11 +194,13 @@ public class Login extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sing in");
         setBackground(new java.awt.Color(0, 0, 51));
         setPreferredSize(new java.awt.Dimension(480, 415));
         setResizable(false);
 
         jPasswordField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
+        jPasswordField1.setText("12345");
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
@@ -209,6 +211,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Nombre de Usuario:");
 
         jTextField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
+        jTextField1.setText("admin@tec.ac.cr");
 
         jLabel4.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -307,24 +310,24 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "¡Complete todos los espacios solicitados\npara poder continuar!");
         }
         else{
-            System.out.println("ACA llama a la funcion para poderhacer el login");
-        }
-        Persona administrador =verificarAdministrador(pUserName, pPassword);
-        if(administrador!=null){
             
-            ServidorVentana vServidor=new ServidorVentana();
-            Thread hiloVentana =new Thread(vServidor);
-            Servidor servidor=new Servidor(vServidor,this);
-            Thread hilo=new Thread(servidor);
-            hilo.start();
-            hiloVentana.start();
+            Persona administrador = verificarAdministrador(pUserName, pPassword);
+            if (administrador != null) {
+
+                ServidorVentana vServidor = new ServidorVentana();
+                Thread hiloVentana = new Thread(vServidor);
+                Servidor servidor = new Servidor(vServidor, this);
+                Thread hilo = new Thread(servidor);
+                hilo.start();
+                hiloVentana.start();
 //Runnable h1= =new Runnable(servidor);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(this, "Los datos son incorrectos");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Los datos son incorrectos");
+            }
+
         }
-        
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public int getPuerto(){
