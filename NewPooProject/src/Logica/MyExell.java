@@ -22,9 +22,9 @@ public abstract class MyExell {
     
     public static int ID_Secuencia = 0;
     
+    /*======Atributos Exell Tickets======*/
     public static Workbook libroDeTrabajo;
     public static WritableWorkbook copiaDeLibro;
-    
     
     public static WritableSheet hojaTiketsPendientes;
     public static WritableSheet hojaTiketsVerdes;
@@ -32,17 +32,19 @@ public abstract class MyExell {
     public static WritableSheet hojaTiketsRojos;
             
     
-    public static void open(String path){
+    /*======Atributos Exell Tickets======*/
+    public static WritableWorkbook exellBaseDatosMGE;
     
+    public static WritableSheet hojaTiketsAtendidosMGE;
+    public static WritableSheet hojaTiketsLiberadosMGE;
+    
+    
+    public static void open(String path){
         try{
-            /**
-             * Abrir el exell
-             */
+            /*Abrir el exell*/
             File temp = new File(path);
-             
             libroDeTrabajo = Workbook.getWorkbook(temp);
         }
-        
         //----------------------------------------------------------
         catch (IOException ioex) {
             System.out.println("ERROR---->>"+ioex.getMessage());
@@ -54,8 +56,8 @@ public abstract class MyExell {
             System.out.println("ERROR---->>"+biff.getMessage());
         }
         //----------------------------------------------------------
-    
     }
+    
     
      /**
      * Metodo que carga los tikets pendientes del .xls 
@@ -63,19 +65,13 @@ public abstract class MyExell {
      * @return Lista con Tikets con la informacion principal, hora de ingreso, ID cliente y Asunto
      */
     public static ArrayList<Tickets> Open_Load_And_ReturnListOfTickets(String path){
-        
         //Abriendo Archivo .xls
         open(path);
-                
-        
         //Hoja 0 es donde permanesen los tickets sin categorizar
         Sheet hojaActual = libroDeTrabajo.getSheet(0);
         
-        
         ArrayList<Tickets> listaTikets = new ArrayList();
-        
         int numFilas = hojaActual.getRows();
-        
         for( int fila = 0; fila+1 < numFilas; fila++ ){
              
      
@@ -155,10 +151,36 @@ public abstract class MyExell {
         }
 
         private static void insertSheet(ArrayList<Tickets> lista , WritableSheet hojaTikets){
+            
+            
+            
         try {
-            Label lbl = new Label(0,7,"hiola");
-            hojaTikets.addCell(lbl);
+            /**************************Etiquetas de titulos*********************************/
+            Label lblFechayHoraRecepcionTitulo = new Label(0,0,"Fecha y Hora de Resepción");
+            hojaTikets.addCell(lblFechayHoraRecepcionTitulo);
+            Label lblID_ClienteTitulo = new Label(1,0,"ID_Cliente");
+            hojaTikets.addCell(lblID_ClienteTitulo);
+            Label lblAsuntoTitulo = new Label(2,0,"Asunto");
+            hojaTikets.addCell(lblAsuntoTitulo);
+            Label lblTicketIDTitulo = new Label(3,0,"ID_Ticket");
+            hojaTikets.addCell(lblTicketIDTitulo);
+            Label lblCategoriaTitulo = new Label(4,0,"Categoria");
+            hojaTikets.addCell(lblCategoriaTitulo);
+            Label lblID_EmpleadoTitulo = new Label(5,0,"ID_Empleado");
+            hojaTikets.addCell(lblID_EmpleadoTitulo);
+            Label lblFechayHoraAtencionTitulo = new Label(6,0,"Fecha y Hora de Atencion");
+            hojaTikets.addCell(lblFechayHoraAtencionTitulo);
+            Label lblTiempoEnSegundosTitulo = new Label(7,0,"Tiempo En Segundos");
+            hojaTikets.addCell(lblTiempoEnSegundosTitulo);
+            Label lblComentarioTitulo = new Label(8,0,"Comentario");
+            hojaTikets.addCell(lblComentarioTitulo);
+            Label lblEstadoTitulo = new Label(9,0,"Estado");
+            hojaTikets.addCell(lblEstadoTitulo);                        
+            
+            
             if (lista.size()>0){
+                
+                
                 for(int i =0; i<lista.size(); i++){
                             
                     try {
@@ -227,9 +249,8 @@ public abstract class MyExell {
         public static void MegaExellGet(int CASE){
             
         try{
-            File fileMegaExell = new File("MegaExell.xls");  /*Abrir MegaExell*/
+            File fileMegaExell = new File("exellBaseDatosMGE.xls");  /*Abrir MegaExell*/
             Workbook MegaExell = Workbook.getWorkbook(fileMegaExell);
-            
             
             if(MegaExell.getNumberOfSheets()>1){
             
@@ -251,12 +272,6 @@ public abstract class MyExell {
                 Cell celdaComentario =  hojaMaster.getCell(8,fila+1);
                 Cell celdaestado =  hojaMaster.getCell(9,fila+1);            
             
-            
-            
-                
-                
-               
-                
                 String strFechayHoraRecepcion = celdaFechayHoraRecepcion.getContents();
                 String strID_CLIENTE = celdaID_CLIENTE.getContents();
                 String strAsunto = celdaasunto.getContents();
@@ -312,62 +327,25 @@ public abstract class MyExell {
         
         
         public static void generateMegaExell (int pagina,ArrayList<Tickets> lista){
-            System.out.println("GENERATEEE");
            
         try {
-            WritableWorkbook MegaExell = Workbook.createWorkbook(new File("MegaExell.xls"));
+            exellBaseDatosMGE = Workbook.createWorkbook(new File("exellBaseDatosMGE.xls"));
             
-            WritableSheet hojaTikets;
-            hojaTikets = MegaExell.createSheet("Todos los Tickets", pagina);
-            if (lista.size()>0){
-                for(int i =0; i<lista.size(); i++){
-                            
-                    try {
-                        Tickets tempTiket = lista.get(i);
-                        
-                        Label lblFechayHoraRecepcion = new Label(0,i+1,tempTiket.getFechayHoraRecepcion());
-                        hojaTikets.addCell(lblFechayHoraRecepcion);
-                        Label lblID_CLIENTE = new Label(1,i+1,tempTiket.getID_CLIENTE());
-                        hojaTikets.addCell(lblID_CLIENTE);
-                        Label lblasunto = new Label(2,i+1,tempTiket.getAsunto());
-                        hojaTikets.addCell(lblasunto);
-                        Label lblIDTicket = new Label(3,i+1,Integer.toString(tempTiket.getIDTicket()));
-                        hojaTikets.addCell(lblIDTicket);
-                        Label lblcategoria= new Label(4,i+1,tempTiket.getCategoria());
-                        hojaTikets.addCell(lblcategoria);
-                        Label lblID_EMPLEADO = new Label(5,i+1,tempTiket.getID_EMPLEADO());
-                        hojaTikets.addCell(lblID_EMPLEADO);
-                        Label lblfechayHoraAtencion = new Label(6,i+1,tempTiket.getFechayHoraAtencion());
-                        hojaTikets.addCell(lblfechayHoraAtencion);
-                        Label lbltiempoSegundos = new Label(7,i+1,tempTiket.getTiempoSegundos());
-                        hojaTikets.addCell(lbltiempoSegundos);
-                        Label lblComentario = new Label(8,i+1,tempTiket.getComentario());
-                        hojaTikets.addCell(lblComentario);
-                        Label lblestado = new Label(9,i+1,tempTiket.getEstado());
-                        hojaTikets.addCell(lblestado);
-                        
-                        
-                        
-                    } catch (WriteException ex) {
-                        System.out.println("Error EN GUARDAR "+ex.getMessage());
-                    }
-                } 
-                MegaExell.write();
-            }
-        
+            hojaTiketsAtendidosMGE = exellBaseDatosMGE.createSheet("Tickets Atendidos", 0);
+            hojaTiketsLiberadosMGE = exellBaseDatosMGE.createSheet("Tickets Liberados", 1);
             
+            System.out.println("\n"+"\n+"+"\n"+"ESTO TIENE LISTA LIBERADOS>"+ManejadorDeListas.MegaLiberados.size()+"<ESO TIENE"+"\n"+"\n"+"\n");
+                    
+            insertSheet(ManejadorDeListas.MegaLista,hojaTiketsAtendidosMGE);
+            insertSheet(ManejadorDeListas.MegaLiberados,hojaTiketsLiberadosMGE);
+            
+            exellBaseDatosMGE.write();
             try {
-                MegaExell.close();
-            } catch (WriteException ex) {
-                Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } catch (IOException ex) {
-            Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+                exellBaseDatosMGE.close();
+            } catch (WriteException ex) {Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);}
+            } catch (IOException ex) {Logger.getLogger(MyExell.class.getName()).log(Level.SEVERE, null, ex);}
         }
         
         
 }
+
