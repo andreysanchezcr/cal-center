@@ -222,9 +222,7 @@ public abstract class ManejadorDeListas {
             Calendar calendarMiTicket = new GregorianCalendar(getAno(lista.get(i).getFechayHoraAtencion()), 
                                                               getMes(lista.get(i).getFechayHoraAtencion()),
                                                               getDia(lista.get(i).getFechayHoraAtencion()));
-            System.out.println("CAlendario mi tickets"+calendarMiTicket);
-                    
-                    
+            
             if(calendarMiTicket.after(calendarDesde) && calendarMiTicket.before(calendarHasta)){
                 System.out.println("ESTE ITEM SI ENTREO>"+i+"<");
                         
