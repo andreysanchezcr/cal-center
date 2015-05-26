@@ -40,6 +40,7 @@ public class Servidor implements Runnable {
     ArrayList listaConexiones = new ArrayList();
     HiloDeCliente_1 cli;
     ArrayList historial;
+    ServerSocket socketServidor;
 
     private void registrarPersonas() {
         historial = new ArrayList();
@@ -393,7 +394,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
     public void run() {
 
         try {
-            ServerSocket socketServidor = new ServerSocket(puerto);
+            socketServidor = new ServerSocket(puerto);
 
             while (true) {
 
@@ -523,6 +524,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
         }
         
     }
+    
 
     public void mandarReporteIndividual() throws IOException {
         
@@ -608,5 +610,13 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
             temp = temp + oracion.charAt(i);
         }
         return temp;
+    }
+    public void desconectar(){
+        try {
+            this.socketServidor.close();
+        } catch (IOException ex) {
+            System.out.println("Error al desconectar");
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

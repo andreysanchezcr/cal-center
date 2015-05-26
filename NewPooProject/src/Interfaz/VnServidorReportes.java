@@ -79,11 +79,12 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList4 = new javax.swing.JList();
-        rbOrigenTiempos = new javax.swing.JRadioButton();
         jlReportes = new java.awt.List();
         jButton1 = new javax.swing.JButton();
         calendariodesde = new com.toedter.calendar.JDateChooser();
         calendariohasta = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        tiempopromedio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -233,13 +234,6 @@ public class VnServidorReportes extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jList4);
 
-        rbOrigenTiempos.setText("Origen DE los Tiempos");
-        rbOrigenTiempos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbOrigenTiemposActionPerformed(evt);
-            }
-        });
-
         jlReportes.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jlReportesItemStateChanged(evt);
@@ -252,6 +246,8 @@ public class VnServidorReportes extends javax.swing.JFrame {
         });
 
         jButton1.setText("Volver");
+
+        jLabel3.setText("Tiempo promedio de atencion:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -272,8 +268,11 @@ public class VnServidorReportes extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(calendariodesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rbOrigenTiempos)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tiempopromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlReportes, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                 .addContainerGap())
@@ -291,15 +290,17 @@ public class VnServidorReportes extends javax.swing.JFrame {
                     .addComponent(calendariohasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbOrigenTiempos)
-                .addGap(8, 8, 8)
+                .addGap(34, 34, 34)
                 .addComponent(cbTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tiempopromedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -394,22 +395,17 @@ public class VnServidorReportes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ListaActividadRecienteItemStateChanged
 
-    private void rbOrigenTiemposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbOrigenTiemposActionPerformed
-       if( Funciones.origenDeLosTiempos){
-       Funciones.origenDeLosTiempos=false;
-       }else{Funciones.origenDeLosTiempos=true;}
-    }//GEN-LAST:event_rbOrigenTiemposActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jlReportes.removeAll();
         ArrayList temp;
         String busqueda=(String)cbTipoBusqueda.getSelectedItem();
         if(this.jCheckBox1.isSelected()){
-            temp=ManejadorDeListas.MegaLista;
+            temp=this.filtroNombre(ManejadorDeListas.MegaLista);
         }else{
             temp=this.filtroNombre(ManejadorDeListas.ticketEntreFecha(this.getFechadesde(), this.getFechahasta(), ManejadorDeListas.MegaLista));
         
         }
+        this.setTiempoPromedio(temp);
         llenarJList(temp);
         System.out.println(temp.size()+" este es el tama;o de lalista");
         
@@ -423,6 +419,21 @@ public class VnServidorReportes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void setTiempoPromedio(ArrayList lista ){
+        int res=0;
+        for(int i =0;i<lista.size();i++){
+            Tickets temp=(Tickets)lista.get(i);
+            res=res+this.getDuracion(temp.getTiempoSegundos());
+        }
+        if(lista.isEmpty()){
+            return;
+        }
+        res=res/lista.size();
+        this.tiempopromedio.setText(res+"");
+        
+        
+    }
+    
     public ArrayList filtroNombre(ArrayList lista){
         String nombre=(String)cbTipoBusqueda.getSelectedItem();
         System.out.println(nombre);
@@ -467,6 +478,61 @@ public class VnServidorReportes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbTipoBusquedaActionPerformed
 
+    public int getTiempoHoras(String tiempo){
+        int resultado=0;
+        String res="";
+        for(int i =0;i<tiempo.length();i++){
+            if(tiempo.charAt(i)==':'){
+                //res="";
+               return Integer.parseInt(res)*60*60;
+                //continue;
+            }
+            res=res+tiempo.charAt(i);
+        }
+        return -1;
+        
+    }
+    public int getTiempoMinutos(String tiempo){
+        int resultado=0;
+        String res="";
+        boolean bandera=false;
+        for(int i =0;i<tiempo.length();i++){
+            if(tiempo.charAt(i)==':'&&!bandera){
+                res="";
+                bandera=true;
+                continue;
+            }
+            if(tiempo.charAt(i)==':'&&bandera){
+                return Integer.parseInt(res)*60;
+            }
+            res=res+tiempo.charAt(i);
+        }
+        return -1;
+        
+    }
+    public int getTiempoSegundos(String tiempo){
+        int resultado=0;
+        String res="";
+        int contador=0;
+        for(int i =0;i<tiempo.length();i++){
+            if(tiempo.charAt(i)==':'&&contador!=2){
+                res="";
+                contador++;
+                continue;
+            }
+            if(tiempo.charAt(i)==':'&&contador==2){
+                return Integer.parseInt(res);
+            }
+            res=res+tiempo.charAt(i);
+        }
+        return -1;
+        
+    }
+    public int getDuracion(String tiempo){
+        return getTiempoMinutos(tiempo)+getTiempoSegundos(tiempo)+getTiempoHoras(tiempo);
+    }
+    
+    
 
 
     /**
@@ -515,6 +581,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList jList4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
@@ -529,6 +596,6 @@ public class VnServidorReportes extends javax.swing.JFrame {
     public static javax.swing.JLabel lblTicketsSinCategorizar;
     public static javax.swing.JLabel lblTiketsAtendidos;
     private javax.swing.JPanel pnGraficoNumTikets;
-    public static javax.swing.JRadioButton rbOrigenTiempos;
+    private javax.swing.JLabel tiempopromedio;
     // End of variables declaration//GEN-END:variables
 }

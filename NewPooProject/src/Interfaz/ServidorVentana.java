@@ -157,7 +157,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Lista = new java.awt.List();
-        btnCargarTickets1 = new javax.swing.JButton();
         Lista4 = new java.awt.List();
         Lista5 = new java.awt.List();
         Lista6 = new java.awt.List();
@@ -282,15 +281,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        btnCargarTickets1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        btnCargarTickets1.setText("Desconectar");
-        btnCargarTickets1.setToolTipText("");
-        btnCargarTickets1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarTickets1ActionPerformed(evt);
-            }
-        });
-
         Lista4.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 Lista4ItemStateChanged(evt);
@@ -368,8 +358,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
-                                .addGap(218, 218, 218)
-                                .addComponent(btnCargarTickets1))
+                                .addGap(321, 321, 321))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Lista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -413,9 +402,7 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnCargarTickets1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -595,14 +582,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_ListaActionPerformed
 
-    private void btnCargarTickets1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTickets1ActionPerformed
-        // TODO add your handling code here:
-        Login logInFrame = new Login();        
-        logInFrame.setVisible(true);        
-        this.setVisible(false);
-        
-    }//GEN-LAST:event_btnCargarTickets1ActionPerformed
-
     private void Lista4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Lista4ItemStateChanged
         // TODO add your handling code here:
         jTextArea1.setText("             **INFORMACIÓN DEL TIKET**");        
@@ -663,7 +642,6 @@ public class ServidorVentana extends javax.swing.JFrame implements Runnable {
     public static java.awt.List Lista6;
     private javax.swing.JButton btStatusMonitoreo;
     private javax.swing.JButton btnCargarTickets;
-    private javax.swing.JButton btnCargarTickets1;
     private javax.swing.JButton btnSetComoAmarillo;
     private javax.swing.JButton btnSetComoRojo;
     private javax.swing.JButton btnSetComoVERDE;
