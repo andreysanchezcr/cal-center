@@ -393,7 +393,7 @@ temp.setFechayHoraAtencion(this.getTiempoActual());
     public void run() {
 
         try {
-            ServerSocket socketServidor = new ServerSocket(5557);
+            ServerSocket socketServidor = new ServerSocket(puerto);
 
             while (true) {
 
