@@ -198,6 +198,7 @@ public abstract class ManejadorDeListas {
     }
     
     public static  ArrayList<Tickets> ticketEntreFecha(String fecha1,String fecha2, ArrayList<Tickets> lista){
+        System.out.println("Comienza la funcion");
         System.out.println(fecha1);
         System.out.println(fecha2);
         
@@ -208,13 +209,20 @@ public abstract class ManejadorDeListas {
         int dia2=getDia(fecha2);
         int mes2=getMes(fecha2);
         int annio2=getAno(fecha2);
-        
+        System.out.println(dia1);
+        System.out.println(mes1);
+        System.out.println(annio1);
+        System.out.println(dia2);
+        System.out.println(mes2);
+        System.out.println(annio2);
         ArrayList<Tickets> listaFecha = new ArrayList<Tickets>();
         
         Calendar calendarDesde = new GregorianCalendar(annio1, mes1, dia1);
 	Calendar calendarHasta = new GregorianCalendar(annio2, mes2, dia2);
         
-        if(calendarDesde.after(calendarHasta)){return listaFecha;} //Botar el metodo si la fecha de haste es mayor que la fecha desde
+        if(calendarDesde.after(calendarHasta)){
+            System.out.println("saliooooooo");
+            return listaFecha;} //Botar el metodo si la fecha de haste es mayor que la fecha desde
         
         
         for(int i = 0; i < lista.size();i++){
@@ -230,7 +238,7 @@ public abstract class ManejadorDeListas {
             } 
         
         }
-        
+        System.out.println("termina la funcion");
         return listaFecha;
         
     }
