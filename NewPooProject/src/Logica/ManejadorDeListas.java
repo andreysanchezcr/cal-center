@@ -71,18 +71,18 @@ public abstract class ManejadorDeListas {
             ListaDeRojos.add(ListaDeRojosInsert.get(i));
         }
     }
-    public static String getDia(String fecha){
+    public static int getDia(String fecha){
         String temp="";
         for(int i=0;i<fecha.length();i++){
         if(fecha.charAt(i)=='/'){
-            return temp;
+            return Integer.parseInt(temp);
         }
         temp=temp+fecha.charAt(i);
         }
         System.out.println("Error en la funcion get dia");
-        return "";
+        return -1;
     }
-    public static String getMes(String fecha){
+    public static int getMes(String fecha){
         String temp="";
         int contador=0;
         for(int i=0;i<fecha.length();i++){
@@ -91,7 +91,7 @@ public abstract class ManejadorDeListas {
             contador++;
             //continue;
         }else if((fecha.charAt(i)=='/')&&contador==1){
-            return temp;
+            return Integer.parseInt(temp);
             //continue;
         }
         else{
@@ -100,9 +100,9 @@ public abstract class ManejadorDeListas {
         
         }
         System.out.println("Error en la funcion get mes");
-        return "";
+        return -1;
     }
-    public static String getAno(String fecha){
+    public static int getAno(String fecha){
         String temp="";
         int contador=0;
         for(int i=0;i<fecha.length();i++){
@@ -111,11 +111,16 @@ public abstract class ManejadorDeListas {
             contador++;
             continue;
         }
+        if((fecha.charAt(i)==' ')){
+            
+            return Integer.parseInt(temp);
+        }
+        
         temp=temp+fecha.charAt(i);
         
         }
         //System.out.println("Error en la funcion get mes");
-        return temp;
+        return Integer.parseInt(temp);
     }        
     
   
