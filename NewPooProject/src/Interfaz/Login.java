@@ -41,10 +41,10 @@ public class Login extends javax.swing.JFrame {
     }
     
     private void registrarPersonas(){
-        Persona admn = new Persona("Admin","admin@tec.ac.cr","12345",null,true);
-        Persona rojo = new Persona("Fernando","fernando@tec.ac.cr","12345",null,true);
-        Persona verde = new Persona("Luis","luis@tec.ac.cr","12345",null,true);
-        Persona amarillo = new Persona("Junior","junior@tec.ac.cr","12345",null,true);
+        Persona admn = new Persona("Admin","admin@tec.ac.cr","adminadmin",null,true);
+        Persona rojo = new Persona("Fernando Ugarte Ugalde","frug54@tec.ac.cr","201048339",null,true);
+        Persona verde = new Persona("Luis Aguilar Acuña","luis@tec.ac.cr","2014063730",null,true);
+        Persona amarillo = new Persona("Junior Herrera Aragón","junior@tec.ac.cr","2013056233",null,true);
         listaEmpleados.add(admn);
         listaEmpleados.add((Persona)verde);
         listaEmpleados.add((Persona)rojo);
