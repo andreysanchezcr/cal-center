@@ -24,6 +24,7 @@ public class ComprobarLogin extends javax.swing.JFrame {
         initComponents();
         this.parent=parent;
         this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,12 +45,16 @@ public class ComprobarLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel1.setText("Es Necesaria la Autoindentificacion");
 
+        jLabel2.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel2.setText("Usuario");
 
+        jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel3.setText("Contraseña");
 
+        jButton1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jButton1.setText("Verificar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +84,7 @@ public class ComprobarLogin extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(11, 11, 11)
                 .addComponent(jLabel2)
@@ -91,7 +96,7 @@ public class ComprobarLogin extends javax.swing.JFrame {
                 .addComponent(tcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addComponent(jButton1)
-                .addGap(31, 31, 31))
+                .addGap(25, 25, 25))
         );
 
         pack();

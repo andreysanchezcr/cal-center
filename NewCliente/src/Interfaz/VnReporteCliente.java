@@ -25,6 +25,7 @@ public class VnReporteCliente extends javax.swing.JFrame {
      */
     public VnReporteCliente() {
         initComponents();
+        setLocationRelativeTo(null);
         
                 
         // Fuente de Datos

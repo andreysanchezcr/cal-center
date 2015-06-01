@@ -66,7 +66,6 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         setResizable(false);
 
         jPasswordField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jPasswordField1.setText("12345");
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
@@ -77,7 +76,6 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         jLabel2.setText("Nombre de Usuario:");
 
         jTextField1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jTextField1.setText("luis@tec.ac.cr");
 
         jLabel4.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,14 +101,12 @@ public class Login extends javax.swing.JFrame implements  Runnable{
         jLabel10.setText("Puerto:");
 
         jTextField6.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jTextField6.setText("5454");
 
         jLabel9.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("HOST:");
 
         jTextField5.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
-        jTextField5.setText("localhost");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TuCalllCenterLogoResize.png"))); // NOI18N
 
