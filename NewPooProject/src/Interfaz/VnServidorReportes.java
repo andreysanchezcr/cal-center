@@ -93,16 +93,21 @@ public class VnServidorReportes extends javax.swing.JFrame {
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(800, 500));
         jTabbedPane2.setRequestFocusEnabled(false);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status General ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Schoolbook L", 0, 10), new java.awt.Color(255, 0, 250))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status General ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri Light", 0, 14), new java.awt.Color(255, 153, 0))); // NOI18N
 
+        lblTiketsAtendidos.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTiketsAtendidos.setText("TIkets Atendidos                    ");
 
+        lblTicketsPendientes.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTicketsPendientes.setText("Tikets Pendientes");
 
+        lblTicketsSinCategorizar.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTicketsSinCategorizar.setText("Tikets Sin Categorizar");
 
+        lblTicketsEnSistema.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTicketsEnSistema.setText("Total Tikets en Sistema");
 
+        lblTicketsEnAtencion.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         lblTicketsEnAtencion.setText("Tikets Aun En Atencion");
 
         javax.swing.GroupLayout pnGraficoNumTiketsLayout = new javax.swing.GroupLayout(pnGraficoNumTikets);
@@ -154,7 +159,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
                 .addComponent(lblTicketsSinCategorizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblTicketsEnSistema)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(btnVolverPrincipal)
                 .addContainerGap())
             .addComponent(pnGraficoNumTikets, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -202,10 +207,13 @@ public class VnServidorReportes extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Estado", jPanel4);
 
+        jLabel2.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel2.setText("                         hasta:");
 
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel1.setText("Buscar Tickets desde:");
 
+        cbTipoBusqueda.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         cbTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Fernando", "Junior", "Luis" }));
         cbTipoBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,6 +221,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jCheckBox1.setText("Buscar Desde el Origen de los tiempos");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +229,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,8 +255,10 @@ public class VnServidorReportes extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jButton1.setText("Volver");
 
+        jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel3.setText("Tiempo promedio de atencion:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -292,7 +304,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
                 .addComponent(jCheckBox1)
                 .addGap(34, 34, 34)
                 .addComponent(cbTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tiempopromedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -319,7 +331,7 @@ public class VnServidorReportes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

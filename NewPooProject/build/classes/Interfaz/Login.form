@@ -312,7 +312,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri Light" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="12345"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -342,7 +341,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri Light" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="admin@tec.ac.cr"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -372,7 +370,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri Light" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="5454"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">

@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane2" pref="333" max="32767" attributes="0"/>
+              <Component id="jTabbedPane2" pref="336" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -84,8 +84,8 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Status General ">
-                      <Font PropertyName="font" name="Century Schoolbook L" size="10" style="0"/>
-                      <Color PropertyName="color" blue="fa" green="0" red="ff" type="rgb"/>
+                      <Font PropertyName="font" name="Calibri Light" size="14" style="0"/>
+                      <Color PropertyName="color" blue="0" green="99" red="ff" type="rgb"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -125,7 +125,7 @@
                           <Component id="lblTicketsSinCategorizar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lblTicketsEnSistema" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="75" max="32767" attributes="0"/>
+                          <EmptySpace pref="114" max="32767" attributes="0"/>
                           <Component id="btnVolverPrincipal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -136,6 +136,9 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="lblTiketsAtendidos">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri Light" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="TIkets Atendidos                    "/>
                   </Properties>
                   <AuxValues>
@@ -144,6 +147,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTicketsPendientes">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri Light" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Tikets Pendientes"/>
                   </Properties>
                   <AuxValues>
@@ -152,6 +158,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTicketsSinCategorizar">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri Light" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Tikets Sin Categorizar"/>
                   </Properties>
                   <AuxValues>
@@ -160,6 +169,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTicketsEnSistema">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri Light" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Total Tikets en Sistema"/>
                   </Properties>
                   <AuxValues>
@@ -168,6 +180,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTicketsEnAtencion">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri Light" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Tikets Aun En Atencion"/>
                   </Properties>
                   <AuxValues>
@@ -300,7 +315,7 @@
                       <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="cbTipoBusqueda" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel3" max="32767" attributes="0"/>
                           <Component id="tiempopromedio" max="32767" attributes="0"/>
@@ -322,16 +337,25 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="                         hasta:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar Tickets desde:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbTipoBusqueda">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="14" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value="Todos"/>
@@ -350,6 +374,9 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar Desde el Origen de los tiempos"/>
               </Properties>
               <Events>
@@ -358,6 +385,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
               <Events>
@@ -397,6 +427,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Volver"/>
               </Properties>
             </Component>
@@ -406,6 +439,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Tiempo promedio de atencion:"/>
               </Properties>
             </Component>
